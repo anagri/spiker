@@ -4,8 +4,11 @@
   <%= stylesheet_link_tag :all %>
 </head>
 <body>
-
-
+<% if flash[:notice] %>
+    <div class="flash_notice"><%= flash[:notice] %></div>
+<% end %>
+<div class="top_status_bar"><%=link_to "Login", login_path%> | <%=link_to "Registration", new_user_path%> </div>
+<br/>
 <%= yield %>
 
 <!-- Javascript assets -->
