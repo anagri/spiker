@@ -2,9 +2,18 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  helper :all # include all helpers, all the time
-  protect_from_forgery # See ActionController::RequestForgeryProtection for details
+  include SessionAware
+  helper :all
+  protect_from_forgery
 
-  # Scrub sensitive parameters from your log
-  # filter_parameter_logging :password
+  filter_parameter_logging :password, :password_confirmation
+
+  helper_method :current_user
+
+  before_filter {|controller| Authorization.current_user = controller.current_user}
+
+  def permission_denied
+    flash[:error] = "You are not authorized to access the requested resource"
+    redirect_to root_path
+  end
 end

@@ -1,3 +1,11 @@
 .top_status_bar {
     
 }
+
+.flash_notice {
+    border: 2px solid black;
+}
+
+.flash_error {
+    border: 2px solid red;
+}

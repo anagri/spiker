@@ -30,12 +30,12 @@ describe 'Named Routes' do
     it 'should generate login_path' do
       logout_path.should == '/logout'
     end
+
   end
 
   describe 'Users' do
     it 'should generate resources routes for user' do
-      users_path.should == '/users'
-      new_user_path.should == '/users/new'
+      assert_restful_routing("user")
     end
   end
 end

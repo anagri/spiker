@@ -1,6 +1,10 @@
-require 'spec_helper'
+require File.dirname(__FILE__) + '/spec_helper'
 
 describe UsersController do
+  before(:each) do
+    Authlogic::Session::Base.controller = Authlogic::ControllerAdapters::RailsAdapter.new(controller)
+  end
+
   describe 'new' do
     it 'should define new user' do
       get :new
@@ -12,8 +16,8 @@ describe UsersController do
   describe 'create' do
     it 'should create new user' do
       get :create, :user => {:username => 'dummyuser', :email => 'dummyemail@dmail.com', :password => 'dummypassword', :password_confirmation => 'dummypassword'}
-      response.should be_redirect
-      User.find_by_username('dummyuser').should_not be_nil
+      created_user = User.find_by_username('dummyuser')
+      response.should have_created_resource(created_user, user_path(created_user))
     end
 
     it 'should return error if user not created' do
@@ -23,6 +27,31 @@ describe UsersController do
       created_user = assigns[:user]
       created_user.errors.should_not be_empty
       created_user.should be_new_record
+    end
+  end
+
+  describe 'edit' do
+    xit 'should define current user for edit' do
+      user = Factory.create(:user)
+      Factory.create(:session, :username => user.username, :password => user.password)
+      get :edit
+      response.should be_success
+      user_to_edit = assigns[:user]
+      user_to_edit.should_not be_nil
+      user_to_edit.should == session.user
+    end
+  end
+
+  describe 'update' do
+    xit 'should remove attribute that are restricted for update' do
+      user = Factory.create(:user, :username => 'oldusername', :email => 'oldemail@email.com')
+      Factory.create(:session, :username => user.username, :password => user.password)
+
+      get :update, :id => user.id, :user => {:username => 'newusername', :email => 'newemail@email.com'}
+      persisted_user = User.find(user.id)
+      response.should have_updated_resource(persisted_user, user_path(persisted_user))
+      persisted_user.username.should == 'oldusername'
+      persisted_user.email.should == 'oldemail@email.com'
     end
   end
 end

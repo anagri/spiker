@@ -18,7 +18,9 @@ Rails::Initializer.run do |config|
   config.gem "authlogic"
   config.gem "rspec", :lib => false
   config.gem "rspec-rails", :lib => false
-
+  config.gem "factory_girl", :source => "http://gemcutter.org"
+  config.gem "declarative_authorization"
+  config.gem "mocha", :lib => false
   # config.gem "bj"
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
