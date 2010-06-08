@@ -32,9 +32,7 @@ describe UsersController do
 
   describe 'edit' do
     it 'should define current user for edit' do
-      session = without_access_control do
-        Factory.create(:session)
-      end
+      session = Factory.without_access_control_do_create(:session)
       get :edit, :id => session.user.id
       response.should be_success
       user_to_edit = assigns[:user]
