@@ -1,5 +1,7 @@
 Factory.define :session do |session|
-  session.username 'defaultusername'
+  session.username do
+    Factory.create(:user, :password => 'defaultpassword').username
+  end
   session.password 'defaultpassword'
 end
 

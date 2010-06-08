@@ -32,8 +32,7 @@ describe UsersController do
 
   describe 'edit' do
     xit 'should define current user for edit' do
-      user = Factory.create(:user)
-      Factory.create(:session, :username => user.username, :password => user.password)
+      Factory.create(:session)
       get :edit
       response.should be_success
       user_to_edit = assigns[:user]
@@ -48,6 +47,7 @@ describe UsersController do
       Factory.create(:session, :username => user.username, :password => user.password)
 
       get :update, :id => user.id, :user => {:username => 'newusername', :email => 'newemail@email.com'}
+
       persisted_user = User.find(user.id)
       response.should have_updated_resource(persisted_user, user_path(persisted_user))
       persisted_user.username.should == 'oldusername'
