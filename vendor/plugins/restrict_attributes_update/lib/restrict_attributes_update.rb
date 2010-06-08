@@ -8,7 +8,7 @@ module RestrictAttributesUpdate
   module ClassMethods
     def restrict_attributes_update(attributes)
       before_filter :only => [:update] do |controller|
-        attributes.each {|attribute| controller.params.delete(attribute.to_sym)}
+        attributes.each {|attribute| controller.params[controller.class.name.modelize].delete(attribute.to_sym)}
       end
     end
   end

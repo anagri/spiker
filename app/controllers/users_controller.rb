@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def update
     if @user.update_attributes(params[:user])
       flash[:notice] = "Successfully updated profile."
-      redirect_to user_path(@user)
+      redirect_to :action => 'show', :id => @user.id, :only_path => true #make a extension only_path(@object|Hash|String), buggy rails implementation
     else
       render :action => 'edit'
     end

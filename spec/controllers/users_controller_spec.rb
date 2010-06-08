@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/spec_helper'
 
 describe UsersController do
   before(:each) do
-    Authlogic::Session::Base.controller = Authlogic::ControllerAdapters::RailsAdapter.new(controller)
+    activate_authlogic
   end
 
   describe 'new' do
@@ -31,9 +31,11 @@ describe UsersController do
   end
 
   describe 'edit' do
-    xit 'should define current user for edit' do
-      Factory.create(:session)
-      get :edit
+    it 'should define current user for edit' do
+      session = without_access_control do
+        Factory.create(:session)
+      end
+      get :edit, :id => session.user.id
       response.should be_success
       user_to_edit = assigns[:user]
       user_to_edit.should_not be_nil
@@ -42,16 +44,16 @@ describe UsersController do
   end
 
   describe 'update' do
-    xit 'should remove attribute that are restricted for update' do
+    it 'should remove attribute that are restricted for update' do
       user = Factory.create(:user, :username => 'oldusername', :email => 'oldemail@email.com')
       Factory.create(:session, :username => user.username, :password => user.password)
 
       get :update, :id => user.id, :user => {:username => 'newusername', :email => 'newemail@email.com'}
 
       persisted_user = User.find(user.id)
-      response.should have_updated_resource(persisted_user, user_path(persisted_user))
       persisted_user.username.should == 'oldusername'
       persisted_user.email.should == 'oldemail@email.com'
+      response.should have_updated_resource(persisted_user, user_path(persisted_user))
     end
   end
 end
