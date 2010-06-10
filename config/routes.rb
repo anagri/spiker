@@ -6,5 +6,4 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'login', :controller => :sessions, :action => :create, :conditions => {:method => :post}
 
   map.resources :users, :only => [:new, :create, :edit, :update, :show]
-
 end

@@ -7,6 +7,7 @@ class UsersController < ApplicationController
       flash[:notice] = 'Registration Successful'
       head :created, :location => user_path(@user)
     else
+      flash[:error] = 'Error while doing registration'
       render :action => 'new'
     end
   end

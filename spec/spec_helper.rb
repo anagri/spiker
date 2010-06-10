@@ -4,6 +4,7 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path(File.join(File.dirname(__FILE__),'..','config','environment'))
 require 'spec/autorun'
 require 'spec/rails'
+require 'spec/mocks'
 
 Dir.glob(File.dirname(__FILE__) + "/factories/*_factory").sort.each do |factory|
   require factory
