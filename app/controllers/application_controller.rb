@@ -14,6 +14,6 @@ class ApplicationController < ActionController::Base
 
   def permission_denied
     flash[:error] = "You are not authorized to access the requested resource"
-    redirect_to root_path
+    render :action => 'unauthorized', :status => 401
   end
 end

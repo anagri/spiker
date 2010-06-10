@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 def assert_restful_routing(resource)
   resources = resource.pluralize
   send(:"#{resources}_path").should == "/#{resources}"
