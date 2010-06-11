@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require File.dirname(__FILE__) + '/spec_helper'
 
 describe 'Mapped Routes' do
   it 'should map / to home' do
