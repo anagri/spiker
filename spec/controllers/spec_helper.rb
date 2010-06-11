@@ -7,7 +7,7 @@ Spec::Runner.configure do |config|
   config.include Authorization::TestHelper
 end
 
-Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}
+Dir[File.expand_path(File.join(File.dirname(__FILE__), 'support', '**', '*.rb'))].each {|f| require f}
 
 def current_user(stubs = {})
   @current_user ||= stub_model(User, stubs)

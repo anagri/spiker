@@ -53,6 +53,34 @@ MESSAGE
       BeUnauthorized.new
     end
 
+    class BeRedirectTo
+      def initialize(location)
+        @location = location
+      end
+
+      def matches?(target)
+        @response = target
+        @message = "expected the response code to be redirect(302) but was #{@response.code}" and return false unless @response.code == "302"
+        @message = "expected the response redirect location to be #{@location} but was #{@response.location}" and return false unless @response.location == @location
+        return true
+      end
+
+      def failure_message_for_should
+        @message
+      end
+
+      def failure_message_for_should_not
+        <<MESSAGE
+        expected the response code not to be redirect(401) but was #{@response.code}
+and redirect location not to be #{@location} but was #{@response.location}"
+MESSAGE
+      end
+    end
+
+    def be_redirect_to(location)
+      BeRedirectTo.new(location)
+    end
+
     class HaveCreatedResource
       def initialize(resource, location)
         @resource = resource

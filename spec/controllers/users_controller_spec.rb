@@ -59,7 +59,7 @@ describe UsersController do
 
       get :update, :id => current_user.id, :user => {:username => 'newusername', :email => 'newemail@email.com'}
 
-      response.should have_updated_resource(current_user, user_path(current_user))
+      response.should have_updated_resource(current_user, full_url(user_path(current_user)))
     end
 
     it 'should update unrestricted user information' do
@@ -70,7 +70,7 @@ describe UsersController do
       current_user.expects(:update_attributes).with( attributes_to_update).returns(true)
       get :update, :id => current_user.id, :user => attributes_to_update
 
-      response.should have_updated_resource(current_user, user_path(current_user))
+      response.should have_updated_resource(current_user, full_url(user_path(current_user)))
     end
   end
 end

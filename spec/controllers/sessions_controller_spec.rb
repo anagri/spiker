@@ -10,26 +10,42 @@ describe SessionsController do
 
   describe 'create' do
     before(:each) do
-      Authlogic::Session::Base.controller = Authlogic::ControllerAdapters::RailsAdapter.new(controller)
+      @login_params = params_hash(:session => {:username => 'testuser', :password => 'testpass'})
     end
 
     it 'should create new session object with given params' do
-      Session.find.try(:destroy)
-      user = Factory.create(:user)
-      post :create, :session => {:username => user.username, :password => user.password}
+      clear_session
+      mock_valid_session = mock('session', :save => true)
+      Session.expects(:new).with(@login_params[:session]).returns(mock_valid_session)
+
+      post :create, @login_params
+      flash[:notice].should == 'Successfully logged in'
       response.should be_redirect
-      Session.find.should_not be_nil
+      assigns[:session].should == mock_valid_session
     end
 
-    it 'should not create new session if params are invalid' do
-      Session.find.try(:destroy)
-      #no user setup
-      post :create, :session => {:username => "dummyuser", :password => "dummypassword"}
+    it 'should not create new session if session params invalid' do
+      clear_session
+      mock_invalid_session = mock('session', :save => false)
+      Session.expects(:new).with(@login_params[:session]).returns(mock_invalid_session)
+
+      post :create, @login_params
       response.should be_success
       session = assigns[:session]
-      session.should_not be_nil
-      session.errors.should_not be_empty
-      Session.find.should be_nil
+      session.should == mock_invalid_session
+    end
+
+    def clear_session
+      Session.stubs(:find).returns(nil)
+    end
+  end
+
+  describe 'destroy' do
+    it 'should find the current session and destroy it' do
+      Session.stubs(:find).returns(mock('session', :destroy => true, :user => stub('user')))
+      delete :destroy
+      flash[:notice].should == 'Successfully logged out'
+      response.should be_redirect_to(full_url(root_path))
     end
   end
 end
