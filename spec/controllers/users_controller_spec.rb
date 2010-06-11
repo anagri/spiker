@@ -15,7 +15,7 @@ describe UsersController do
 
   describe 'create' do
     before(:each) do
-      @user_params = HashWithIndifferentAccess.new(:username => 'testuser')
+      @user_params = params_hash(:username => 'testuser')
     end
 
     it 'should create new user' do
@@ -58,6 +58,17 @@ describe UsersController do
       current_user.expects(:update_attributes).with({}).returns(true)
 
       get :update, :id => current_user.id, :user => {:username => 'newusername', :email => 'newemail@email.com'}
+
+      response.should have_updated_resource(current_user, user_path(current_user))
+    end
+
+    it 'should update unrestricted user information' do
+      login
+      current_user = user_session.user
+      User.expects(:find).with(current_user.id.to_s).returns(current_user)
+      attributes_to_update = params_hash({:first_name => 'newfirstname', :lastname => 'newlastname'})
+      current_user.expects(:update_attributes).with( attributes_to_update).returns(true)
+      get :update, :id => current_user.id, :user => attributes_to_update
 
       response.should have_updated_resource(current_user, user_path(current_user))
     end

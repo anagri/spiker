@@ -3,7 +3,8 @@ require File.dirname(__FILE__) + '/spec_helper'
 class StubController < ApplicationController
 end
 
-describe StubController do
+describe 'SessionAware', :type => :controller do
+  controller_name :stub
   include SessionAware
 
   it 'should get current user from session' do

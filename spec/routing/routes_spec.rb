@@ -27,14 +27,14 @@ describe 'Named Routes' do
       login_path.should == '/login'
     end
 
-    it 'should generate login_path' do
+    it 'should generate logout_path' do
       logout_path.should == '/logout'
     end
 
   end
 
   describe 'Users' do
-    it 'should generate resources routes for user' do
+    it 'should generate user resources routes' do
       assert_restful_routing("user")
     end
   end
