@@ -9,21 +9,27 @@ describe User do
 
   describe 'invalid user' do
     it 'should not create user if password is blank'do
-      User.create(:username => 'testuser', :password => '', :password_confirmation => '').should be_invalid
+      invalid_user = User.create(:username => 'testuser', :email => 'testemail@email.com', :password => '', :password_confirmation => '')
+      invalid_user.should be_invalid
+      invalid_user.errors.should have_ar_errors(:password => [:confirmation, :too_short], :password_confirmation => :too_short)
     end
 
     it 'should not create user if username is blank' do
-      User.create(:username => '', :password => 'testpass', :password_confirmation => 'testpass').should be_invalid
+      invalid_user = User.create(:username => '', :email => 'testemail@email.com', :password => 'testpass', :password_confirmation => 'testpass')
+      invalid_user.should be_invalid
+      invalid_user.errors.should have_ar_errors(:username => [:invalid, :too_short])
     end
 
     it 'should not create user if password and password_confirmation mismatch' do
-      User.create(:username => 'testuser', :password => 'testpass', :password_confirmation => 'diffpass').should be_invalid
+      invalid_user = User.create(:username => 'testuser', :email => 'testemail@email.com', :password => 'testpass', :password_confirmation => 'diffpass')
+      invalid_user.should be_invalid
+      invalid_user.errors.should have_ar_errors(:password => :confirmation)
     end
 
     it 'should not create user if password less than 4 characters' do
-      user = User.create(:username => 'testuser', :password => '123', :password_confirmation => '123')
-      user.should be_invalid
-      user.should have_errors([:password, :password_confirmation])
+      invalid_user = User.create(:username => 'testuser', :email => 'testuser@email.com', :password => '123', :password_confirmation => '123')
+      invalid_user.should be_invalid
+      invalid_user.errors.should have_ar_errors(:password => :too_short, :password_confirmation => :too_short)
     end
   end
 end

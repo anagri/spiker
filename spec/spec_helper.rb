@@ -5,6 +5,7 @@ require File.expand_path(File.join(File.dirname(__FILE__),'..','config','environ
 require 'spec/autorun'
 require 'spec/rails'
 require 'spec/mocks'
+require 'remarkable_rails'
 
 Dir.glob(File.dirname(__FILE__) + "/factories/*_factory").sort.each do |factory|
   require factory
@@ -27,6 +28,7 @@ Spec::Runner.configure do |config|
 
 
   config.include(Restful::Matchers)
+  config.include(ActiveRecord::Matchers)
   # == Fixtures
   #
   # You can declare fixtures for each example_group like this:
