@@ -3,4 +3,4 @@ log
 db
 coverage.data
 coverage
-
+tmp/*
