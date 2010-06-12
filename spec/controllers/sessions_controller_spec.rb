@@ -43,6 +43,7 @@ describe SessionsController do
   describe 'destroy' do
     it 'should find the current session and destroy it' do
       Session.stubs(:find).returns(mock('session', :destroy => true, :user => stub('user')))
+      controller.expects(:reset_session)
       delete :destroy
       flash[:notice].should == 'Successfully logged out'
       response.should be_redirect_to(full_url(root_path))
