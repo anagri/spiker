@@ -2,22 +2,40 @@ require File.dirname(__FILE__) + '/spec_helper'
 
 
 describe UsersController do
-  def login_user
-    login
-    current_user = user_session(nil, {:first_name => 'oldfirstname', :last_name => 'oldlastname'}).user
-    User.expects(:find).with(current_user.id.to_s).returns(current_user)
-    return current_user
-  end
-
   before(:each) do
     activate_authlogic
   end
 
   describe 'new' do
-    it 'should define new user' do
-      get :new
+    describe 'should let guest define new user using' do
+      it 'html request' do
+        do_successful_new(:get_html_with, guest)
+      end
+      it 'xml request' do
+        do_successful_new(:get_xml_with, guest)
+      end
+    end
+
+    describe 'should not let user define new user using' do
+      it 'html request' do
+        do_new(:get_html_with, user)
+        response.should be_unauthorized
+      end
+
+      it 'xml request' do
+        do_new(:get_html_with, user)
+        response.should be_unauthorized
+      end
+    end
+
+    def do_successful_new(http_method, user)
+      do_new(http_method, user)
       response.should be_success
       assigns[:user].should_not be_nil
+    end
+
+    def do_new(http_method, user)
+      send(http_method, user, :new)
     end
   end
 
@@ -26,69 +44,103 @@ describe UsersController do
       @user_params = params_hash(:username => 'testuser')
     end
 
-    describe 'should create new user for valid' do
+    describe 'should let guest create new user for valid' do
       before(:each) do
         @stub_user = stub('user', :id => 1, :save => true)
         User.expects(:new).with(@user_params).returns(@stub_user)
       end
 
       it 'html request' do
-        get_html :create, :user => @user_params
+        post_html_with guest, :create, :user => @user_params
         response.should have_created_resource(:resource => @stub_user, :location => user_path(@stub_user), :status => "302")
       end
 
       it 'xml request' do
-        get_xml :create, :user => @user_params
+        post_xml_with guest, :create, :user => @user_params
         response.should have_created_resource(:resource => @stub_user, :location => user_path(@stub_user), :status => "201")
       end
     end
 
-    describe 'shoud not create new user for invalid' do
+    describe 'shoud not let guest create new user for invalid' do
       before(:each) do
         @stub_user = stub('user', :id => 1, :save => false)
         User.expects(:new).with(@user_params).returns(@stub_user)
       end
 
       it 'html request' do
-        get_html :create, :user => @user_params
-        response.should be_success
-        assigns[:user].should == @stub_user
-        flash[:error].should == 'Error while doing registration'
-        response.should render_template('new')
+        do_unsucessful_create(:post_html_with)
       end
 
       it 'xml request' do
-        get_xml :create, :user => @user_params
+        do_unsucessful_create(:post_xml_with)
+      end
+
+      def do_unsucessful_create(http_method)
+        send(http_method, guest, :create, :user => @user_params)
         response.should be_success
-        flash[:error].should == 'Error while doing registration'
         assigns[:user].should == @stub_user
+        flash[:error].should == 'Error while doing registration'
         response.should render_template('new')
       end
     end
 
-    it 'should return error if user not created' do
+    describe 'should not let user create new user using' do
+      it 'html request' do
+        send(:post_html_with, user, :create)
+        response.should be_unauthorized
+      end
+      it 'xml request' do
+        send(:post_xml_with, user, :create)
+        response.should be_unauthorized
+      end
     end
   end
 
   describe 'edit' do
-    describe 'should define current user for edit and render template for' do
+    describe 'should let user edit its profile using' do
       it 'html request' do
-        do_edit(:get_html)
+        do_edit_with_user(:get_html_with)
       end
 
       it 'xml request' do
-        do_edit(:get_xml)
+        do_edit_with_user(:get_xml_with)
+      end
+    end
+
+    describe 'should not let user edit others profile using' do
+      it 'html request' do
+        do_edit_other_user_profile(:get_html_with)
       end
 
-      def do_edit(http_method)
-        current_user = login_user
-        send(http_method, :edit, :id => current_user.id)
-        response.should be_success
-        user_to_edit = assigns[:user]
-        user_to_edit.should_not be_nil
-        user_to_edit.should == current_user
-        response.should render_template('new')
+      it 'html request' do
+        do_edit_other_user_profile(:get_xml_with)
       end
+
+      def do_edit_other_user_profile(http_method)
+        other_user = user
+        User.stubs(:find).with(other_user.id).returns(other_user)
+        do_edit(http_method, user, other_user.id)
+        response.should be_unauthorized
+      end
+    end
+
+    def do_edit_with_user(http_method)
+      current_user = user
+      do_edit(http_method, current_user, current_user.id)
+      response.should be_success
+      user_to_edit = assigns[:user]
+      user_to_edit.should_not be_nil
+      user_to_edit.should == current_user
+      response.should render_template('new')
+    end
+
+    def do_edit_with_guest(http_method)
+      do_edit(http_method, guest, 1)
+      response.should be_unauthorized
+    end
+
+    def do_edit(http_method, user, user_id_to_be_edited)
+      send(http_method, user, :edit, :id => user_id_to_be_edited)
     end
   end
 
@@ -99,7 +151,7 @@ describe UsersController do
       @update_attr = @unrestricted_attr.merge(@restricted_attr)
     end
 
-    describe 'should remove attribute that are restricted for update for' do
+    describe 'should let user update and auto remove attribute that are restricted for update using' do
       it 'html request' do
         do_successful_update(:get_html, @unrestricted_attr)
       end
@@ -109,25 +161,46 @@ describe UsersController do
       end
     end
 
-    describe 'should update unrestricted user information' do
+    describe 'should let user update unrestricted profile information using' do
+      it 'html request' do
+        do_successful_update(:get_html)
+      end
 
+      it 'xml request' do
+        do_successful_update(:get_xml)
+      end
     end
 
-    it 'should render edit screen if update failed' do
-      current_user = login_user
-      current_user.expects(:update_attributes).with(@unrestricted_attr).returns(false)
-      get :update, :id => current_user.id, :user => @update_attr
+    describe 'should not let guest update user information using' do
+      it 'html request' do
+        send(:get_html_with, guest, :update, :id => user.id, :user => @update_params)
+        response.should be_unauthorized
+      end
 
+      it 'xml request' do
+        send(:get_xml_with, guest, :update, :id => user.id, :user => @update_params)
+        response.should be_unauthorized
+      end
+    end
+
+    it 'should let user render edit screen if update failed' do
+      current_user = user
+      current_user.expects(:update_attributes).with(@unrestricted_attr).returns(false)
+      get_html_with current_user, :update, :id => current_user.id, :user => @update_attr
       response.should render_template('edit')
     end
 
     def do_successful_update(http_method, user_update_params = @update_attr, user_update_expected_param = @unrestricted_attr)
-      current_user = login_user
+      current_user = user
       current_user.expects(:update_attributes).with(user_update_expected_param).returns(true)
 
-      send(http_method, :update, :id => current_user.id, :user => user_update_params)
+      send("#{http_method}_with", current_user, :update, :id => current_user.id, :user => user_update_params)
 
       response.should have_updated_resource(current_user, full_url(user_path(current_user)))
+    end
+
+    def update(http_method, user, user_update_params = @update_attr)
+      send("#{http_method}_with", user, :update, :id => current_user.id, :user => user_update_params)
     end
   end
 end

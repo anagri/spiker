@@ -9,12 +9,13 @@ module Spiker
 
     module InstanceMethods
       def method_missing(sym, *args, &block)
-        if sym.to_s =~ /(get|post|put|delete|head)_(html|xml|json|js)/
+        if sym.to_s =~ /^(get|post|put|delete|head)_(html|xml|json|js)(|_with)$/
           if args.last.is_a? Hash
             args.last.reverse_merge!({:format => $2})
           else
             args << {:format => $2}
           end
+          login(args.shift) unless $3.blank?
           return send($1.to_sym, *args, &block)
         end
         super

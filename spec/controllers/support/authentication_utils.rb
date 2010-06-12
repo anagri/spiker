@@ -1,21 +1,30 @@
-def current_user(stubs = {})
-  @current_user ||= stub_model(User, stubs)
+def current_user
+  @current_user ||= user
 end
 
-def user_session(stubs = {}, user_stubs = {})
-  @session ||= stub('session', {:user => current_user(user_stubs)}.merge(stubs))
+def user_session(user = current_user, session_stubs = {})
+  @session ||= stub('session', {:user => user}.merge(session_stubs))
 end
 
-def login(session_stubs = {}, user_stubs = {})
-  Session.stubs(:find).returns(user_session(session_stubs, user_stubs))
+def login(user = current_user, session_stubs = {})
+  @current_user = user
+  @session = nil
+  Session.stubs(:find).returns(user_session(user, session_stubs))
+  @current_user
 end
 
 def logout
-  @session = nil
+  login(guest)
 end
 
-def login_user
-  current_user = login(nil, {:first_name => 'oldfirstname', :last_name => 'oldlastname'}).user
-  User.expects(:find).with(current_user.id.to_s).returns(current_user)
+def guest
+  stub('guest', :role_symbols => [:guest])
 end
+
+def user
+  user = stub_model(User, :role_symbols => [:user])
+  User.stubs(:find).with(user.id.to_s).returns(user)
+  user
+end
+
 
