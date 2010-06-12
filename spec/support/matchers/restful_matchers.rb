@@ -82,16 +82,15 @@ MESSAGE
     end
 
     class HaveCreatedResource
-      def initialize(resource, location)
-        @resource = resource
-        @location = location
+      def initialize(options)
+        @options = {:status => "201"}.merge(options)
       end
 
       def matches?(target)
         @response = target
         failed = false
-        @message = "expected the created resource to be non nil but was nil" and failed = true unless failed || !@resource.nil?
-        @message = "expected the response code to be created(201) but was #{@response.code}" and failed = true unless failed || @response.code == "201"
+        @message = "expected the created resource to be non nil but was nil" and failed = true unless failed || !@options[:resource].nil?
+        @message = "expected the response code to be #{@options[:status]} but was #{@response.code}" and failed = true unless failed || @response.code == @options[:status]
         !failed
       end
 
@@ -101,14 +100,14 @@ MESSAGE
 
       def failure_message_for_should_not
         <<MESSAGE
-expected the created resource to be non nil and was #{@resource.inspect},
+expected the created resource to be non nil and was #{@options[:resource].inspect},
 expected the response code not to be created(201) and was #{response.code}
 MESSAGE
       end
     end
 
-    def have_created_resource(resource, location)
-      HaveCreatedResource.new(resource, location)
+    def have_created_resource(options = {})
+      HaveCreatedResource.new(options)
     end
 
     class BeRestful

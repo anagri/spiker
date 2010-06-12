@@ -1,14 +1,14 @@
 privileges do
-  privilege :create do
+  privilege :build do
     includes :new, :create, :show
   end
 
-  privilege :update do
+  privilege :modify do
     includes :edit, :update, :show
   end
 
   privilege :manage do
-    includes :create, :update, :index
+    includes :build, :modify, :index
   end
 
   privilege :su do
@@ -18,12 +18,14 @@ end
 
 authorization do
   role :guest do
-    has_permission_on :users, :to => :create
+    has_permission_on :users, :to => :build
+    has_permission_on :sessions, :to => :build
   end
 
   role :user do
-    has_permission_on :users, :to => :update do
+    has_permission_on :users, :to => :modify do
       if_attribute :id => is {user.id}
     end
+    has_permission_on :sessions, :to => :destroy
   end
 end
