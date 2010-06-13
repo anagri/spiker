@@ -1,5 +1,5 @@
 def current_user
-  @current_user ||= user
+  @current_user ||= staff
 end
 
 def user_session(user = current_user, session_stubs = {})
@@ -21,8 +21,8 @@ def guest
   stub('guest', :role_symbols => [:guest])
 end
 
-def user
-  user = stub_model(User, :role_symbols => [:user])
+def staff
+  user = stub_model(User, :role_symbols => [:staff])
   User.stubs(:find).with(user.id.to_s).returns(user)
   user
 end

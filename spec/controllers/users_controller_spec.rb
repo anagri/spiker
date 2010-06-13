@@ -18,12 +18,12 @@ describe UsersController do
 
     describe 'should not let user define new user using' do
       it 'html request' do
-        do_new(:get_html_with, user)
+        do_new(:get_html_with, staff)
         response.should be_unauthorized
       end
 
       it 'xml request' do
-        do_new(:get_html_with, user)
+        do_new(:get_html_with, staff)
         response.should be_unauthorized
       end
     end
@@ -90,11 +90,11 @@ describe UsersController do
 
     describe 'should not let user create new user using' do
       it 'html request' do
-        do_unauthorized_create(:post_html_with, user)
+        do_unauthorized_create(:post_html_with, staff)
       end
 
       it 'xml request' do
-        do_unauthorized_create(:post_xml_with, user)
+        do_unauthorized_create(:post_xml_with, staff)
       end
 
       def do_unauthorized_create(http_method, user)
@@ -127,15 +127,15 @@ describe UsersController do
       end
 
       def do_edit_other_user_profile(http_method)
-        other_user = user
+        other_user = staff
         User.stubs(:find).with(other_user.id).returns(other_user)
-        do_edit(http_method, user, other_user.id)
+        do_edit(http_method, staff, other_user.id)
         response.should be_unauthorized
       end
     end
 
     def do_edit_with_user(http_method)
-      current_user = user
+      current_user = staff
       do_edit(http_method, current_user, current_user.id)
       response.should be_success
       user_to_edit = assigns[:user]
@@ -191,7 +191,7 @@ describe UsersController do
       end
 
       def do_unauthorized_edit(http_method, guest)
-        other_user = user
+        other_user = staff
         send(http_method, guest, :update, :id => other_user.id, :user => @update_params)
         response.should be_unauthorized
         flash[:error].should == '.unauthorized'
@@ -199,7 +199,7 @@ describe UsersController do
     end
 
     it 'should let user render edit screen if update failed' do
-      current_user = user
+      current_user = staff
       current_user.expects(:update_attributes).with(@unrestricted_attr).returns(false)
       get_html_with current_user, :update, :id => current_user.id, :user => @update_attr
       response.should render_template('edit')
@@ -207,7 +207,7 @@ describe UsersController do
     end
 
     def do_successful_update(http_method, user_update_params = @update_attr, user_update_expected_param = @unrestricted_attr)
-      current_user = user
+      current_user = staff
       current_user.expects(:update_attributes).with(user_update_expected_param).returns(true)
 
       send("#{http_method}_with", current_user, :update, :id => current_user.id, :user => user_update_params)

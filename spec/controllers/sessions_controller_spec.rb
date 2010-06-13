@@ -20,11 +20,11 @@ describe SessionsController do
 
     describe 'should not let user assign new session object for' do
       it 'html request' do
-        do_new(:get_html_with, user)
+        do_new(:get_html_with, staff)
         response.should be_unauthorized
       end
       it 'xml request' do
-        do_new(:get_xml_with, user)
+        do_new(:get_xml_with, staff)
         response.should be_unauthorized
       end
     end
@@ -92,7 +92,7 @@ describe SessionsController do
     end
 
     def do_create_with_user(http_method)
-      do_create(http_method, user)
+      do_create(http_method, staff)
       response.should be_unauthorized
       flash[:error].should == '.unauthorized'
     end
@@ -114,7 +114,7 @@ describe SessionsController do
 
       def do_destroy(http_method)
         controller.expects(:reset_session)
-        login(user, {:destroy => true})
+        login(staff, {:destroy => true})
         send(http_method, :destroy)
         flash[:notice].should == '.success'
         response.should be_redirect_to(full_url(root_path))

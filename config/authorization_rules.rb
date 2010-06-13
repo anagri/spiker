@@ -22,7 +22,7 @@ authorization do
     has_permission_on :sessions, :to => :build
   end
 
-  role :user do
+  role :staff do
     has_permission_on :users, :to => :modify do
       if_attribute :id => is {user.id}
     end
