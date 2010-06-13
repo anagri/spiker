@@ -3,7 +3,6 @@
 
 class ApplicationController < ActionController::Base
   include SessionAware
-  include LocaleUtil
   helper :all
   protect_from_forgery
 
