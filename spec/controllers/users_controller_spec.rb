@@ -51,13 +51,17 @@ describe UsersController do
       end
 
       it 'html request' do
-        post_html_with guest, :create, :user => @user_params
-        response.should have_created_resource(:resource => @stub_user, :location => user_path(@stub_user), :status => "302")
+        do_successful_create(:post_html_with, guest)
       end
 
       it 'xml request' do
-        post_xml_with guest, :create, :user => @user_params
-        response.should have_created_resource(:resource => @stub_user, :location => user_path(@stub_user), :status => "201")
+        do_successful_create(:post_xml_with, guest, "201")
+      end
+
+      def do_successful_create(http_method, user, status = "302")
+        send(http_method, user, :create, :user => @user_params)
+        response.should have_created_resource(:resource => @stub_user, :location => user_path(@stub_user), :status => status)
+        flash[:notice].should == '.success'
       end
     end
 
@@ -79,20 +83,26 @@ describe UsersController do
         send(http_method, guest, :create, :user => @user_params)
         response.should be_success
         assigns[:user].should == @stub_user
-        flash[:error].should == 'Error while doing registration'
+        flash[:error].should == '.error'
         response.should render_template('new')
       end
     end
 
     describe 'should not let user create new user using' do
       it 'html request' do
-        send(:post_html_with, user, :create)
-        response.should be_unauthorized
+        do_unauthorized_create(:post_html_with, user)
       end
+
       it 'xml request' do
-        send(:post_xml_with, user, :create)
-        response.should be_unauthorized
+        do_unauthorized_create(:post_xml_with, user)
       end
+
+      def do_unauthorized_create(http_method, user)
+        send(http_method, user, :create)
+        response.should be_unauthorized
+        flash[:error].should == '.unauthorized'
+      end
+
     end
   end
 
@@ -173,13 +183,18 @@ describe UsersController do
 
     describe 'should not let guest update user information using' do
       it 'html request' do
-        send(:get_html_with, guest, :update, :id => user.id, :user => @update_params)
-        response.should be_unauthorized
+        do_unauthorized_edit(:get_xml_with, guest)
       end
 
       it 'xml request' do
-        send(:get_xml_with, guest, :update, :id => user.id, :user => @update_params)
+        do_unauthorized_edit(:get_xml_with, guest)
+      end
+
+      def do_unauthorized_edit(http_method, guest)
+        other_user = user
+        send(http_method, guest, :update, :id => other_user.id, :user => @update_params)
         response.should be_unauthorized
+        flash[:error].should == '.unauthorized'
       end
     end
 
@@ -188,6 +203,7 @@ describe UsersController do
       current_user.expects(:update_attributes).with(@unrestricted_attr).returns(false)
       get_html_with current_user, :update, :id => current_user.id, :user => @update_attr
       response.should render_template('edit')
+      flash[:error].should == '.error'
     end
 
     def do_successful_update(http_method, user_update_params = @update_attr, user_update_expected_param = @unrestricted_attr)
@@ -197,6 +213,7 @@ describe UsersController do
       send("#{http_method}_with", current_user, :update, :id => current_user.id, :user => user_update_params)
 
       response.should have_updated_resource(current_user, full_url(user_path(current_user)))
+      flash[:notice].should == '.success'
     end
 
     def update(http_method, user, user_update_params = @update_attr)

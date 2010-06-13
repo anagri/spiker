@@ -1,0 +1,14 @@
+en:
+  sessions:
+    create:
+      success:  'Successfully logged in'
+      error:    'Error while doing registration'
+    destroy:
+      success:  'Successfully logged out'
+  users:
+    create:
+      success:  'Registration Successful'
+      error:    'Error while doing registration'
+    destroy:
+      success:  'Successfully logged out'
+

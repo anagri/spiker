@@ -3,6 +3,7 @@
 
 class ApplicationController < ActionController::Base
   include SessionAware
+  include LocaleUtil
   helper :all
   protect_from_forgery
 
@@ -13,7 +14,7 @@ class ApplicationController < ActionController::Base
   before_filter {|controller| Authorization.current_user = controller.current_user}
 
   def permission_denied
-    flash[:error] = "You are not authorized to access the requested resource"
+    flash[:error] = '.unauthorized'
     render :action => 'unauthorized', :status => 401
   end
 end

@@ -1,5 +1,9 @@
 class String
   def modelize
-    demodulize.gsub("Controller", "").downcase.singularize.to_sym
+    decontrolled.singularize.to_sym
+  end
+
+  def decontrolled
+    demodulize.gsub("Controller", "").downcase
   end
 end
