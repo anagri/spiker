@@ -1,5 +1,10 @@
 require File.dirname(__FILE__) + '/spec_helper'
 
+describe 'Routing' do
+  before(:all) do
+    deactivate_routing_filter
+  end
+
 describe 'Mapped Routes' do
   it 'should map / to home' do
     {:get => '/'}.should route_to(:controller => 'home', :action => 'index')
@@ -38,4 +43,5 @@ describe 'Named Routes' do
       assert_restful_routing("user")
     end
   end
+end
 end
