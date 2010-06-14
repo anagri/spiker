@@ -2,11 +2,11 @@ def current_user
   @current_user ||= staff
 end
 
-def user_session(user = current_user, session_stubs = {})
+def user_session(user, session_stubs = {})
   @session ||= stub('session', {:user => user}.merge(session_stubs))
 end
 
-def login(user = current_user, session_stubs = {})
+def login(user, session_stubs = {})
   @current_user = user
   @session = nil
   Session.stubs(:find).returns(user_session(user, session_stubs))
@@ -14,17 +14,25 @@ def login(user = current_user, session_stubs = {})
 end
 
 def logout
-  login(guest)
+  @current_user = nil
+  @session = nil
+  Session.stubs(:find).returns(user_session(nil))
 end
 
 def guest
-  stub('guest', :role_symbols => [:guest])
+  nil
 end
 
-def staff
-  user = stub_model(User, :role_symbols => [:staff])
-  User.stubs(:find).with(user.id.to_s).returns(user)
-  user
+def staff(new = false)
+  return @staff ||= make_staff if !new
+  @staff = nil and @staff ||= make_staff
+end
+
+private
+def make_staff
+  staff = stub_model(User, :role_symbols => [:staff])
+  User.stubs(:find).with(staff.id.to_s).returns(staff)
+  staff
 end
 
 

@@ -20,6 +20,7 @@ describe UsersController do
       it 'html request' do
         do_new(:get_html_with, staff)
         response.should be_unauthorized
+        flash[:error] = ".unauthorized"
       end
 
       it 'xml request' do
@@ -129,7 +130,7 @@ describe UsersController do
       def do_edit_other_user_profile(http_method)
         other_user = staff
         User.stubs(:find).with(other_user.id).returns(other_user)
-        do_edit(http_method, staff, other_user.id)
+        do_edit(http_method, staff(true), other_user.id)
         response.should be_unauthorized
       end
     end
