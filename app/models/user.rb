@@ -3,6 +3,6 @@ class User < ActiveRecord::Base
   using_access_control
 
   def role_symbols
-    [:user]
+    [:staff]
   end
 end
