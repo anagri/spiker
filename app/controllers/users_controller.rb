@@ -8,13 +8,13 @@ class UsersController < ApplicationController
 
   def create
     if @user.save
-      flash[:info] = '.success'
+      flash[:info] = success_msg
       respond_to do |format|
         format.xml { head :created, :location => user_path(@user) }
         format.html { redirect_to user_path(@user) }
       end
     else
-      flash[:error] = '.error'
+      flash[:error] = error_msg
       render :action => 'new'
     end
   end
@@ -25,11 +25,11 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(params[:user])
-      flash[:info] = '.success'
+      flash[:info] = success_msg
       redirect_to @user
     else
       render :action => 'edit'
-      flash[:error] = '.error'
+      flash[:error] = error_msg
     end
   end
 end

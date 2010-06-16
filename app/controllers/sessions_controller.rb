@@ -9,13 +9,13 @@ class SessionsController < ApplicationController
 
   def create
     if @session.save
-      flash[:info] = '.success'
+      flash[:info] = success_msg
       respond_to do |format|
         format.html { redirect_to root_path }
         format.xml { head :status => :created, :location => root_path }
       end
     else
-      flash[:error] = '.error'
+      flash[:error] = error_msg
       render :action => 'new'
     end
   end
@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
   def destroy
     @session.destroy
     reset_session
-    flash[:info] = '.success'
+    flash[:info] = success_msg
     redirect_to root_path
   end
 

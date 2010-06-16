@@ -16,4 +16,17 @@ class ApplicationController < ActionController::Base
     flash[:error] = '.unauthorized'
     render :action => 'unauthorized', :status => 401
   end
+
+  protected
+  def msg(key)
+    "#{params[:controller]}.#{params[:action]}.#{key}"
+  end
+
+  def error_msg
+    msg('error')
+  end
+
+  def success_msg
+    msg('success')
+  end
 end

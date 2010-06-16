@@ -62,7 +62,7 @@ describe UsersController do
       def do_successful_create(http_method, user, status = "302")
         send(http_method, user, :create, :user => @user_params)
         response.should have_created_resource(:resource => @stub_user, :location => user_path(@stub_user), :status => status)
-        flash[:info].should == '.success'
+        flash[:info].should == 'users.create.success'
       end
     end
 
@@ -84,7 +84,7 @@ describe UsersController do
         send(http_method, guest, :create, :user => @user_params)
         response.should be_success
         assigns[:user].should == @stub_user
-        flash[:error].should == '.error'
+        flash[:error].should == 'users.create.error'
         response.should render_template('new')
       end
     end
@@ -204,7 +204,7 @@ describe UsersController do
       current_user.expects(:update_attributes).with(@unrestricted_attr).returns(false)
       get_html_with current_user, :update, :id => current_user.id, :user => @update_attr
       response.should render_template('edit')
-      flash[:error].should == '.error'
+      flash[:error].should == 'users.update.error'
     end
 
     def do_successful_update(http_method, user_update_params = @update_attr, user_update_expected_param = @unrestricted_attr)
@@ -214,7 +214,7 @@ describe UsersController do
       send("#{http_method}_with", current_user, :update, :id => current_user.id, :user => user_update_params)
 
       response.should have_updated_resource(current_user, full_url(user_path(current_user)))
-      flash[:info].should == '.success'
+      flash[:info].should == 'users.update.success'
     end
 
     def update(http_method, user, user_update_params = @update_attr)
