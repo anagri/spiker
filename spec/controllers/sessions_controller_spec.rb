@@ -51,7 +51,7 @@ describe SessionsController do
 
       def do_successful_create(http_method, status)
         session = do_create_with_guest(http_method, true)
-        flash[:notice].should == '.success'
+        flash[:info].should == '.success'
         response.should have_created_resource(:resource => session, :location => full_url(root_path), :status => status)
       end
     end
@@ -116,7 +116,7 @@ describe SessionsController do
         controller.expects(:reset_session)
         login(staff, {:destroy => true})
         send(http_method, :destroy)
-        flash[:notice].should == '.success'
+        flash[:info].should == '.success'
         response.should be_redirect_to(full_url(root_path))
       end
     end

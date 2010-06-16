@@ -7,8 +7,8 @@ require 'spec/rails'
 require 'spec/mocks'
 require 'remarkable_rails'
 
-Dir.glob(File.dirname(__FILE__) + "/factories/*_factory").sort.each do |factory|
-  require factory
+Dir.glob(File.dirname(__FILE__) + "/factories/*_factory.rb").sort.each do |factory|
+  require factory.gsub(/\.rb/, '')
 end
 
 # Uncomment the next line to use webrat's matchers

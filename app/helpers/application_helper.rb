@@ -11,4 +11,8 @@ module ApplicationHelper
   def end_html
     %q{</html>}
   end
+
+  def t_(key)
+    t("#{params[:controller]}.#{params[:action]}#{key}")
+  end
 end

@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def create
     if @user.save
-      flash[:notice] = '.success'
+      flash[:info] = '.success'
       respond_to do |format|
         format.xml { head :created, :location => user_path(@user) }
         format.html { redirect_to user_path(@user) }
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(params[:user])
-      flash[:notice] = '.success'
+      flash[:info] = '.success'
       redirect_to @user
     else
       render :action => 'edit'

@@ -5,11 +5,11 @@
   <%= stylesheet_link_tag :all %>
 </head>
 <body>
-<% if flash[:notice] %>
-    <div class="flash_notice"><%= flash[:notice] %></div>
+<% if flash[:info] %>
+    <div class="flash_info"><%= t_(flash[:info]) %></div>
 <% end %>
 <% if flash[:error] %>
-    <div class="flash_error"><%= flash[:error] %></div>
+    <div class="flash_error"><%= t_(flash[:error]) %></div>
 <% end %>
 <% if current_user %>
     <div class="top_status_bar"><%= link_to "Edit Profile", edit_user_path(current_user) %>
