@@ -1,6 +1,6 @@
 privileges do
   privilege :build do
-    includes :new, :create, :show
+    includes :new, :create
   end
 
   privilege :modify do

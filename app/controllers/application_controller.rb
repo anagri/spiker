@@ -13,20 +13,19 @@ class ApplicationController < ActionController::Base
   before_filter {|controller| Authorization.current_user = controller.current_user}
 
   def permission_denied
-    flash[:error] = '.unauthorized'
+    flash[:error] = msg_key('unauthorized')
     render :action => 'unauthorized', :status => 401
   end
 
-  protected
-  def msg(key)
+  def msg_key(key)
     "#{params[:controller]}.#{params[:action]}.#{key}"
   end
 
   def error_msg
-    msg('error')
+    msg_key('error')
   end
 
   def success_msg
-    msg('success')
+    msg_key('success')
   end
 end

@@ -11,4 +11,6 @@ en:
       error:    'Error while doing registration'
     destroy:
       success:  'Successfully logged out'
+    show:
+      unauthorized:  'You are not allowed to perform this action'
 

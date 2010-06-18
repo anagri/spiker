@@ -94,7 +94,7 @@ describe SessionsController do
     def do_create_with_user(http_method)
       do_create(http_method, staff)
       response.should be_unauthorized
-      flash[:error].should == '.unauthorized'
+      flash[:error].should == unauthorized_msg_key('create')
     end
 
     def do_create(http_method, user)

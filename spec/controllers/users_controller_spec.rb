@@ -1,6 +1,5 @@
 require File.dirname(__FILE__) + '/spec_helper'
 
-
 describe UsersController do
   before(:each) do
     activate_authlogic
@@ -20,7 +19,7 @@ describe UsersController do
       it 'html request' do
         do_new(:get_html_with, staff)
         response.should be_unauthorized
-        flash[:error] = ".unauthorized"
+        flash[:error] = unauthorized_msg_key('new')
       end
 
       it 'xml request' do
@@ -101,7 +100,7 @@ describe UsersController do
       def do_unauthorized_create(http_method, user)
         send(http_method, user, :create)
         response.should be_unauthorized
-        flash[:error].should == '.unauthorized'
+        flash[:error].should == unauthorized_msg_key('create')
       end
 
     end
@@ -195,7 +194,7 @@ describe UsersController do
         other_user = staff
         send(http_method, guest, :update, :id => other_user.id, :user => @update_params)
         response.should be_unauthorized
-        flash[:error].should == '.unauthorized'
+        flash[:error].should == unauthorized_msg_key('update')
       end
     end
 

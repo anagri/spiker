@@ -13,13 +13,4 @@ describe ApplicationHelper do
   it 'should return end html tag' do
     helper.end_html.should == '</html>'
   end
-
-  describe 't_' do
-    it 'should append controller and action' do
-      params[:controller] = 'sessions'
-      params[:action] = 'index'
-      helper.expects(:t).with("sessions.index.key")
-      helper.t_(".key")
-    end
-  end
 end

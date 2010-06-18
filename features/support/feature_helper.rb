@@ -1,3 +1,4 @@
+#require 'ruby-debug'
 require 'factory_girl'
 require 'authlogic/test_case'
 require 'declarative_authorization/maintenance'

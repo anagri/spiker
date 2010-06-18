@@ -1,7 +1,7 @@
 Feature: login
   In order to use application
-  users have to authenticate themselves
-  so that only authorized actions are allowed to users
+  as a user I have to authenticate
+  so that I can do authorized actions
 
   Scenario: login as existing user
     Given a user "testuser" with password "testpass" exists

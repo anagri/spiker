@@ -5,3 +5,4 @@ end
 Given /^a user "([^\"]*)" does not exists$/ do |username|
   fail if User.exists?(:username => username)
 end
+
