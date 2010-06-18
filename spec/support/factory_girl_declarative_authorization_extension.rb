@@ -7,9 +7,9 @@ module FactoryGirlDeclarativeAuthorizationExtension
   end
 
   module ClassMethods
-    def without_access_control_do_create(factory_name)
+    def without_access_control_do_create(factory_name, opts = {})
       without_access_control do
-        Factory.create(factory_name)
+        Factory.create(factory_name, opts)
       end
     end
   end

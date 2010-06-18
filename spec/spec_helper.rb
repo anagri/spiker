@@ -6,6 +6,8 @@ require 'spec/autorun'
 require 'spec/rails'
 require 'spec/mocks'
 require 'remarkable_rails'
+require 'authlogic/test_case'
+require 'declarative_authorization/maintenance'
 
 Dir.glob(File.dirname(__FILE__) + "/factories/*_factory.rb").sort.each do |factory|
   require factory.gsub(/\.rb/, '')
