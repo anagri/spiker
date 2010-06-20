@@ -11,3 +11,4 @@ Dir.glob(File.dirname(__FILE__) + '/../../spec/support/**/*.rb').sort.each do |f
   require factory.gsub(/\.rb/, '')
 end
 
+World(ActionController::Translation)

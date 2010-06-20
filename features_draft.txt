@@ -1,0 +1,58 @@
+Feature: profile update
+    In order to make application more useful
+    as a user I want to update my profile information
+    so that application have latest information
+
+    Background:
+        Given   a user "testuser" exists with password "testpass"
+        And     is logged in
+
+    Scenario: as a logged in user I should be shown update profile action
+        When    I am on the dashboard page
+        Then    I should see "Edit Profile"
+        And     follow "Edit Profile"
+        And     I should be on edit user page for current_user
+
+    Scenario: as a logged in user I want to update my profile information
+        Given   I am on the dashboard page
+        When    I follow "Edit Profile"
+        And     fill in "user_old_password" with "testpass"
+        And     fill in "user_password" with "newpass"
+        And     fill in "user_password_confirmation" with "newpass"
+        And     click "Change Password"
+        Then    I should be on the user page for current_user
+        And     should see "Password Updated"
+        When    I follow "Logout"
+        And     I login as user "testuser" and password "newpass"
+        Then    I should be on the dashboard page
+        And     should see "Logged in Successfully"
+
+# on hold since not allowing to access via resource id and using session user
+# test /resource/resource_id is not routable
+# Feature: authenticated feature access of other user for logged in user
+#    In order to secure application
+#    as an application I want to allow authenticated user action by current user applying to current user
+#    so that the other user's information are secured
+
+Feature: authenticated feature access
+    In order to secure application
+    as an application I want to hide actions that are for authenticated users to guest users
+    so that application cannot be compromised
+
+    Background:
+        Given   a user "testuser" exists with password "testpass"
+
+    Scenario: as a guest user I should not be shown profile action
+        When    I am on the root page
+        Then    I should not see "Edit Profile"
+
+    Scenario: as a guest user I should not be able to access profile
+        Given   I am on the root page
+        When    I go to the user page for "testuser"
+        Then    I should be shown "unauthorized action"
+
+
+Feature: head office
+    In order to make application more useful
+    as an admin I want to update head office information
+    so that application have latest information

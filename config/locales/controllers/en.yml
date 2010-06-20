@@ -3,8 +3,14 @@ en:
     create:
       success:  'Successfully logged in'
       error:    'Error while doing registration'
+      username:
+        missing: 'Error while doing registration'
+        required: 'Username is required'
+      password:
+        required: 'Password is required'
     destroy:
       success:  'Successfully logged out'
+      locked:   ''
   users:
     create:
       success:  'Registration Successful'
@@ -13,4 +19,8 @@ en:
       success:  'Successfully logged out'
     show:
       unauthorized:  'You are not allowed to perform this action'
-
+  password_reset:
+    expired:      ''
+    create:
+      success:    ''
+      

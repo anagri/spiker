@@ -1,0 +1,9 @@
+internationalization cucumber features
+    should be implemented such that all the test are run with the messages getting replaced by specific locales
+    should check date format
+    should check currency format
+
+api cucumber feature
+    should be implemented such that response checks for api output instead of html
+
+
