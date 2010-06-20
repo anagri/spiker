@@ -1,5 +1,6 @@
 .idea
 log
+db/*.sqlite3
 coverage.data
 coverage
 tmp/*
