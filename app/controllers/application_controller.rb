@@ -13,19 +13,22 @@ class ApplicationController < ActionController::Base
   before_filter {|controller| Authorization.current_user = controller.current_user}
 
   def permission_denied
-    flash[:error] = msg_key('unauthorized')
+    logger.warn "Permission denied: No matching filter access " +
+            "rule found for #{self.class.controller_name}.#{action_name}"
+    flash[:error] = msg('unauthorized')
     render :action => 'unauthorized', :status => 401
   end
 
-  def msg_key(key)
+  protected
+  def msg(key)
     "#{params[:controller]}.#{params[:action]}.#{key}"
   end
 
   def error_msg
-    msg_key('error')
+    msg('error')
   end
 
   def success_msg
-    msg_key('success')
+    msg('success')
   end
 end
