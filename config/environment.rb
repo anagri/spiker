@@ -19,6 +19,7 @@ Rails::Initializer.run do |config|
   config.gem "authlogic", :version => '2.1.5'
   config.gem "declarative_authorization", :version => '0.4.1'
   config.gem "routing-filter", :version => '0.0.1', :lib => 'routing_filter'
+  config.gem "enumerated_attribute", :version => '0.2.13'
   # config.gem "bj"
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
