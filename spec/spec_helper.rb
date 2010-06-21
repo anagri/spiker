@@ -9,10 +9,6 @@ require 'remarkable_rails'
 require 'authlogic/test_case'
 require 'declarative_authorization/maintenance'
 
-Dir.glob(File.dirname(__FILE__) + "/factories/*_factory.rb").sort.each do |factory|
-  require factory.gsub(/\.rb/, '')
-end
-
 # Uncomment the next line to use webrat's matchers
 #require 'webrat/integrations/rspec-rails'
 
