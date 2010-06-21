@@ -2,6 +2,7 @@ module EnhancedActsAsAuthentic
   def self.included(klass)
     klass.class_eval do
       extend ClassMethods
+      extend Authorization::Maintenance
       include InstanceMethods
     end
   end
@@ -13,7 +14,7 @@ module EnhancedActsAsAuthentic
 
     def method_missing(symbol, *args)
       if symbol.to_s =~ /^without_access_control_do_(.*)$/
-        resource = Authorization::Maintenance.without_access_control do
+        resource = without_access_control do
           self.send $1.to_sym, args.shift, *args
         end
         return resource
