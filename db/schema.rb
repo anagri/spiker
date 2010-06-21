@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20100621172550) do
     t.integer  "failed_login_count", :default => 0,      :null => false
     t.string   "role",               :default => "none", :null => false
     t.string   "perishable_token",   :default => "",     :null => false
+    t.integer  "office_id"
   end
 
 end
