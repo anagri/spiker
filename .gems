@@ -3,4 +3,4 @@ pg
 authlogic -v 2.1.5
 declarative_authorization -v 0.4.1
 enumerated_attribute -v 0.2.13
-
+acts_as_tree -v 0.1.1

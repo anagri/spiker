@@ -16,6 +16,7 @@ Rails::Initializer.run do |config|
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
 
   # Specify gems that this application depends on and have them installed with rake gems:install
+  config.gem "acts_as_tree", :version => '0.1.1'
   config.gem "authlogic", :version => '2.1.5'
   config.gem "declarative_authorization", :version => '0.4.1'
   config.gem "routing-filter", :version => '0.0.1', :lib => 'routing_filter'
