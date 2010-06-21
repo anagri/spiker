@@ -4,4 +4,6 @@ class Office < ActiveRecord::Base
 
   validates_uniqueness_of :name
   validates_presence_of :parent, :if => Proc.new {Office.root?}
+
+  has_many :personnels, :class_name => User
 end

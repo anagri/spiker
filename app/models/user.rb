@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   enhanced_acts_as_authentic
   using_access_control
 
+  belongs_to :office
+
   def role_symbols
     [role.to_sym]
   end
