@@ -10,14 +10,14 @@ Feature: logout
 
   Scenario:logout a logged in user
     Given I am on the root page
-    When I follow "Logout"
+    When I logout
     Then I should see "Successfully logged out"
     And should see "Login"
     And should be on the root page
 
   Scenario: logged out user should not be able to view profile
     Given I am on the root page
-    And follow "Logout"
+    And I logout
     And visit the "user" page for 1
     Then I should see "You are not allowed to perform this action"
 

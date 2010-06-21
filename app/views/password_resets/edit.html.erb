@@ -1,0 +1,20 @@
+<% form_for @user do |f| %>
+    <%= f.error_messages %>
+    <%= f.hidden_field :perishable_token %>
+    <p>
+      Username : <br/>
+      <%= @user.username %>
+    </p>
+<!--
+FIXME make common partial
+-->
+    <p>
+      <%= f.label :password %><br/>
+      <%= f.password_field :password %>
+    </p>
+    <p>
+      <%= f.label :password_confirmation %><br/>
+      <%= f.password_field :password_confirmation %>
+    </p>
+    <p><%= f.submit "Submit" %></p>
+<% end %>

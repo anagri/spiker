@@ -6,4 +6,9 @@ class User < ActiveRecord::Base
   def role_symbols
     [role.to_sym]
   end
+
+  def deliver_password_reset_instructions!(opts)
+    reset_perishable_token!
+    Notifier.deliver_password_reset_instructions(opts.merge(:email => email, :id => perishable_token))
+  end
 end

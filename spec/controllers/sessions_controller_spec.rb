@@ -83,7 +83,7 @@ describe SessionsController do
     end
 
     def do_create_with_guest (http_method, save_result)
-      mock_valid_session = mock('session', :save => save_result)
+      mock_valid_session = mock('session', :without_access_control_do_save => save_result)
       Session.expects(:new).with(@login_params[:session]).returns(mock_valid_session)
 
       do_create(http_method, guest)

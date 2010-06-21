@@ -1,0 +1,5 @@
+en:
+  password_resets:
+    email:
+      subject: "Password reset email"
+      from: "Spiker Application Admin"

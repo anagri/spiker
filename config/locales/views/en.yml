@@ -1,0 +1,4 @@
+en:
+  password_resets:
+    new:
+      submit: 'Send Password Reset Email'

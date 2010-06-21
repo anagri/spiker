@@ -8,6 +8,7 @@ Feature: login
     Given a user "testuser" with password "testpass" exists
     When I login
     Then I should be on the root page
+  # TODO use i18n msg
     And  should see "Logout"
     And  should see msg "sessions.create.success"
 
@@ -20,58 +21,59 @@ Feature: login
   Scenario: username not provided
     When I login with username "" and password "testpass"
     Then I should be on the login page
+  # TODO use i18n msg
     And  should see "Username cannot be blank"
 
   Scenario: password not provided
     When I login with username "testuser" and password ""
     Then I should be on the login page
+  # TODO use i18n msg
     And  should see "Password cannot be blank"
 
   Scenario: password is wrong
     Given a user "testuser" with password "testpass" exists
     When I login with username "testuser" and password "wrong"
     Then I should be on the login page
+  # TODO use i18n msg
     And  should see "Password is not valid"
 
-  @wip
   Scenario: recurrent invalid login attempts
     Given a user "testuser" with password "testpass" exists
-    When I login with username "testuser" and password "wrong" for "5" times
-    Then I should see msg "sessions.create.locked"
+    When I login with username "testuser" and password "wrong" for "6" times
+  # TODO use i18n msg
+    Then I should see "Consecutive failed logins limit exceeded, account has been temporarily disabled."
 
-  @wip
-  Scenario: password reset request
+  Scenario: password reset with email
     Given a user "testuser" with password "testpass" exists
-    When I go to the password reset page
-    And  fill in "password_reset_username" with "testuser"
-    And  press "Submit"
-    Then I should see msg "password_reset.create.success"
+    When I go to the new password reset page
+    And  fill in "email" with current user
+    And  press t "password_resets.new.submit"
+    Then I should see msg "password_resets.create.success"
 
-  @wip
+  @manual @wip
   Scenario: password reset expired
     Given a user "testuser" with password "testpass" exists
-    And  password reset for "testuser" with expire "1.days.ago" exists
-    When I follow password reset
+    And  password reset with expire "5.days.ago" for "testuser" exists
+    When I follow password reset for "testuser"
     Then I should see msg "password_reset.expired"
 
-  @wip
-  Scenario: password reset link exhausted
+  Scenario: password reset link invalid if user logs in
     Given a user "testuser" with password "testpass" exists
-    And  password reset for "testuser" with expire "1.days.since" with used "true" exists
-    When I follow password reset
-    Then I should see msg "password_reset.invalid"
+    And  request password reset
+    And I login
+    And I logout  
+    When I jump to password reset
+    Then I should see msg "password_resets.edit.error"
 
-  @wip
   Scenario: password reset link invalid
     Given a user "testuser" with password "testpass" exists
     When I follow non-existent password reset link
-    Then I should see msg "password_reset.invalid"
+    Then I should see msg "password_resets.edit.error"
 
-  @wip
   Scenario: password reset while logged in
     Given a user "testuser" with password "testpass" exists
-    And  password reset for "testuser" with expire "1.days.since" exists
     And  I login
-    When I follow password reset
-    Then I should see msg "password_reset.logged_in"
+    And  request password reset
+    When I jump to password reset
+    Then I should see msg "password_resets.edit.unauthorized"
 

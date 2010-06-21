@@ -7,10 +7,14 @@ module FactoryGirlDeclarativeAuthorizationExtension
   end
 
   module ClassMethods
-    def without_access_control_do_create(factory_name, opts = {})
-      without_access_control do
-        Factory.create(factory_name, opts)
+    def method_missing(symbol, *args)
+      if symbol.to_s =~ /^without_access_control_do_(.*)$/
+        resource = without_access_control do
+          Factory.send $1.to_sym, args.shift, *args
+        end
+        return resource
       end
+      super
     end
   end
 

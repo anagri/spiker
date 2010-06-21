@@ -1,6 +1,5 @@
 Given /^a user "([^"]*)" with password "([^"]*)" exists$/ do |username, password|
-  @user = Factory.without_access_control_do_create(:user, :username => username, :password => password)
-#  @user = Factory.without_access_control_do_create(:user, :username => username, :password => password, :role => "staff")
+  @user = Factory.without_access_control_do_create(:user, :username => username, :password => password, :email => "anagri83@gmail.com")
 end
 
 Given /^a user "([^\"]*)" does not exists$/ do |username|

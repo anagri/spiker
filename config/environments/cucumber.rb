@@ -25,3 +25,12 @@ config.gem 'cucumber-rails',   :lib => false, :version => '>=0.3.2' unless File.
 config.gem 'database_cleaner', :lib => false, :version => '>=0.5.0' unless File.directory?(File.join(Rails.root, 'vendor/plugins/database_cleaner'))
 config.gem 'capybara',         :lib => false, :version => '>=0.3.5' unless File.directory?(File.join(Rails.root, 'vendor/plugins/capybara'))
 
+config.app_config.smtp_settings = {
+        :tls => true,
+        :address => "smtp.email.com",
+        :port => "587",
+        :domain => "email.com",
+        :authentication => :plain,
+        :user_name => "testuser",
+        :password => "nevergoes"
+}

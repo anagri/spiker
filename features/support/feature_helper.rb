@@ -1,4 +1,5 @@
 #require 'ruby-debug'
+require 'fakeweb'
 require 'factory_girl'
 require 'authlogic/test_case'
 require 'declarative_authorization/maintenance'
@@ -10,5 +11,9 @@ end
 Dir.glob(File.dirname(__FILE__) + '/../../spec/support/**/*.rb').sort.each do |factory|
   require factory.gsub(/\.rb/, '')
 end
+
+FakeWeb.allow_net_connect = false
+
+#FakeWeb.register_uri(:any, "http://smtp.google.com", :body => "Mail delivered successfully")
 
 World(ActionController::Translation)

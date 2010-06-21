@@ -8,10 +8,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    saved = Authorization::Maintenance.without_access_control do
-       @session.save
-    end
-    if saved
+    if @session.without_access_control_do_save
       flash[:info] = success_msg
       respond_to do |format|
         format.html { redirect_to root_path }

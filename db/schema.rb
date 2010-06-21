@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100620104321) do
+ActiveRecord::Schema.define(:version => 20100620170036) do
 
   create_table "users", :force => true do |t|
     t.string   "username",                               :null => false
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20100620104321) do
     t.datetime "updated_at"
     t.integer  "failed_login_count", :default => 0,      :null => false
     t.string   "role",               :default => "none", :null => false
+    t.string   "perishable_token",   :default => "",     :null => false
   end
 
 end

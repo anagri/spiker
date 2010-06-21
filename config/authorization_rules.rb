@@ -20,6 +20,7 @@ authorization do
   role :guest do
     has_permission_on :users, :to => :build
     has_permission_on :sessions, :to => :build
+    has_permission_on :password_resets, :to => :manage
   end
 
   role :staff do

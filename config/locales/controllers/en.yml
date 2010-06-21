@@ -19,8 +19,17 @@ en:
       success:  'Successfully logged out'
     show:
       unauthorized:  'You are not allowed to perform this action'
-  password_reset:
-    expired:      ''
+  password_resets:
+    new:
+      unauthorized: 'You cannot access this page as logged in'
     create:
-      success:    ''
-      
+      success:    'Instructions to reset your password have been emailed to you, please check your email'
+      error:      'No user was found with that email address'
+      unauthorized: 'You cannot access this page as logged in'
+    edit:
+      error:      'The password reset link is invalid, please start the password reset process again'
+      unauthorized: 'You cannot access this page as logged in'
+    update:
+      error:      'The password reset link is invalid, please start the password reset process again'
+      unauthorized: 'You cannot access this page as logged in'
+
