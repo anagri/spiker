@@ -33,13 +33,3 @@ config.gem "remarkable_rails", :version => '>=3.1.3', :lib => false
 config.gem "cucumber-rails", :version => '>=0.3.2', :lib => false
 config.gem "metric_fu", :version => '1.3.0', :lib => false
 config.gem "fakeweb", :version => '1.2.8'
-
-config.app_config.smtp_settings = {
-        :tls => true,
-        :address => "smtp.email.com",
-        :port => "587",
-        :domain => "email.com",
-        :authentication => :plain,
-        :user_name => "testuser",
-        :password => "nevergoes"
-}
