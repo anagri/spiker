@@ -16,5 +16,7 @@ en:
 
   view:
     office: 'Office'
+    ho:
+      office: 'Head Office'
     parent_office: 'Parent Office'
     back: 'Back'

@@ -1,2 +1,6 @@
 Actions <br/>
 <%=link_to t('.new'), new_office_path %>
+
+Existing Offices : <br/>
+
+<%= tree(@user.office, "<br/>&gt;") %>

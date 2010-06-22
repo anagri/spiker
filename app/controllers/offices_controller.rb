@@ -1,11 +1,10 @@
 class OfficesController < ApplicationController
   filter_resource_access
+  before_filter :load_user, :only => [:index, :new]
 
   def index; end
 
-  def new
-    @user = current_user
-  end
+  def new; end
 
   def show; end
 

@@ -14,9 +14,16 @@ Feature: manage office
     And fill in "office_name" with "branch office"
     And select "Head Office" from "office_parent_id"
     When I press t "offices.new.submit"
-    Then  I should see msg "offices.create.success"
+    Then I should see msg "offices.create.success"
     And  should see "branch office"
-    
+
+  Scenario: show offices
+    Given a branch office "Sub Head Office" exists under "Head Office"
+    And a branch office "Branch Office" exists under "Sub Head Office"
+    When I follow t "dashboard.index.offices"
+    Then I should see "Head Office"
+    And should see ">Sub Head Office"
+    And should see ">>Branch Office"
 
 
 

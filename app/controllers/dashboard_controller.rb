@@ -1,4 +1,4 @@
 class DashboardController < ApplicationController
-  def index
-  end
+  before_filter :load_user, :only => :index
+  def index; end
 end
