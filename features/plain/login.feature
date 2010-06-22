@@ -7,7 +7,7 @@ Feature: login
   Scenario: valid login
     Given a user "testuser" with password "testpass" exists
     When I login
-    Then I should be on the root page
+    Then I should be on the dashboard page
   # TODO use i18n msg
     And  should see "Logout"
     And  should see msg "sessions.create.success"
@@ -16,7 +16,8 @@ Feature: login
     Given a user "testuser" does not exists
     When I login with username "testuser" and password "testpass"
     Then I should be on the login page
-    And  should see msg "sessions.create.username.missing"
+  # TODO use i18n msg
+    And  should see "Error while doing registration"
 
   Scenario: username not provided
     When I login with username "" and password "testpass"

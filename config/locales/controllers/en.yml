@@ -4,13 +4,11 @@ en:
       success:  'Successfully logged in'
       error:    'Error while doing registration'
       username:
-        missing: 'Error while doing registration'
         required: 'Username is required'
       password:
         required: 'Password is required'
     destroy:
       success:  'Successfully logged out'
-      locked:   ''
   users:
     create:
       success:  'Registration Successful'
@@ -32,4 +30,7 @@ en:
     update:
       error:      'The password reset link is invalid, please start the password reset process again'
       unauthorized: 'You cannot access this page as logged in'
+  offices:
+    create:
+      success:   'Office created successfully'
 

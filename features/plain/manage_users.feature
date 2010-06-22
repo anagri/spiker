@@ -5,7 +5,7 @@ Feature: manage users
   so that users can use application
 
   Background:
-    Given a admin "admin" with password "secret" exists
+    Given a admin "testadmin" with password "testpass" exists
     And branch office "branch office" exists
     And I login
 

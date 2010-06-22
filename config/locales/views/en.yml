@@ -2,3 +2,19 @@ en:
   password_resets:
     new:
       submit: 'Send Password Reset Email'
+      header: 'Password Reset'
+
+  dashboard:
+    index:
+      offices: 'Manage Offices'
+  offices:
+    index:
+      new: 'Create New Office'
+    new:
+      submit: 'Create'
+
+
+  view:
+    office: 'Office'
+    parent_office: 'Parent Office'
+    back: 'Back'

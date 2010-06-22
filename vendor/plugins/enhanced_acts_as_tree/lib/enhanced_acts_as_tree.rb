@@ -7,11 +7,23 @@ module EnhancedActsAsTree
   end
 
   module ClassMethods
-    def enhanced_acts_as_tree(*opts)
-      acts_as_tree(*opts)
+    def enhanced_acts_as_tree(options = {})
+      acts_as_tree(options)
+      order = (options[:order] || 'name').to_sym
+
       class_eval <<-EOV
         def self.root?
           root != nil
+        end
+
+        def self_and_children
+          nodes = [self]
+          nodes << children
+          nodes.flatten.sort {|node1, node2| node1.send("#{order}") <=> node2.send("#{order}")}
+        end
+
+        def self_and_children_options
+          self_and_children.collect {|node| [node.name, node.id]}
         end
       EOV
     end

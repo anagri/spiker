@@ -1,0 +1,11 @@
+<% form_for @office do |f| %>
+    <p>
+      <%= f.label :name %><br/>
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label :parent_id, 'Parent Office' %><br/>
+      <%= f.select :parent_id, @user.office.self_and_children_options %>
+    </p>
+    <%= f.submit t('.submit') %>
+<% end %>

@@ -1,5 +1,5 @@
 class Office < ActiveRecord::Base
-  enhanced_acts_as_tree
+  enhanced_acts_as_tree :order => :name
   alias_method :head_office?, :root?
 
   validates_uniqueness_of :name

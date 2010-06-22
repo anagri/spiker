@@ -44,5 +44,23 @@ describe EnhancedActsAsTree do
       test.stubs(:root).returns(stub('root'))
       test.should_not be_root
     end
+
+    describe 'self_and_children' do
+      before(:each) do
+        @test = TestClass.new
+        @child_1 = stub('child 1', :id => 1, :name => 'node 1')
+        @child_2 = stub('child 2', :id => 3, :name => 'node 3')
+        @test.stubs(:children).returns([@child_1, @child_2])
+        @test.stubs(:name => 'node 2', :id => 2)
+      end
+
+      it 'should return self and childrens in order' do
+        @test.self_and_children.should == [@child_1, @test, @child_2]
+      end
+
+      it 'should return self and children options' do
+        @test.self_and_children_options.should == [['node 1', 1],['node 2', 2],['node 3', 3]]
+      end
+    end
   end
 end

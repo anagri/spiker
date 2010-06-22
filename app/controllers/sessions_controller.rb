@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
     @session.destroy
     reset_session
     flash[:info] = success_msg
-    redirect_to root_path
+    redirect_to root_url
   end
 
   protected

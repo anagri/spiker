@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   using_access_control
 
   belongs_to :office
+  validates_presence_of :office
 
   def role_symbols
     [role.to_sym]
