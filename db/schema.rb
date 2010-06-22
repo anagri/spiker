@@ -9,35 +9,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100622090220) do
+ActiveRecord::Schema.define(:version => 20100622110248) do
 
   create_table "office_types", :force => true do |t|
-    t.string   "name",       :null => false
-    t.integer  "parent_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "offices", :force => true do |t|
     t.string   "name",       :limit => 30, :null => false
     t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", :force => true do |t|
-    t.string   "username",                                  :null => false
-    t.string   "email",                                     :null => false
-    t.string   "crypted_password",                          :null => false
-    t.string   "password_salt",                             :null => false
-    t.string   "persistence_token",                         :null => false
+  create_table "offices", :force => true do |t|
+    t.string   "name",           :limit => 30, :null => false
+    t.integer  "parent_id"
+    t.integer  "office_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "failed_login_count",    :default => 0,      :null => false
-    t.string   "role",                  :default => "none", :null => false
-    t.string   "perishable_token",      :default => "",     :null => false
-    t.integer  "office_id"
-    t.boolean  "force_change_password"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "username",           :limit => 30,                :null => false
+    t.string   "email",              :limit => 30,                :null => false
+    t.string   "crypted_password",                                :null => false
+    t.string   "password_salt",                                   :null => false
+    t.string   "persistence_token",                               :null => false
+    t.integer  "failed_login_count",               :default => 0, :null => false
+    t.string   "role",                                            :null => false
+    t.string   "perishable_token",                                :null => false
+    t.integer  "office_id",                                       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
