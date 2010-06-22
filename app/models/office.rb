@@ -6,6 +6,7 @@ class Office < ActiveRecord::Base
   has_many :personnels, :class_name => User
 
   validates_uniqueness_of :name
+  validates_length_of :name, :maximum => 30
   validates_presence_of :parent, :if => Proc.new {Office.root?}
   validates_presence_of :office_type
 end
