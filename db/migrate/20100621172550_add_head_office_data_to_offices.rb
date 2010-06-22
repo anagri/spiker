@@ -4,10 +4,10 @@ class AddHeadOfficeDataToOffices < ActiveRecord::Migration
 
     # create head office
     # fixme no i18n, config
-    Office.create(:name => 'Head Office')
+    Office.create!(:name => 'Head Office')
   end
 
   def self.down
-    Office.find_by_name('Head Office').destroy
+    Office.find_by_name('Head Office').try(:destroy)
   end
 end
