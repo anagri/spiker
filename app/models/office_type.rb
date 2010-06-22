@@ -2,7 +2,7 @@ class OfficeType < ActiveRecord::Base
   using_access_control
 
   validates_uniqueness_of :name
-  validates_length_of :first_name, :maximum=>30
+  validates_length_of :name, :maximum=>30
 
   validates_presence_of :parent, :if => Proc.new {OfficeType.root?}
 
