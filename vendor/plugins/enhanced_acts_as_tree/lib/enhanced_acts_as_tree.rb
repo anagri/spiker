@@ -16,10 +16,12 @@ module EnhancedActsAsTree
           root != nil
         end
 
-        def self_and_children
+        def self_and_children(sort = false)
           nodes = [self]
-          nodes << children
-          nodes.flatten.sort {|node1, node2| node1.send("#{order}") <=> node2.send("#{order}")}
+          nodes << children.collect {|child| child.self_and_children}
+          nodes.flatten!
+          nodes.sort! {|node1, node2| node1.send("#{order}") <=> node2.send("#{order}")} if sort
+          nodes
         end
 
         def self_and_children_options

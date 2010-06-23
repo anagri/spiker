@@ -1,7 +1,7 @@
 # verify the i18n message
-Then /^(?:|I )should see msg "([^\"]*)"$/ do |msg_key|
-  Then %Q{should see "#{t(msg_key)}"}
-end
+#Then /^(?:|I )should see msg "([^\"]*)"$/ do |msg_key|
+#  Then %Q{should see "#{t(msg_key)}"}
+#end
 
 When /^(?:|I )visit the "users" page for user "([^\"]*)"$/ do |username|
   user = User.find_by_username(username)
@@ -24,3 +24,6 @@ When /^(?:|I )fill in "([^\"]*)" with current user$/ do |field|
   Then %Q{I fill in "#{field}" with "#{@user.send(field.to_sym)}"}
 end
 
+Then /^(?:|I )should see #"([^\"]*)"$/ do |var_str|
+  Then %Q{I should see "#{process(var_str)}"}
+end

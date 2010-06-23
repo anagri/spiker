@@ -16,4 +16,9 @@ FakeWeb.allow_net_connect = false
 
 #FakeWeb.register_uri(:any, "http://smtp.google.com", :body => "Mail delivered successfully")
 
+#utility methods aliased
+#alias_method :iv_g, :instance_variable_get
+#alias_method :iv_s, :instance_variable_set
+
 World(ActionController::Translation)
+

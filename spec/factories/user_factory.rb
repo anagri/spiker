@@ -5,7 +5,7 @@ Factory.define :user do |u|
   u.email {|u| "#{u.username}@testmail.com"}
   u.password 'dummypassword'
   u.password_confirmation {|u| u.password}
-  u.role {User::STAFF}
+  u.role {Role::STAFF}
   u.office {Office.root}
 end
 

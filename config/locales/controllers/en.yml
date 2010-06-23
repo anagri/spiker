@@ -2,11 +2,11 @@ en:
   sessions:
     create:
       success:  'Successfully logged in'
-      error:    'Error while doing registration'
-      username:
-        required: 'Username is required'
-      password:
-        required: 'Password is required'
+      error:    'Error while doing login'
+#      username:
+#        required: 'Username is required'
+#      password:
+#        required: 'Password is required'
     destroy:
       success:  'Successfully logged out'
   users:
@@ -33,4 +33,5 @@ en:
   offices:
     create:
       success:   'Office created successfully'
+      error:    'Error while creating office'
 

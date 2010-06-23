@@ -1,4 +1,4 @@
-<% unless @office.head_office? %>
+<% unless @office.head? %>
     <%= t('view.office') %> : <%= @office.name %><br/>
     <%= t('view.parent_office') %> : <%= @office.parent.name %><br/>
 <% else %>

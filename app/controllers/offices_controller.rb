@@ -1,6 +1,6 @@
 class OfficesController < ApplicationController
   filter_resource_access
-  before_filter :load_user, :only => [:index, :new]
+  before_filter :load_user, :only => [:index, :new, :create]
 
   def index; end
 

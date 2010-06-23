@@ -1,22 +1,19 @@
 class OfficeType < ActiveRecord::Base
+  # authorization
   using_access_control
 
-  validates_uniqueness_of :name
-  validates_length_of :name, :maximum=>30
+  # acts_as
+  acts_as_hierarchy
 
-  validates_presence_of :parent, :if => Proc.new {OfficeType.root?}
-
-  belongs_to :parent, :class_name => OfficeType
-
-  has_one :child, :class_name => OfficeType, :foreign_key => :parent_id
-
+  # relationships
   has_many :offices
 
-  def self.root
-    find(:first, :conditions => "PARENT_ID IS NULL")
-  end
+  # validations
+  validates_name
+  validates_presence_of :parent, :if => Proc.new {OfficeType.head?}
 
-  def self.root?
-    root != nil
+  class << self
+    alias_method :head, :root
+    alias_method :head?, :root?
   end
 end

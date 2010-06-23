@@ -20,3 +20,6 @@ en:
       office: 'Head Office'
     parent_office: 'Parent Office'
     back: 'Back'
+  layout:
+    logout: 'Logout'
+    login: 'Login'

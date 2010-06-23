@@ -29,6 +29,7 @@ authorization do
       if_attribute :id => is {user.id}
     end
     has_permission_on :sessions, :to => :destroy
+    has_permission_on :offices, :to => :manage
   end
 
   role :admin do

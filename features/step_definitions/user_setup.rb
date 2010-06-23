@@ -15,11 +15,11 @@ Given /^user have been deactivated$/ do
 end
 
 Given /^(?:|I )a admin "([^\"]*)" with password "([^\"]*)" exists$/ do |username, password|
-  @user = Factory.without_access_control_do_create(:user, :username => username, :password => password, :role => User::ADMIN)
+  @user = Factory.without_access_control_do_create(:user, :username => username, :password => password, :role => Role::ADMIN)
 end
 
 Given /^a admin "([^\"]*)" exists$/ do |username|
-  User.find(:first, :conditions => {:username => username, :role => User::ADMIN.to_s}).should_not be_nil
+  User.find(:first, :conditions => {:username => username, :role => Role::ADMIN}).should_not be_nil
 end
 
 Given /^(?:|I )am "([^\"]*)"$/ do |username|

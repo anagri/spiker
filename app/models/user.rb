@@ -1,10 +1,16 @@
 class User < ActiveRecord::Base
-  enhanced_enum_attr :role, %w(admin manager staff loan_officer client maintenance), :nil => false
-  enhanced_acts_as_authentic
+  # authorization
   using_access_control
 
+  # acts_as
+  enhanced_acts_as_authentic
+
+  # relationships
   belongs_to :office
+
+  # validations
   validates_presence_of :office
+  validates_inclusion_of :role, :in => Role.roles
 
   def role_symbols
     [role.to_sym]

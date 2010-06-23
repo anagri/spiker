@@ -4,20 +4,22 @@ Feature: login
   as a user I have to authenticate
   so that I can do authorized actions
 
+  Background:
+    Given office type exists
+    And office exists
+
   Scenario: valid login
     Given a user "testuser" with password "testpass" exists
     When I login
     Then I should be on the dashboard page
-  # TODO use i18n msg
-    And  should see "Logout"
-    And  should see msg "sessions.create.success"
+    And  should see #"t layout.logout"
+    And  should see #"t sessions.create.success"
 
   Scenario: login using unexisting username
     Given a user "testuser" does not exists
     When I login with username "testuser" and password "testpass"
     Then I should be on the login page
-  # TODO use i18n msg
-    And  should see "Error while doing registration"
+    And  should see #"t sessions.create.error"
 
   Scenario: username not provided
     When I login with username "" and password "testpass"
@@ -49,14 +51,14 @@ Feature: login
     When I go to the new password reset page
     And  fill in "email" with current user
     And  press t "password_resets.new.submit"
-    Then I should see msg "password_resets.create.success"
+    Then I should see #"t password_resets.create.success"
 
   @manual @wip
   Scenario: password reset expired
     Given a user "testuser" with password "testpass" exists
     And  password reset with expire "5.days.ago" for "testuser" exists
     When I follow password reset for "testuser"
-    Then I should see msg "password_reset.expired"
+    Then I should see #"t password_reset.expired"
 
   Scenario: password reset link invalid if user logs in
     Given a user "testuser" with password "testpass" exists
@@ -64,17 +66,17 @@ Feature: login
     And I login
     And I logout  
     When I jump to password reset
-    Then I should see msg "password_resets.edit.error"
+    Then I should see #"t password_resets.edit.error"
 
   Scenario: password reset link invalid
     Given a user "testuser" with password "testpass" exists
     When I follow non-existent password reset link
-    Then I should see msg "password_resets.edit.error"
+    Then I should see #"t password_resets.edit.error"
 
   Scenario: password reset while logged in
     Given a user "testuser" with password "testpass" exists
     And  I login
     And  request password reset
     When I jump to password reset
-    Then I should see msg "password_resets.edit.unauthorized"
+    Then I should see #"t password_resets.edit.unauthorized"
 

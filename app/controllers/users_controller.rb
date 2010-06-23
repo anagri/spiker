@@ -3,8 +3,8 @@ class UsersController < ApplicationController
   restrict_attributes_update [:username, :email]
 
   # otherwise the spec throws error saying 'no id given'
-  def new
-  end
+  def new; end
+  def show; end
 
   def create
     if @user.save

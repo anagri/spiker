@@ -19,7 +19,7 @@ Feature: manage users
     And select "branch office" from "offices"
     And check "active"
     And press "Submit"
-    Then I should see msg "users.created"
+    Then I should see #"t users.created"
 
   @wip
   Scenario: update password for user
@@ -30,7 +30,7 @@ Feature: manage users
     When fill in "user_password" with "newsecret"
     And fill in "user_password_confirmation" with "newsecret"
     And press "Submit"
-    Then I should see msg "users.update.password"
+    Then I should see #"t users.update.password"
 
   @wip
   Scenario: deactivate user
@@ -40,5 +40,5 @@ Feature: manage users
     And visit the "users" page for user "staff"
     When uncheck "active"
     And press "Submit"
-    Then I should see msg "users.update.deactivated"
+    Then I should see #"t users.update.deactivated"
 
