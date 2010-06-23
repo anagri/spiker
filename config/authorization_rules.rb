@@ -28,7 +28,7 @@ authorization do
     has_permission_on :users, :to => :modify do
       if_attribute :id => is {user.id}
     end
-    has_permission_on :sessions, :to => :destroy
+    has_permission_on :sessions, :to => [:create, :destroy]
     has_permission_on :offices, :to => :manage
   end
 

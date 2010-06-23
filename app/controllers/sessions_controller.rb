@@ -11,8 +11,8 @@ class SessionsController < ApplicationController
     if @session.without_access_control_do_save
       flash[:info] = success_msg
       respond_to do |format|
-        format.html { redirect_to root_path }
-        format.xml { head :status => :created, :location => root_path }
+        format.html { redirect_to dashboard_url }
+        format.xml { head :status => :created, :location => dashboard_path }
       end
     else
       flash[:error] = error_msg
@@ -28,6 +28,10 @@ class SessionsController < ApplicationController
   end
 
   protected
+  def permission_denied
+    redirect_to (params[:action].to_sym == :destroy ? root_url : dashboard_url)
+  end
+
   def new_session_from_params
     @session = Session.new(params[:session])
   end

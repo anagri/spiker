@@ -1,3 +1,6 @@
+# anamolies : testing only with get, whereas some action are mapped only for post (create), delete(destroy), put(update)
+# not sure if calling from controller, only actions matter or routes and methods too
+
 shared_examples_for "authorized controller" do
   before(:each) do
     @user = staff

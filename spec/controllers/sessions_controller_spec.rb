@@ -1,6 +1,34 @@
 require File.dirname(__FILE__) + '/spec_helper'
 
 describe SessionsController do
+  describe 'authorization' do
+    before(:each) do
+      @controller_class = SessionsController
+      @user = staff
+    end
+
+    it 'should allow user access to destroy' do
+      login(@user, {:destroy => true})
+      get_html :destroy
+      response.should redirect_to(root_url)
+    end
+
+    it 'should not allow guest access to destroy' do
+      get_html_with guest, :destroy
+      response.should redirect_to(root_url)
+    end
+
+    it 'should not allow user access to new' do
+      get_html_with @user, :new
+      response.should redirect_to(dashboard_url)
+    end
+
+    it 'should allow guest access to new' do
+      get_html_with guest, :new
+      response.should be_success
+    end
+  end
+
   describe 'new' do
     before(:each) do
       activate_authlogic
@@ -21,11 +49,11 @@ describe SessionsController do
     describe 'should not let user assign new session object for' do
       it 'html request' do
         do_new(:get_html_with, staff)
-        response.should be_unauthorized
+        response.should be_redirect_to(dashboard_url)
       end
       it 'xml request' do
         do_new(:get_xml_with, staff)
-        response.should be_unauthorized
+        response.should be_redirect_to(dashboard_url)
       end
     end
 
@@ -72,13 +100,13 @@ describe SessionsController do
       end
     end
 
-    describe 'should not let user create new session for' do
+    describe 'should let user create new session for' do
       it 'html request' do
-        do_create_with_user(:post_html)
+        do_create_with_user(:post_html, be_redirect_to(dashboard_url))
       end
 
       it 'xml request' do
-        do_create_with_user(:post_xml)
+        do_create_with_user(:post_xml, have_created_resource({:resource => stub('session')}))
       end
     end
 
@@ -91,10 +119,11 @@ describe SessionsController do
       assigns[:session].should == mock_valid_session
     end
 
-    def do_create_with_user(http_method)
+    def do_create_with_user(http_method, expectation)
+      mock_valid_session = mock('session', :without_access_control_do_save => true)
+      Session.expects(:new).with(@login_params[:session]).returns(mock_valid_session)
       do_create(http_method, staff)
-      response.should be_unauthorized
-      flash[:error].should == unauthorized_msg_key('create')
+      response.should expectation
     end
 
     def do_create(http_method, user)
