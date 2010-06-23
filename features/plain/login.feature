@@ -5,8 +5,6 @@ Feature: login
   so that I can do authorized actions
 
   Background:
-    Given office type exists
-    And office exists
 
   Scenario: valid login
     Given a user "testuser" with password "testpass" exists

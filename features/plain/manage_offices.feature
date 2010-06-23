@@ -5,7 +5,6 @@ Feature: manage office
   so that I can use the application correctly
 
   Background:
-    Given office type exists
     And a office exists and assigned to "@head_office"
     And a admin "testadmin" with password "testpass" exists
     And I login
