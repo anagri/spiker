@@ -9,7 +9,7 @@
 <%= t('view.office_types.new') %>
 <% form_for OfficeType.new do |f| %>
     <p>
-      <%= f.label :name %><br/>
+      <%= f.label :name, t('view.office_types.name') %><br/>
       <%= f.text_field :name %>
     </p>
     <p><%= f.submit t('view.office_types.create') %></p>

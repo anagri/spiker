@@ -8,6 +8,7 @@ en:
     index:
       offices: 'Manage Offices'
       office_types: 'Manage Office Types'
+      client_types: 'Manage Client Types'
   offices:
     index:
       new: 'Create New Office'
@@ -26,6 +27,12 @@ en:
       header: 'Office Types'
       name: 'Name'
       new: 'New Office Type'
+      create: 'Create'
+    client_types:
+      header: 'Client Types'
+      name: 'Name'
+      parent: 'Parent'
+      new: 'New Client Type'
       create: 'Create'
     back: 'Back'
   layout:

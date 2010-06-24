@@ -33,11 +33,18 @@ MESSAGE
     end
 
     class BeUnauthorized
+      def initialize(controller)
+        @controller = controller
+        @render_template_matcher = Spec::Rails::Matchers::RenderTemplate.new("unauthorized", @controller)
+#        @error_msg = error_msg
+      end
+
       def matches?(target)
         @response = target
-        failed = false
-        @message = "expected the response code to be unauthorized(401) but was #{@response.code}" and failed = true unless failed || @response.code == "401"
-        !failed
+        @message = "expected the response code to be unauthorized(401) but was #{@response.code}" and return false if @response.code != "401"
+#        @message = "expected error message to be #{@controller.class.name.decontrolled}.#{action}.unauthorized but was #{@error_msg}" and return false if @error_msg != "#{@controller.class.name.decontrolled}.#{action}.unauthorized"
+        @message = @render_template_matcher.failure_message_for_should and return false if !@render_template_matcher.matches?(@response)
+        return true
       end
 
       def failure_message_for_should
@@ -50,7 +57,7 @@ MESSAGE
     end
 
     def be_unauthorized
-      BeUnauthorized.new
+      BeUnauthorized.new(@controller)
     end
 
     class BeRedirectTo

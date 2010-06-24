@@ -30,11 +30,14 @@ authorization do
     end
     has_permission_on :sessions, :to => [:create, :destroy]
     has_permission_on :offices, :to => :manage
+    has_permission_on :dashboard, :to => :index
   end
 
   role :admin do
     has_permission_on :sessions, :to => :destroy
     has_permission_on :offices, :to => :manage
     has_permission_on :office_types, :to => :manage
+    has_permission_on :dashboard, :to => :index
+    has_permission_on :client_types, :to => :manage
   end
 end

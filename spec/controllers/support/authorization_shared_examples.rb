@@ -4,8 +4,6 @@ module AuthorizedSharedSpecUtils
   end
 end
 
-# anamolies : testing only with get, whereas some action are mapped only for post (create), delete(destroy), put(update)
-# not sure if calling from controller, only actions matter or routes and methods too
 shared_examples_for "authorized controller" do
   include AuthorizedSharedSpecUtils
   before(:each) do
@@ -13,18 +11,16 @@ shared_examples_for "authorized controller" do
   end
 
   it 'should not allow guest to access actions' do
-    all_actions(@controller_class).each do |action|
+    all_actions(controller.class).each do |action|
       do_request(guest, action)
-      response.should be_unauthorized
-      response.should render_template('unauthorized')
-      flash[:error].should == "#{@controller_class.name.decontrolled}.#{action}.unauthorized"
+      response.should (@unauthorized_access_expectation || be_unauthorized)
     end
   end
 
   it 'should allow user to access actions' do
-    all_actions(@controller_class).each do |action|
+    all_actions(controller.class).each do |action|
       do_request(@user, action)
-      be_result, msg = action =~ /create/ ? [be_redirect, "authorization on #{@controller_class}.#{action} failed"] : [be_success, "authorization on #{@controller_class}.#{action} failed"]
+      be_result, msg = action =~ /create/ ? [be_redirect, "authorization on #{controller.class}.#{action} failed"] : [be_success, "authorization on #{controller.class}.#{action} failed, #{response.body}"]
       response.should be_result, msg
     end
   end
@@ -37,14 +33,14 @@ shared_examples_for "unauthorized controller" do
   end
 
   it 'should not allow users to access actions' do
-    all_actions(@controller_class).each do |action|
+    all_actions(controller.class).each do |action|
       do_request(@user, action)
       response.should redirect_to(dashboard_url)
     end
   end
 
   it 'should allow guest user on home' do
-    all_actions(@controller_class).each do |action|
+    all_actions(controller.class).each do |action|
       do_request(guest, action)
       response.should be_success
     end

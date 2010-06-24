@@ -7,7 +7,6 @@ describe HomeController do
 
   describe 'authorization' do
     before(:each) do
-      @controller_class = HomeController
       @resource_id = nil
     end
     it_should_behave_like "unauthorized controller"

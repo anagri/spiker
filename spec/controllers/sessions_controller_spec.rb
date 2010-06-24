@@ -3,7 +3,6 @@ require File.dirname(__FILE__) + '/spec_helper'
 describe SessionsController do
   describe 'authorization' do
     before(:each) do
-      @controller_class = SessionsController
       @user = staff
     end
 
