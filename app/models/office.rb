@@ -11,9 +11,9 @@ class Office < ActiveRecord::Base
 
   # validations
   validates_name
-  validates_presence_of :parent, :if => Proc.new {Office.root?}
   validates_presence_of :office_type
 
+  #todo extract in a plugin/extension
   def self.for_select_option
     all.sort do |office, other_office|
       office.name <=> other_office.name

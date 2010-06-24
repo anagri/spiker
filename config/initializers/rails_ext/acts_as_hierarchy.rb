@@ -14,7 +14,11 @@ module ActsAsHierarchy
     def ancestors
       node, nodes = self, []
       nodes << node = node.parent while node.parent && !nodes.include?(self)
-      nodes
+      nodes.reverse
+    end
+
+    def ancestors_including_self
+      ancestors << self
     end
 
     private

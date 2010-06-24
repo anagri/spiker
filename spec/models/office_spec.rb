@@ -50,4 +50,18 @@ describe Office do
   it 'should get offices for select option' do
     Office.for_select_option.should == [[@branch_office.name, @branch_office.id], [@head_office.name, @head_office.id], [@sub_office.name, @sub_office.id]]
   end
+
+  describe 'enhanced acts as tree' do
+    it 'should get all ancestors excluding self' do
+      @branch_office.ancestors.should == [@head_office, @sub_office]
+      @sub_office.ancestors.should == [@head_office]
+      @head_office.ancestors.should == []
+    end
+
+    it 'should get all ancestors including self' do
+      @branch_office.ancestors_including_self.should == [@head_office, @sub_office, @branch_office]
+      @sub_office.ancestors_including_self.should == [@head_office, @sub_office]
+      @head_office.ancestors_including_self.should == [@head_office]
+    end
+  end
 end
