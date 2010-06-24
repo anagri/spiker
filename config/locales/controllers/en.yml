@@ -34,4 +34,8 @@ en:
     create:
       success:   'Office created successfully'
       error:    'Error while creating office'
+  office_types:
+    create:
+      success:   'Office Type created successfully'
+      error:    'Error while creating Office Type'
 

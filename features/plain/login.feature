@@ -48,7 +48,7 @@ Feature: login
     Given a user "testuser" with password "testpass" exists
     When I go to the new password reset page
     And  fill in "email" with current user
-    And  press t "password_resets.new.submit"
+    And  press #"t password_resets.new.submit"
     Then I should see #"t password_resets.create.success"
 
   @manual @wip

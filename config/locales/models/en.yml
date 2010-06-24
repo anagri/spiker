@@ -14,3 +14,4 @@ en:
     errors:
       messages:
         head_office_for_admin_role: 'Admin should be assigned to Head Office'
+        circular_hierarchy: 'Circular hierarchy detected'

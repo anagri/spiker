@@ -1,8 +1,8 @@
 <% unless @office.head? %>
-    <%= t('view.office') %> : <%= @office.name %><br/>
-    <%= t('view.parent_office') %> : <%= @office.parent.name %><br/>
+    <%= t('view.office.header') %> : <%= @office.name %><br/>
+    <%= t('view.office.parent') %> : <%= @office.parent.name %><br/>
 <% else %>
-    <%= t('view.ho.office') %> : <%= @office.name %><br/>
+    <%= t('view.office.ho') %> : <%= @office.name %><br/>
 <% end %>
 
 <%= link_to t('view.back'), offices_path %>

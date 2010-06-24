@@ -10,7 +10,6 @@ class OfficeType < ActiveRecord::Base
 
   # validations
   validates_name
-  validates_presence_of :parent, :if => Proc.new {OfficeType.head?}
 
   class << self
     alias_method :head, :root

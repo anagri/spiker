@@ -11,8 +11,8 @@ When /^(?:|I )visit the "users" page for user "([^\"]*)"$/ do |username|
 end
 
 # access i18n controls
-When /^(?:|I )press t "([^\"]*)"$/ do |key|
-  Then %Q{I press "#{t(key)}"}
+When /^(?:|I )press #"([^\"]*)"$/ do |var_str|
+  Then %Q{I press "#{process(var_str)}"}
 end
 
 # access i18n links

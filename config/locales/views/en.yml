@@ -7,18 +7,26 @@ en:
   dashboard:
     index:
       offices: 'Manage Offices'
+      office_types: 'Manage Office Types'
   offices:
     index:
       new: 'Create New Office'
     new:
       submit: 'Create'
-
+  office_types:
+    index:
 
   view:
-    office: 'Office'
-    ho:
-      office: 'Head Office'
-    parent_office: 'Parent Office'
+    to_dashboard: 'Back to Dashboard'
+    office:
+      header: 'Office'
+      parent: 'Parent Office'
+      ho: 'Head Office'
+    office_types:
+      header: 'Office Types'
+      name: 'Name'
+      new: 'New Office Type'
+      create: 'Create'
     back: 'Back'
   layout:
     logout: 'Logout'

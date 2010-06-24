@@ -1,0 +1,18 @@
+<h3><%= t('view.office_types.header') %></h3>
+<h4><%= t('view.office_types.name') %></h4>
+<ul>
+  <% @office_types.each do |office_type| %>
+      <li><%= office_type.name %></li>
+  <% end %>
+</ul>
+<hr/>
+<%= t('view.office_types.new') %>
+<% form_for OfficeType.new do |f| %>
+    <p>
+      <%= f.label :name %><br/>
+      <%= f.text_field :name %>
+    </p>
+    <p><%= f.submit t('view.office_types.create') %></p>
+<% end %>
+<hr/>
+<%= link_to t('view.to_dashboard'), dashboard_path %>
