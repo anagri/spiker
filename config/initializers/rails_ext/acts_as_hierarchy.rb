@@ -1,6 +1,10 @@
 module ActsAsHierarchy
-  def self.included(klass)
-    klass.class_eval do
+  def acts_as_hierarchy
+    belongs_to :parent, :class_name => self.name
+    has_one :child, :class_name => name, :foreign_key => :parent_id
+    validate :circular_hierarchy
+    validates_presence_of :parent, :if => :is_self_not_root_and_root_exists?
+    class_eval do
       extend ClassMethods
       include InstanceMethods
     end
@@ -24,13 +28,6 @@ module ActsAsHierarchy
   end
 
   module ClassMethods
-    def acts_as_hierarchy
-      belongs_to :parent, :class_name => self.name
-      has_one :child, :class_name => name, :foreign_key => :parent_id
-      validate :circular_hierarchy
-      validates_presence_of :parent, :if => :is_self_not_root_and_root_exists?
-    end
-
     def root
       find(:first, :conditions => "PARENT_ID IS NULL")
     end
@@ -47,5 +44,5 @@ module ActsAsHierarchy
   end
 end
 
-ActiveRecord::Base.send :include, ActsAsHierarchy
+ActiveRecord::Base.send :extend, ActsAsHierarchy
 
