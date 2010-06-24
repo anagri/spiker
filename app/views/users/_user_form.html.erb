@@ -20,5 +20,9 @@
       <%= f.label :role %><br/>
       <%= f.select :role, Role.roles_for_select_option %>
     </p>
+    <p>
+      <%= f.label :office_id, 'Office' %><br/>
+      <%= f.select :office_id, Office.for_select_option %>
+    </p>
     <p><%= f.submit "Submit" %></p>
 <% end %>

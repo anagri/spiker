@@ -46,4 +46,8 @@ describe Office do
       assert_invalid_record(invalid_office, :parent => :blank)
     end
   end
+
+  it 'should get offices for select option' do
+    Office.for_select_option.should == [[@branch_office.name, @branch_office.id], [@head_office.name, @head_office.id], [@sub_office.name, @sub_office.id]]
+  end
 end

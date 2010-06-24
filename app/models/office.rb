@@ -1,7 +1,7 @@
 class Office < ActiveRecord::Base
   # authorization
   using_access_control
-  
+
   # acts_as
   enhanced_acts_as_tree :order => :name
 
@@ -13,6 +13,14 @@ class Office < ActiveRecord::Base
   validates_name
   validates_presence_of :parent, :if => Proc.new {Office.root?}
   validates_presence_of :office_type
+
+  def self.for_select_option
+    all.sort do |office, other_office|
+      office.name <=> other_office.name
+    end.collect do |o|
+      [o.name, o.id]
+    end
+  end
 
 =begin
 todo validation only one head office can exists office_type 
