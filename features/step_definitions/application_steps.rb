@@ -16,8 +16,8 @@ When /^(?:|I )press t "([^\"]*)"$/ do |key|
 end
 
 # access i18n links
-When /^(?:|I )follow t "([^\"]*)"$/ do |key|
-  Then %Q{I follow "#{t(key)}"}
+When /^(?:|I )follow #"([^\"]*)"$/ do |var_str|
+  Then %Q{I follow "#{process(var_str)}"}
 end
 
 When /^(?:|I )fill in "([^\"]*)" with current user$/ do |field|

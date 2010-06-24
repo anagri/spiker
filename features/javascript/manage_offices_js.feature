@@ -14,8 +14,8 @@ Feature: manage office
 
   @current
   Scenario: create office
-    Given I follow t "dashboard.index.offices"
-    And follow t "offices.index.new"
+    Given I follow #"t dashboard.index.offices"
+    And follow #"t offices.index.new"
     And fill in "office_name" with "branch office"
     And select #"@head_office.name" from "office_parent_id"
     And select #"@branch_office_type.name" from "office_office_type_id"
