@@ -1,4 +1,4 @@
-module EnhancedActsAsAuthentic
+module DeclAuthSkipAccessControl
   def self.included(klass)
     klass.class_eval do
       extend ClassMethods
@@ -8,6 +8,7 @@ module EnhancedActsAsAuthentic
 
   module MethodMissing
     include Authorization::Maintenance
+
     def method_missing(symbol, *args)
       if symbol.to_s =~ /^without_access_control_do_(.*)$/
         resource = without_access_control do
@@ -20,17 +21,13 @@ module EnhancedActsAsAuthentic
   end
 
   module ClassMethods
-    include EnhancedActsAsAuthentic::MethodMissing
-    def enhanced_acts_as_authentic
-      acts_as_authentic
-    end
+    include MethodMissing
   end
 
   module InstanceMethods
-    include EnhancedActsAsAuthentic::MethodMissing
+    include MethodMissing
   end
-
 end
 
-ActiveRecord::Base.send :include, EnhancedActsAsAuthentic
-Authlogic::Session::Base.send :include, EnhancedActsAsAuthentic
+ActiveRecord::Base.send :include, DeclAuthSkipAccessControl
+Authlogic::Session::Base.send :include, DeclAuthSkipAccessControl

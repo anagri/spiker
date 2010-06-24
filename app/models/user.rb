@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   using_access_control
 
   # acts_as
-  enhanced_acts_as_authentic
+  acts_as_authentic
 
   # relationships
   belongs_to :office

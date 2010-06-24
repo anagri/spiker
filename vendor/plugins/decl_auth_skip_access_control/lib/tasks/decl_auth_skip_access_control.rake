@@ -1,4 +1,4 @@
 # desc "Explaining what the task does"
-# task :enhanced_acts_as_authentic do
+# task :decl_auth_skip_access_control do
 #   # Task goes here
 # end
