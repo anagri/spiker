@@ -8,5 +8,5 @@ end
 
 
 def all_actions(controller)
-  eval("#{controller}.new.methods") - ApplicationController.methods - Object.methods - ApplicationController.new.methods
+  eval("#{controller}.action_methods")
 end

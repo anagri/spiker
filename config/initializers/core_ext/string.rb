@@ -4,7 +4,7 @@ class String
   end
 
   def decontrolled
-    demodulize.gsub("Controller", "").downcase
+    demodulize.gsub("Controller", "").underscore
   end
 
   def convert_to_time

@@ -9,5 +9,5 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users, :only => [:new, :create, :edit, :update, :show]
   map.resources :password_resets, :only => [:new, :create, :edit, :update]
   map.dashboard '/dashboard', :controller => 'dashboard'
-  map.resources :offices
+  map.resources :offices, :office_types
 end

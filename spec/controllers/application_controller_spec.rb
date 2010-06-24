@@ -1,8 +1,13 @@
 require File.dirname(__FILE__) + '/spec_helper'
 
-describe ApplicationController do
+class StubController < ApplicationController
+end
+
+describe 'ApplicationController', :type => :controller do
+  controller_name :stub
+
   before(:each) do
-    ApplicationController.class_eval do
+    StubController.class_eval do
       filter_access_to :restricted_action
 
       def restricted_action
@@ -10,9 +15,8 @@ describe ApplicationController do
     end
 
     ActionController::Routing::Routes.draw do |map|
-      map.connect 'restricted', :controller => :application, :action => 'restricted_action'
+      map.connect 'restricted', :controller => :stub, :action => 'restricted_action'
     end
-
   end
 
   it 'should render unauthorized page if permission denied' do

@@ -3,7 +3,7 @@
 
 shared_examples_for "authorized controller" do
   before(:each) do
-    @user = staff
+    @user ||= staff
   end
 
   it 'should not allow guest to access actions' do

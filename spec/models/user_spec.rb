@@ -10,6 +10,10 @@ describe User do
     it 'should create user if username, password and password_confirmation provided correctly' do
       Factory.without_access_control_do_create(:user).should be_valid
     end
+
+    it 'should create admin if belonging to head office provided correctly' do
+      Factory.without_access_control_do_create(:user, :role => Role::ADMIN, :office => Office.root).should be_valid
+    end
   end
 
   describe 'invalid user' do
@@ -46,6 +50,13 @@ describe User do
     it 'should not create user if role is not valid' do
       invalid_user = User.without_access_control_do_create(:username => 'testuser', :email => 'testuser@email.com', :password => 'testpass', :password_confirmation => 'testpass', :role => 'none', :office => Office.root)
       assert_invalid_record(invalid_user, :role => :inclusion)
+    end
+
+    it 'should not create admin if not assigned root office' do
+      branch_office_type = Factory.without_access_control_do_create(:office_type, :parent => OfficeType.root)
+      branch_office = Factory.without_access_control_do_create(:office, :parent => Office.root, :office_type => branch_office_type)
+      invalid_user = User.without_access_control_do_create(:username => 'testuser', :email => 'testuser@email.com', :password => 'testpass', :password_confirmation => 'testpass', :role => Role::ADMIN, :office => branch_office)
+      assert_invalid_record(invalid_user, :office => :head_office_for_admin_role)
     end
   end
 end

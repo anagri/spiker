@@ -18,7 +18,7 @@
     </p>
     <p>
       <%= f.label :role %><br/>
-      <%= f.enum_select :role %>
+      <%= f.select :role, Role.roles_for_select_option %>
     </p>
     <p><%= f.submit "Submit" %></p>
 <% end %>

@@ -24,15 +24,20 @@ def guest
 end
 
 def staff(new = false)
-  return @staff ||= make_staff if !new
+  return @staff ||= make_user(:staff) if !new
   @staff = nil and @staff ||= make_staff
 end
 
+def admin(new = false)
+  return @admin ||= make_user(:admin) if !new
+  @admin = nil and @admin ||= make_user(:admin)
+end
+
 private
-def make_staff
-  staff = stub_model(User, :role_symbols => [:staff])
-  User.stubs(:find).with(staff.id.to_s).returns(staff)
-  staff
+def make_user(role)
+  user = stub_model(User, :role_symbols => [role])
+  User.stubs(:find).with(user.id.to_s).returns(user)
+  user
 end
 
 

@@ -3,3 +3,14 @@ en:
     email:
       subject: "Password reset email"
       from: "Spiker Application Admin"
+  role:
+    admin: 'Admin'
+    manager: 'Manager'
+    staff: 'Staff'
+    loan_officer: 'Loan Officer'
+    client: 'Client'
+    maintenance: 'Maintenance'
+  activerecord:
+    errors:
+      messages:
+        head_office_for_admin_role: 'Admin should be assigned to Head Office'
