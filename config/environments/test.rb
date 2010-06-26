@@ -31,5 +31,5 @@ config.gem 'rspec-rails', :version => '>= 1.3.2', :lib => false unless File.dire
 config.gem "factory_girl", :version => '>= 1.2.4'
 config.gem "remarkable_rails", :version => '>=3.1.3', :lib => false
 config.gem "cucumber-rails", :version => '>=0.3.2', :lib => false
-config.gem "metric_fu", :version => '1.3.0', :lib => false
+#config.gem "metric_fu", :version => '1.3.0', :lib => false #heroku cries
 config.gem "fakeweb", :version => '1.2.8'
