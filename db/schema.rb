@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(:version => 20100624142614) do
 
   create_table "client_types", :force => true do |t|
     t.string   "name",       :limit => 30, :null => false
-    t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
