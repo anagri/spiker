@@ -18,7 +18,7 @@ describe OfficesController do
     describe 'for staff' do
       before(:each) do
         @user = staff
-        @allowed_actions = readonly_index_actions
+        @allowed_actions = view_actions
       end
 
       it_should_behave_like 'authorized controller'

@@ -32,8 +32,4 @@ class ApplicationController < ActionController::Base
   def success_msg
     msg_key('success')
   end
-
-  def load_user
-    @user = current_user
-  end
 end

@@ -29,19 +29,23 @@ end
 
 include Spiker::RequestUtils
 
-def manage_index_actions
-  manage_actions + index_actions
-end
-
-def readonly_index_actions
-  readonly_actions + index_actions
+def view_actions
+  show_actions + index_actions
 end
 
 def manage_actions
-  Set['new', 'create', 'show', 'edit', 'update']
+  build_actions + modify_actions
 end
 
-def readonly_actions
+def build_actions
+  Set['new', 'create', 'show']
+end
+
+def modify_actions
+  Set['edit', 'update', 'show']
+end
+
+def show_actions
   Set['show']
 end
 

@@ -9,7 +9,7 @@ end
 def login(user, session_stubs = {})
   @current_user = user
   @session = nil
-  Session.stubs(:find).returns(user_session(user, session_stubs))
+  Session.stubs(:find).returns(user_session(@current_user, session_stubs))
   @current_user
 end
 
@@ -25,12 +25,12 @@ end
 
 def staff(new = false)
   return @staff ||= make_user(:staff) if !new
-  @staff = nil and @staff ||= make_staff
+  @staff = make_user(:staff)
 end
 
 def admin(new = false)
   return @admin ||= make_user(:admin) if !new
-  @admin = nil and @admin ||= make_user(:admin)
+  @admin = make_user(:admin)
 end
 
 private
