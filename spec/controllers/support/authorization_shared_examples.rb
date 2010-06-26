@@ -13,7 +13,7 @@ shared_examples_for "authorized controller" do
   it 'should not allow guest to access actions' do
     all_actions(controller.class).each do |action|
       do_request(guest, action)
-      response.should (@unauthorized_access_expectation || be_unauthorized)
+      response.should(@unauthorized_access_expectation || be_unauthorized)
     end
   end
 
