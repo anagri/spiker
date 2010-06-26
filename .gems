@@ -3,3 +3,4 @@ pg
 authlogic -v 2.1.5
 declarative_authorization -v 0.4.1
 acts_as_tree -v 0.1.1
+routing_filter -v '0.0.1'
