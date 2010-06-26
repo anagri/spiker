@@ -15,6 +15,10 @@ privileges do
     includes :index, :show
   end
 
+  privilege :destroy do
+    includes :delete
+  end
+
   privilege :su do
     includes :all
   end

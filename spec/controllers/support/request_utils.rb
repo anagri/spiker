@@ -53,6 +53,14 @@ def index_actions
   Set['index']
 end
 
+def destroy_actions
+  Set['delete']
+end
+
+def create_actions
+  Set['create']
+end
+
 def none_actions
   Set[]
 end
