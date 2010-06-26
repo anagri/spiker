@@ -6,8 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'login', :controller => :sessions, :action => :create, :conditions => {:method => :post}
 
   map.filter 'locale'
-  map.resources :users, :only => [:new, :create, :edit, :update, :show]
   map.resources :password_resets, :only => [:new, :create, :edit, :update]
   map.dashboard '/dashboard', :controller => 'dashboard'
-  map.resources :offices, :office_types, :client_types
+  map.resources :users, :offices, :office_types, :client_types
 end

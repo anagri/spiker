@@ -6,31 +6,37 @@ Feature: manage users
 
   Background:
     Given a admin "testadmin" with password "testpass" exists
-    And branch office "branch office" exists
+    And office exists and assigned to "@branch_office"
     And I login
 
-  @wip
   Scenario: create users
-    Given I am on the new user page
+    Given I am on the dashboard page
+    And follow #"t dashboard.index.users"
+    And follow #"t view.users.new"
+    Then I should be on the new user page
     And fill in "user_username" with "newuser"
     And fill in "user_password" with "newpass"
     And fill in "user_password_confirmation" with "newpass"
-    And select "staff" from "user_roles"
-    And select "branch office" from "offices"
-    And check "active"
-    And press "Submit"
-    Then I should see #"t users.created"
+    And fill in "user_email" with "testuser@email.com"
+    And select #"e Role.role_name(Role::STAFF)" from "user_role"
+    And select #"e @branch_office.name" from "user_office_id"
+    And press #"t view.users.create"
+    Then I should be on# "e user_path(User.find_by_username('newuser'))"
+    And I should see #"t users.create.success"
+    And should see #"newuser"
+    And should see #"testuser@email.com"
 
-  @wip
   Scenario: update password for user
-    Given a user "staff" with password "secret" exists
+    Given a user "staff" with password "secret" exists and assigned to #"@testuser"
     And I am "admin"
-    And I am on the users page
-    And visit the "users" page for user "staff"
+    And I am on the dashboard page
+    And follow #"t dashboard.index.users"
+    And follow #"t view.common.edit" within #"e '.edit_user_'+@testuser.id.to_s"
     When fill in "user_password" with "newsecret"
     And fill in "user_password_confirmation" with "newsecret"
-    And press "Submit"
-    Then I should see #"t users.update.password"
+    And press #"t view.users.create"
+    Then I should be on# "e user_path(@testuser)"
+    And I should see #"t users.update.success"
 
   @wip
   Scenario: deactivate user
@@ -38,7 +44,7 @@ Feature: manage users
     And I am "admin"
     And I am on the users page
     And visit the "users" page for user "staff"
-    When uncheck "active"
+    When uncheck "active"                     m
     And press "Submit"
     Then I should see #"t users.update.deactivated"
 

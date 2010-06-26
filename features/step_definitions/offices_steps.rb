@@ -1,5 +1,5 @@
 When /^(?:|I )select #"([^\"]*)" from "([^\"]*)"$/ do |assignment_var, field|
-  Then %Q{I select "#{eval(assignment_var)}" from "#{field}"}
+  Then %Q{I select "#{process(assignment_var)}" from "#{field}"}
 end
 
 When /^(?:|a )office type exists(?:| and assigned to "([^\"]*)")(?:| with parent "([^\"]*)")$/ do |assignment_var, parent_var|

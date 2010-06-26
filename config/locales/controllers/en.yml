@@ -20,6 +20,8 @@ en:
       success:  'Successfully logged out'
     show:
       unauthorized:  'You are not allowed to perform this action'
+    new:
+      unauthorized:  'You are not allowed to perform this action'
   password_resets:
     new:
       unauthorized: 'You cannot access this page as logged in'

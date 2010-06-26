@@ -24,5 +24,5 @@
       <%= f.label :office_id, 'Office' %><br/>
       <%= f.select :office_id, Office.for_select_option, {}, disabled(user) %>
     </p>
-    <p><%= f.submit "Submit" %></p>
+    <p><%= f.submit t('view.users.create') %></p>
 <% end %>

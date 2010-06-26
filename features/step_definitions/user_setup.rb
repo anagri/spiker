@@ -1,5 +1,6 @@
-Given /^a user "([^"]*)" with password "([^"]*)" exists$/ do |username, password|
-  @user = Factory.without_access_control_do_create(:user, :username => username, :password => password)
+Given /^a user "([^"]*)" with password "([^"]*)" exists(?: and assigned to #"([^"]*)")?$/ do |username, password, assignment_var|
+  assignment_var = (assignment_var || "@user").to_sym
+  instance_variable_set(assignment_var, Factory.without_access_control_do_create(:user, :username => username, :password => password))
 end
 
 Given /^a user "([^\"]*)" does not exists$/ do |username|

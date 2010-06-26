@@ -16,8 +16,12 @@ When /^(?:|I )press #"([^\"]*)"$/ do |var_str|
 end
 
 # access i18n links
-When /^(?:|I )follow #"([^\"]*)"$/ do |var_str|
-  Then %Q{I follow "#{process(var_str)}"}
+When /^(?:|I )follow #"([^\"]*)"(?: within #"([^\"]*)")?$/ do |var_str, field_str|
+  if field_str
+    Then %Q{I follow "#{process(var_str)}" within "#{process(field_str)}"}
+  else
+    Then %Q{I follow "#{process(var_str)}"}
+  end
 end
 
 When /^(?:|I )fill in "([^\"]*)" with current user$/ do |field|
@@ -26,4 +30,8 @@ end
 
 Then /^(?:|I )should see #"([^\"]*)"$/ do |var_str|
   Then %Q{I should see "#{process(var_str)}"}
+end
+
+Then /^I should be on\# "([^\"]*)"$/ do |var_str|
+  URI.parse(current_url).path.should == process(var_str)
 end

@@ -9,6 +9,7 @@ en:
       offices: 'Manage Offices'
       office_types: 'Manage Office Types'
       client_types: 'Manage Client Types'
+      users: 'Manage Users'
   offices:
     index:
       new: 'Create New Office'
@@ -18,11 +19,21 @@ en:
     index:
 
   view:
-    to_dashboard: 'Back to Dashboard'
+    common:
+      edit: 'Edit'
+      back: 'Back'
+      to_dashboard: 'Back to Dashboard'
     office:
       header: 'Office'
       parent: 'Parent Office'
       ho: 'Head Office'
+    users:
+      header: 'Users'
+      username: 'Username'
+      email: 'Email'
+      new: 'New User'
+      create: 'Create'
+      back: 'Back to Manage Users'
     office_types:
       header: 'Office Types'
       name: 'Name'
@@ -34,7 +45,6 @@ en:
       parent: 'Parent'
       new: 'New Client Type'
       create: 'Create'
-    back: 'Back'
   layout:
     logout: 'Logout'
     login: 'Login'
