@@ -34,7 +34,7 @@ def view_actions
 end
 
 def manage_actions
-  build_actions + modify_actions
+  build_actions + modify_actions + view_actions
 end
 
 def build_actions
