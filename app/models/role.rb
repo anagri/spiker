@@ -14,11 +14,11 @@ class Role
     roles.collect {|role| [I18n.t("role.#{role}"), role]}
   end
 
-  def self.office_roles
-    [MANAGER, STAFF, LOAN_OFFICER, CLIENT]
+  def self.admin_role?(role)
+    [ADMIN, MAINTENANCE].include?(role.to_s)
   end
 
-  def self.admin_roles
-    [ADMIN, MAINTENANCE]
+  def self.office_role?(role)
+    !admin_role?(role)
   end
 end

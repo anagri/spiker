@@ -26,6 +26,6 @@ class User < ActiveRecord::Base
 
   protected
   def office_for_role
-    errors.add(:office, :head_office_for_admin_role) if role && office && Role.admin_roles.include?(role.to_s) && office != Office.root
+    errors.add(:office, :head_office_for_admin_role) if role && office && Role.admin_role?(role) && office != Office.root
   end
 end
