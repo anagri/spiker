@@ -6,9 +6,24 @@ describe HomeController do
   end
 
   describe 'authorization' do
-    before(:each) do
-      @resource_id = nil
+    describe 'for guest' do
+      before(:each) do
+        @user = guest
+        @allowed_actions = index_actions
+        @restricted_actions = none_actions
+      end
+
+      it_should_behave_like 'authorized controller'
     end
-    it_should_behave_like "unauthorized controller"
+
+    describe 'for user' do
+      before(:each) do
+        @user = staff
+        @allowed_actions = none_actions
+        @unauthorized_access_expectation = be_redirect_to(dashboard_url)
+      end
+
+      it_should_behave_like 'authorized controller'
+    end
   end
 end

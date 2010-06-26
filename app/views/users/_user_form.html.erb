@@ -2,11 +2,11 @@
     <%= f.error_messages %>
     <p>
       <%= f.label :username %><br/>
-      <%= f.text_field :username %>
+      <%= f.text_field :username, disabled(user) %>
     </p>
     <p>
       <%= f.label :email %><br/>
-      <%= f.text_field :email %>
+      <%= f.text_field :email, disabled(user) %>
     </p>
     <p>
       <%= f.label :password %><br/>
@@ -18,11 +18,11 @@
     </p>
     <p>
       <%= f.label :role %><br/>
-      <%= f.select :role, Role.roles_for_select_option %>
+      <%= f.select :role, Role.roles_for_select_option, {}, disabled(user) %>
     </p>
     <p>
       <%= f.label :office_id, 'Office' %><br/>
-      <%= f.select :office_id, Office.for_select_option %>
+      <%= f.select :office_id, Office.for_select_option, {}, disabled(user) %>
     </p>
     <p><%= f.submit "Submit" %></p>
 <% end %>

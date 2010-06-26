@@ -19,7 +19,6 @@ end
 authorization do
   role :guest do
     has_permission_on :home, :to => :index
-    has_permission_on :users, :to => :build
     has_permission_on :sessions, :to => :build
     has_permission_on :password_resets, :to => :manage
   end
@@ -29,15 +28,14 @@ authorization do
       if_attribute :id => is {user.id}
     end
     has_permission_on :sessions, :to => [:create, :destroy]
-    has_permission_on :offices, :to => :manage
+    has_permission_on [:offices, :office_types, :client_types], :to => [:show, :index]
     has_permission_on :dashboard, :to => :index
   end
 
   role :admin do
-    has_permission_on :sessions, :to => :destroy
+    has_permission_on :users, :to => :manage
+    includes :staff
     has_permission_on :offices, :to => :manage
-    has_permission_on :office_types, :to => :manage
-    has_permission_on :dashboard, :to => :index
-    has_permission_on :client_types, :to => :manage
+    has_permission_on [:offices, :office_types, :client_types], :to => :manage
   end
 end

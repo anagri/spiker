@@ -28,3 +28,27 @@ module Spiker
 end
 
 include Spiker::RequestUtils
+
+def manage_index_actions
+  manage_actions + index_actions
+end
+
+def readonly_index_actions
+  readonly_actions + index_actions
+end
+
+def manage_actions
+  Set['new', 'create', 'show', 'edit', 'update']
+end
+
+def readonly_actions
+  Set['show']
+end
+
+def index_actions
+  Set['index']
+end
+
+def none_actions
+  Set[]
+end

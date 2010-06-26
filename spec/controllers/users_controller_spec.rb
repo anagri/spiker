@@ -6,14 +6,14 @@ describe UsersController do
   end
 
   describe 'new' do
-    describe 'should let guest define new user using' do
-      it 'html request' do
-        do_successful_new(:get_html_with, guest)
-      end
-      it 'xml request' do
-        do_successful_new(:get_xml_with, guest)
-      end
-    end
+#    describe 'should let guest define new user using' do
+#      it 'html request' do
+#        do_successful_new(:get_html_with, guest)
+#      end
+#      it 'xml request' do
+#        do_successful_new(:get_xml_with, guest)
+#      end
+#    end
 
     describe 'should not let user define new user using' do
       it 'html request' do
@@ -44,49 +44,49 @@ describe UsersController do
       @user_params = params_hash(:username => 'testuser')
     end
 
-    describe 'should let guest create new user for valid' do
-      before(:each) do
-        @stub_user = stub('user', :id => 1, :save => true)
-        User.expects(:new).with(@user_params).returns(@stub_user)
-      end
+#    describe 'should let guest create new user for valid' do
+#      before(:each) do
+#        @stub_user = stub('user', :id => 1, :save => true)
+#        User.expects(:new).with(@user_params).returns(@stub_user)
+#      end
+#
+#      it 'html request' do
+#        do_successful_create(:post_html_with, guest)
+#      end
+#
+#      it 'xml request' do
+#        do_successful_create(:post_xml_with, guest, "201")
+#      end
+#
+#      def do_successful_create(http_method, user, status = "302")
+#        send(http_method, user, :create, :user => @user_params)
+#        response.should have_created_resource(:resource => @stub_user, :location => user_path(@stub_user), :status => status)
+#        flash[:info].should == 'users.create.success'
+#      end
+#    end
 
-      it 'html request' do
-        do_successful_create(:post_html_with, guest)
-      end
-
-      it 'xml request' do
-        do_successful_create(:post_xml_with, guest, "201")
-      end
-
-      def do_successful_create(http_method, user, status = "302")
-        send(http_method, user, :create, :user => @user_params)
-        response.should have_created_resource(:resource => @stub_user, :location => user_path(@stub_user), :status => status)
-        flash[:info].should == 'users.create.success'
-      end
-    end
-
-    describe 'shoud not let guest create new user for invalid' do
-      before(:each) do
-        @stub_user = stub('user', :id => 1, :save => false)
-        User.expects(:new).with(@user_params).returns(@stub_user)
-      end
-
-      it 'html request' do
-        do_unsucessful_create(:post_html_with)
-      end
-
-      it 'xml request' do
-        do_unsucessful_create(:post_xml_with)
-      end
-
-      def do_unsucessful_create(http_method)
-        send(http_method, guest, :create, :user => @user_params)
-        response.should be_success
-        assigns[:user].should == @stub_user
-        flash[:error].should == 'users.create.error'
-        response.should render_template('new')
-      end
-    end
+#    describe 'shoud not let guest create new user for invalid' do
+#      before(:each) do
+#        @stub_user = stub('user', :id => 1, :save => false)
+#        User.expects(:new).with(@user_params).returns(@stub_user)
+#      end
+#
+#      it 'html request' do
+#        do_unsucessful_create(:post_html_with)
+#      end
+#
+#      it 'xml request' do
+#        do_unsucessful_create(:post_xml_with)
+#      end
+#
+#      def do_unsucessful_create(http_method)
+#        send(http_method, guest, :create, :user => @user_params)
+#        response.should be_success
+#        assigns[:user].should == @stub_user
+#        flash[:error].should == 'users.create.error'
+#        response.should render_template('new')
+#      end
+#    end
 
     describe 'should not let user create new user using' do
       it 'html request' do
@@ -144,10 +144,10 @@ describe UsersController do
       response.should render_template('new')
     end
 
-    def do_edit_with_guest(http_method)
-      do_edit(http_method, guest, 1)
-      response.should be_unauthorized
-    end
+#    def do_edit_with_guest(http_method)
+#      do_edit(http_method, guest, 1)
+#      response.should be_unauthorized
+#    end
 
     def do_edit(http_method, user, user_id_to_be_edited)
       send(http_method, user, :edit, :id => user_id_to_be_edited)
@@ -181,22 +181,22 @@ describe UsersController do
       end
     end
 
-    describe 'should not let guest update user information using' do
-      it 'html request' do
-        do_unauthorized_edit(:get_xml_with, guest)
-      end
-
-      it 'xml request' do
-        do_unauthorized_edit(:get_xml_with, guest)
-      end
-
-      def do_unauthorized_edit(http_method, guest)
-        other_user = staff
-        send(http_method, guest, :update, :id => other_user.id, :user => @update_params)
-        response.should be_unauthorized
-        flash[:error].should == unauthorized_msg_key('update')
-      end
-    end
+#    describe 'should not let guest update user information using' do
+#      it 'html request' do
+#        do_unauthorized_edit(:get_xml_with, guest)
+#      end
+#
+#      it 'xml request' do
+#        do_unauthorized_edit(:get_xml_with, guest)
+#      end
+#
+#      def do_unauthorized_edit(http_method, guest)
+#        other_user = staff
+#        send(http_method, guest, :update, :id => other_user.id, :user => @update_params)
+#        response.should be_unauthorized
+#        flash[:error].should == unauthorized_msg_key('update')
+#      end
+#    end
 
     it 'should let user render edit screen if update failed' do
       current_user = staff

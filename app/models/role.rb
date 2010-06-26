@@ -10,8 +10,12 @@ class Role
     [ADMIN, MANAGER, STAFF, LOAN_OFFICER, CLIENT, MAINTENANCE]
   end
 
+  def self.role_name(role)
+    I18n.t("role.#{role}")
+  end
+
   def self.roles_for_select_option
-    roles.collect {|role| [I18n.t("role.#{role}"), role]}
+    roles.collect {|role| [role_name(role), role]}
   end
 
   def self.admin_role?(role)

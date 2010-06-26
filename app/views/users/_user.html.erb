@@ -1,7 +1,8 @@
 <p>
   Username : <%= user.username %><br/>
   Email : <%= user.email %><br/>
-  Role : <%= user.enums(:role).hash[user.role] %><br/>
+  Role : <%= Role.role_name(user.role) %><br/>
   Created At : <%= user.created_at %><br/>
   Updated At : <%= user.updated_at %><br/>
+
 </p>

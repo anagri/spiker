@@ -4,45 +4,25 @@ module AuthorizedSharedSpecUtils
   end
 end
 
-shared_examples_for "authorized controller" do
+shared_examples_for 'authorized controller' do
   include AuthorizedSharedSpecUtils
   before(:each) do
-    @user ||= staff
+    @allowed_actions = (@allowed_actions || all_actions(controller.class)) & all_actions(controller.class)
+    @restricted_actions = (@restricted_actions || (all_actions(controller.class) - @allowed_actions)) & all_actions(controller.class)
   end
 
-  it 'should not allow guest to access actions' do
-    all_actions(controller.class).each do |action|
-      do_request(guest, action)
-      response.should(@unauthorized_access_expectation || be_unauthorized)
-    end
-  end
-
-  it 'should allow user to access actions' do
-    all_actions(controller.class).each do |action|
+  it 'should allow access to allowed actions' do
+    @allowed_actions.each do |action|
       do_request(@user, action)
-      be_result, msg = action =~ /create/ ? [be_redirect, "authorization on #{controller.class}.#{action} failed"] : [be_success, "authorization on #{controller.class}.#{action} failed, #{response.body}"]
+      be_result, msg = action =~ /create/ ? [be_redirect, "authorization on #{controller.class}.#{action} failed"] : [be_success, "authorization on #{controller.class}.#{action} failed"]
       response.should be_result, msg
     end
   end
-end
 
-shared_examples_for "unauthorized controller" do
-  include AuthorizedSharedSpecUtils
-  before(:each) do
-    @user = staff
-  end
-
-  it 'should not allow users to access actions' do
-    all_actions(controller.class).each do |action|
+  it 'should not allow access to restricted actions' do
+    @restricted_actions.each do |action|
       do_request(@user, action)
-      response.should redirect_to(dashboard_url)
-    end
-  end
-
-  it 'should allow guest user on home' do
-    all_actions(controller.class).each do |action|
-      do_request(guest, action)
-      response.should be_success
+      response.should(@unauthorized_access_expectation || be_unauthorized, "authorization on #{controller.class}.#{action} failed")
     end
   end
 end

@@ -13,6 +13,9 @@ en:
     create:
       success:  'Registration Successful'
       error:    'Error while doing registration'
+    update:
+      success:  'User profile update Successful'
+      error:    'Error while updating user profile'
     destroy:
       success:  'Successfully logged out'
     show:

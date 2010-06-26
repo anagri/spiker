@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   filter_resource_access
-  restrict_attributes_update [:username, :email]
+  restrict_attributes_update [:username, :email, :role, :office]
 
   # otherwise the spec throws error saying 'no id given'
   def new; end
