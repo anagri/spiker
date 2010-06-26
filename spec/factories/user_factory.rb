@@ -6,6 +6,6 @@ Factory.define :user do |u|
   u.password 'dummypassword'
   u.password_confirmation {|u| u.password}
   u.role {Role::STAFF}
-  u.office {Office.root || Factory.create(:office)}
+  u.office {Office.root || Factory.build(:office)}
 end
 
