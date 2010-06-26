@@ -59,4 +59,22 @@ describe User do
       assert_invalid_record(invalid_user, :office => :head_office_for_admin_role)
     end
   end
+
+
+  describe 'password reset email' do
+    it 'should reset perishable token and invoke notifier to send email with instructions' do
+      user = stub_model(User, :reset_perishable_token! => true, :email => 'user@test.com', :perishable_token => 'abcd1234')
+      Notifier.expects(:deliver_password_reset_instructions).with({:email => user.email, :id => user.perishable_token})
+      Authorization::Maintenance.with_user(user) do
+        user.deliver_password_reset_instructions!({})
+      end
+    end
+  end
+
+  describe 'role symbols' do
+    it 'should return role_symbols as role in array form' do
+      user = stub_model(User, :role => 'staff')
+      user.role_symbols.should == [:staff]
+    end
+  end
 end
