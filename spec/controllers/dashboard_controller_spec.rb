@@ -6,11 +6,23 @@ describe DashboardController do
   end
 
   describe 'authorization' do
-    before(:each) do
-      @user = staff
-      @unauthorized_access_expectation = be_redirect_to(root_url)
+    describe 'for user' do
+      before(:each) do
+        @user = staff
+        @allowed_actions = all_actions(controller)
+      end
+
+      it_should_behave_like "authorized controller"
     end
 
-    it_should_behave_like "authorized controller"
+    describe 'for guest' do
+      before(:each) do
+        @user = guest
+        @allowed_actions = none_actions
+        @unauthorized_access_expectation = be_redirect_to(root_url)
+      end
+
+      it_should_behave_like "authorized controller"
+    end
   end
 end
