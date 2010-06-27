@@ -12,13 +12,16 @@
     <div class="flash_error"><%= t(flash[:error]) %></div>
 <% end %>
 <% if current_user %>
-    <div class="top_status_bar"><%= current_user.email %> | <%= link_to "Edit Profile", edit_user_path(current_user) %> | <%= link_to t('layout.logout'), logout_path %> </div>
+    <div class="top_status_bar"><%=     link_to t('view.index.dashboard'), dashboard_path %>|
+      <%= link_to "Edit Profile", edit_profile_path %> | (logged in as <%= current_user.email %>) <%= link_to t('layout.logout'), logout_path %> </div>
 <% else %>
     <div class="top_status_bar"><%= link_to "Forgot Password", new_password_reset_path %> | <%= link_to "Login", login_path %></div>
 <% end %>
 <br/>
 <%= yield %>
 
+<hr/>
+<%= back_link %>
 <!-- Javascript assets -->
 <%= javascript_include_tag :all, :recursive => true %>
 </body>

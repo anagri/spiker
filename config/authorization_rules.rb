@@ -34,13 +34,13 @@ authorization do
   role :authenticated_user do
     has_permission_on :sessions, :to => [:create, :destroy]
     has_permission_on :dashboard, :to => :index
+    has_permission_on :users, :to => [:edit_profile, :modify] do
+      if_attribute :id => is {user.id}
+    end
   end
 
   role :staff do
     includes :authenticated_user
-    has_permission_on :users, :to => :modify do
-      if_attribute :id => is {user.id}
-    end
     has_permission_on [:offices, :office_types, :client_types], :to => :view
   end
 

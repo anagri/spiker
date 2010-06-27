@@ -11,7 +11,7 @@ en:
       success:  'Registration Successful'
       error:    'Error while doing registration'
     update:
-      success:  'User profile update Successful'
+      success:  'User profile update successful'
       error:    'Error while updating user profile'
     destroy:
       success:  'Successfully logged out'

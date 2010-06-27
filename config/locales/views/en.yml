@@ -8,9 +8,10 @@ en:
 
   view:
     index:
-      to_dashboard: 'Back to Dashboard'
+      dashboard: 'Dashboard'
     common: &common
       create: 'Create'
+      update: 'Update'
       edit: 'Edit'
       back: 'Back'
     offices:

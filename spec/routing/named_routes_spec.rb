@@ -13,6 +13,10 @@ describe 'Named Routes' do
     it 'should generate logout_path' do
       dashboard_path.should == '/dashboard'
     end
+
+    it 'should generate edit_profile_path' do
+      edit_profile_path.should == '/edit_profile'
+    end
   end
 
   it 'should generate restful user resources routes' do

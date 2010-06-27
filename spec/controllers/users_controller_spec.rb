@@ -17,7 +17,7 @@ describe UsersController do
       it_should_behave_like 'authorized controller'
     end
 
-    describe 'for staff' do
+    describe 'for other users' do
       before(:each) do
         @logged_in = staff
         @other_user = staff(true)
@@ -32,7 +32,7 @@ describe UsersController do
     describe 'for admin' do
       before(:each) do
         @user = admin
-        @allowed_actions = manage_actions
+        @allowed_actions = manage_actions + Set['edit_profile']
         @update_params = {:id => @user.id, :user => {}}
         @create_params = {:user => {:username => 'testuser', :password => 'testpass', :email => 'test@user.com', :password_confirmation => 'testpass', :office => Factory.build(:office), :role => 'staff'}}
         @resource_id = @user.id

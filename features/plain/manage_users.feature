@@ -34,7 +34,7 @@ Feature: manage users
     And follow #"t view.common.edit" within #"e '.edit_user_'+@testuser.id.to_s"
     When fill in "user_password" with "newsecret"
     And fill in "user_password_confirmation" with "newsecret"
-    And press #"t view.users.create"
+    And press #"t view.users.update"
     Then I should be on# "e user_path(@testuser)"
     And I should see #"t users.update.success"
 

@@ -3,5 +3,3 @@
     <div class="<%="edit_user_#{user.id}"%>"><%= user.username %> <%= user.email %> <%= link_to t('view.common.edit'), edit_user_path(user) %></div>
 <% end %>
 <%= link_to t('view.users.new'), new_user_path %>
-<hr/>
-<%= back_to_dashboard %>

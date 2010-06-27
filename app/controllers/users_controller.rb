@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :load_user_for_edit_profile, :only => :edit_profile
   filter_resource_access
   restrict_attributes_update [:username, :email, :role, :office]
 
@@ -28,13 +29,23 @@ class UsersController < ApplicationController
     render :action => 'new'
   end
 
+  def edit_profile
+    render :action => 'new'
+  end
+
   def update
     if @user.update_attributes(params[:user])
+      Session.create(@user)
       flash[:info] = success_msg
       redirect_to @user
     else
       render :action => 'edit'
       flash[:error] = error_msg
     end
+  end
+
+  protected
+  def load_user_for_edit_profile
+    params[:id] = current_user.try(:id).to_s
   end
 end
