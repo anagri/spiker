@@ -1,12 +1,9 @@
+# only controller messages of format controller.action.success/error/unauthorized can reside here
 en:
   sessions:
     create:
       success:  'Successfully logged in'
       error:    'Error while doing login'
-#      username:
-#        required: 'Username is required'
-#      password:
-#        required: 'Password is required'
     destroy:
       success:  'Successfully logged out'
   users:
