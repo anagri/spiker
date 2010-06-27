@@ -36,6 +36,18 @@ describe UsersController do
         @update_params = {:id => @user.id, :user => {}}
         @create_params = {:user => {:username => 'testuser', :password => 'testpass', :email => 'test@user.com', :password_confirmation => 'testpass', :office => Factory.build(:office), :role => 'staff'}}
         @resource_id = @user.id
+        User.stubs(:all).returns([])
+      end
+
+      it_should_behave_like 'authorized controller'
+    end
+
+    describe 'for guest' do
+      before(:each) do
+        @other_user = staff
+        @user = guest
+        @allowed_actions = none_actions
+        @resource_id = @other_user.id
       end
 
       it_should_behave_like 'authorized controller'
