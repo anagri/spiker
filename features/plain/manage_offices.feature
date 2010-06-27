@@ -12,7 +12,7 @@ Feature: manage office
   Scenario: show offices
     Given a office exists and assigned to "@sub_head_office" with parent "@head_office"
     And a office exists and assigned to "@branch_office" with parent "@sub_head_office" 
-    When I follow #"t dashboard.index.offices"
+    When I follow #"t view.offices.manage"
     Then I should see #"e @head_office.name"
     And should see #"e '>' << @sub_head_office.name"
     And should see #"e '>>' << @branch_office.name"

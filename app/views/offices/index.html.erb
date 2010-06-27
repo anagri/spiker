@@ -1,6 +1,6 @@
 Actions <br/>
-<%=link_to t('.new'), new_office_path %><br/>
+<%=link_to t('view.offices.new'), new_office_path %><br/>
 <br/>
 Existing Offices : <br/>
 
-<%= tree(@user.office, "<br/>&gt;") %>
+<%= tree(@parent_office, "<br/>&gt;") %>

@@ -1,50 +1,49 @@
+# view controls(buttons) and links should be i18n using key/value pair from here
+# convention is to group by context, not view
 en:
   password_resets:
     new:
       submit: 'Send Password Reset Email'
       header: 'Password Reset'
 
-  dashboard:
-    index:
-      offices: 'Manage Offices'
-      office_types: 'Manage Office Types'
-      client_types: 'Manage Client Types'
-      users: 'Manage Users'
-  offices:
-    index:
-      new: 'Create New Office'
-    new:
-      submit: 'Create'
-  office_types:
-    index:
-
   view:
-    common:
+    index:
+      to_dashboard: 'Back to Dashboard'
+    common: &common
+      create: 'Create'
       edit: 'Edit'
       back: 'Back'
-      to_dashboard: 'Back to Dashboard'
-    office:
+    offices:
+      manage: 'Manage Offices'
       header: 'Office'
       parent: 'Parent Office'
       ho: 'Head Office'
+      new: 'Create New Office'
+      back: 'Back to Manage Offices'
+      <<: *common
     users:
+      manage: 'Manage Users'
       header: 'Users'
       username: 'Username'
       email: 'Email'
       new: 'New User'
-      create: 'Create'
       back: 'Back to Manage Users'
+      <<: *common
     office_types:
+      manage: 'Manage Office Types'
       header: 'Office Types'
       name: 'Name'
       new: 'New Office Type'
-      create: 'Create'
+      back: 'Back to Manage Office Types'
+      <<: *common
     client_types:
+      manage: 'Manage Client Types'
       header: 'Client Types'
       name: 'Name'
       parent: 'Parent'
       new: 'New Client Type'
-      create: 'Create'
+      back: 'Back to Manage Client Types'
+      <<: *common
   layout:
     logout: 'Logout'
     login: 'Login'

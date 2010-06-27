@@ -11,7 +11,7 @@ Feature: manage users
 
   Scenario: create users
     Given I am on the dashboard page
-    And follow #"t dashboard.index.users"
+    And follow #"t view.users.manage"
     And follow #"t view.users.new"
     Then I should be on the new user page
     And fill in "user_username" with "newuser"
@@ -30,7 +30,7 @@ Feature: manage users
     Given a user "staff" with password "secret" exists and assigned to #"@testuser"
     And I am "admin"
     And I am on the dashboard page
-    And follow #"t dashboard.index.users"
+    And follow #"t view.users.manage"
     And follow #"t view.common.edit" within #"e '.edit_user_'+@testuser.id.to_s"
     When fill in "user_password" with "newsecret"
     And fill in "user_password_confirmation" with "newsecret"

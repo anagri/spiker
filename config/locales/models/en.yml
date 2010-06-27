@@ -1,8 +1,10 @@
+# only messages used in model and activerecord error messages should be here
+#
 en:
-  password_resets:
-    email:
-      subject: "Password reset email"
-      from: "Spiker Application Admin"
+  notifier:
+    password_reset_instructions:
+      subject: 'Password reset email'
+      from: 'Spiker Application Admin'
   role:
     admin: 'Admin'
     manager: 'Manager'

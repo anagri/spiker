@@ -13,7 +13,7 @@ Feature: manage client types
   Scenario: admin should be able to see add/edit client types
     Given a admin "admintest" with password "testpass" exists
     And login
-    And follow #"t dashboard.index.client_types"
+    And follow #"t view.client_types.manage"
     Then I should be on the client types page
     And should see #"e @group.name"
     And should see #"e '>' + @center.name"

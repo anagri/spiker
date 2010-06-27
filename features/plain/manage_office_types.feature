@@ -11,7 +11,7 @@ Feature: manage office types
   Scenario: admin should be able to see add/edit office types
     Given a admin "admintest" with password "testpass" exists
     And login
-    And follow #"t dashboard.index.office_types"
+    And follow #"t view.office_types.manage"
     Then I should be on the office types page
     And should see #"e @head_office_type.name"
     And should see #"e @sub_head_office_type.name"
@@ -20,7 +20,7 @@ Feature: manage office types
   Scenario: admin should be able to add office type
     Given a admin "admintest" with password "testpass" exists
     And login
-    And follow #"t dashboard.index.office_types"
+    And follow #"t view.office_types.manage"
     And I should be on the office types page
     And fill in "office_type_name" with "new office type"
     And press #"t view.office_types.create"

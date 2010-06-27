@@ -1,8 +1,12 @@
 class OfficesController < ApplicationController
   filter_resource_access
-  def index; end
+  def index
+    @parent_office = current_user.office
+  end
 
-  def new; end
+  def new
+    @parent_office = current_user.office
+  end
 
   def show; end
 
