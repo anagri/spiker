@@ -12,4 +12,14 @@ describe ClientType do
       ClientType.roots.should == [@center, @group]
     end
   end
+
+  describe 'validation' do
+    describe 'name validation' do
+      before(:each) do
+        @resource = ClientType.new
+      end
+
+      it_should_behave_like 'validates name'
+    end
+  end
 end

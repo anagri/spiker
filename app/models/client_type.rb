@@ -9,7 +9,7 @@ class ClientType < ActiveRecord::Base
   has_many :parents, :through => :ancestry
 
   #validations
-
+  validates_name
 
   def self.roots
     find(all.map(&:id) - ClientTypeRelationship.all.map(&:child_id).uniq)
