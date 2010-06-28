@@ -10,4 +10,5 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :password_resets, :only => [:new, :create, :edit, :update]
   map.dashboard '/dashboard', :controller => 'dashboard'
   map.resources :users, :offices, :office_types, :client_types
+  map.resources :additional_attributes, :only => [:index, :new, :create, :show]
 end

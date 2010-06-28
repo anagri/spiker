@@ -20,22 +20,26 @@ describe 'Named Routes' do
   end
 
   it 'should generate restful user resources routes' do
-    assert_restful_routing("user")
+    assert_restful_routing('user')
   end
 
   it 'should generate restful office resources routes' do
-    assert_restful_routing("office")
+    assert_restful_routing('office')
   end
 
   it 'should generate restful office_type resources routes' do
-    assert_restful_routing("office_type")
+    assert_restful_routing('office_type')
   end
 
   it 'should generate restful client_type resources routes' do
-    assert_restful_routing("client_type")
+    assert_restful_routing('client_type')
   end
 
-  it 'should generate restful client_type resources routes' do
-    assert_restful_routing("password_reset")
+  it 'should generate restful password_reset resources routes' do
+    assert_restful_routing('password_reset')
+  end
+
+  it 'should generate restful additional_attribute resources routes' do
+    assert_restful_routing('additional_attribute', [:edit])
   end
 end
