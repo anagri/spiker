@@ -9,7 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100624142614) do
+ActiveRecord::Schema.define(:version => 20100628104740) do
+
+  create_table "additional_attributes", :force => true do |t|
+    t.string  "name",          :limit => 30, :null => false
+    t.string  "resource_type",               :null => false
+    t.string  "field_type",                  :null => false
+    t.integer "length"
+    t.integer "precision"
+  end
 
   create_table "client_type_relationships", :id => false, :force => true do |t|
     t.integer "parent_id"
