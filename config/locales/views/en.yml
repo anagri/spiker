@@ -22,6 +22,16 @@ en:
       new: 'Create New Office'
       back: 'Back to Manage Offices'
       <<: *common
+    additional_attributes:
+      manage: 'Manage Office Attributes'
+      header: 'Additional Attributes'
+      name: 'Name'
+      field_type: 'Field Type'
+      resource_type: 'Resource Type'
+      length: 'Length'
+      new: 'Create New Additional Attribute'
+      back: 'Back to Manage Additional Attributes'
+      <<: *common
     users:
       manage: 'Manage Users'
       header: 'Users'

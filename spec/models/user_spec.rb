@@ -19,44 +19,44 @@ describe User do
   describe 'invalid user' do
     it 'should be invalid user if password is blank'do
       invalid_user = User.without_access_control_do_new(:username => 'testuser', :email => 'testemail@email.com', :password => '', :password_confirmation => '', :office => @office, :role => Role::STAFF)
-      assert_invalid_record(invalid_user, :password => [:confirmation, :too_short], :password_confirmation => :too_short)
+      invalid_user.should have_ar_errors(:password => [:confirmation, :too_short], :password_confirmation => :too_short)
     end
 
     it 'should be invalid user if username is blank' do
       invalid_user = User.without_access_control_do_new(:username => '', :email => 'testemail@email.com', :password => 'testpass', :password_confirmation => 'testpass', :office => @office, :role => Role::STAFF)
-      assert_invalid_record(invalid_user, :username => [:invalid, :too_short])
+      invalid_user.should have_ar_errors(:username => [:invalid, :too_short])
     end
 
     it 'should be invalid user if password and password_confirmation mismatch' do
       invalid_user = User.without_access_control_do_new(:username => 'testuser', :email => 'testemail@email.com', :password => 'testpass', :password_confirmation => 'diffpass', :office => @office, :role => Role::STAFF)
-      assert_invalid_record(invalid_user, :password => :confirmation)
+      invalid_user.should have_ar_errors(:password => :confirmation)
     end
 
     it 'should be invalid user if password less than 4 characters' do
       invalid_user = User.without_access_control_do_new(:username => 'testuser', :email => 'testuser@email.com', :password => '123', :password_confirmation => '123', :office => @office, :role => Role::STAFF)
-      assert_invalid_record(invalid_user, :password => :too_short, :password_confirmation => :too_short)
+      invalid_user.should have_ar_errors(:password => :too_short, :password_confirmation => :too_short)
     end
 
     it 'should be invalid user if office is not present' do
       invalid_user = User.without_access_control_do_new(:username => 'testuser', :email => 'testuser@email.com', :password => 'testpass', :password_confirmation => 'testpass', :role => Role::STAFF)
-      assert_invalid_record(invalid_user, :office => :blank)
+      invalid_user.should have_ar_errors(:office => :blank)
     end
 
     it 'should be invalid user if role is not present' do
       invalid_user = User.without_access_control_do_new(:username => 'testuser', :email => 'testuser@email.com', :password => 'testpass', :password_confirmation => 'testpass', :office => @office)
-      assert_invalid_record(invalid_user, :role => :inclusion)
+      invalid_user.should have_ar_errors(:role => :inclusion)
     end
 
     it 'should be invalid user if role is not valid' do
       invalid_user = User.without_access_control_do_new(:username => 'testuser', :email => 'testuser@email.com', :password => 'testpass', :password_confirmation => 'testpass', :role => 'none', :office => @office)
-      assert_invalid_record(invalid_user, :role => :inclusion)
+      invalid_user.should have_ar_errors(:role => :inclusion)
     end
 
     it 'should be invalid admin if not assigned root office' do
       branch_office_type = Factory.without_access_control_do_build(:office_type, :parent => @office_type)
       branch_office = Factory.without_access_control_do_build(:office, :parent => @office, :office_type => branch_office_type)
       invalid_user = User.without_access_control_do_new(:username => 'testuser', :email => 'testuser@email.com', :password => 'testpass', :password_confirmation => 'testpass', :role => Role::ADMIN, :office => branch_office)
-      assert_invalid_record(invalid_user, :office => :head_office_for_admin_role)
+      invalid_user.should have_ar_errors(:office => :head_office_for_admin_role)
     end
   end
 

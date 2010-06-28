@@ -15,8 +15,9 @@ module ActiveRecord
         end
       end
 
-      def matches?(errors)
-        @actual_errors = errors
+      def matches?(record)
+        @record = record
+        @actual_errors = @record.errors
         @actual_errors.instance_eval do
           def field_error_map
             return @field_error_map if @field_error_map
@@ -27,10 +28,11 @@ module ActiveRecord
             @field_error_map
           end
         end
-        @message = error_count_mismatch and return false unless @actual_errors.size == @field_error_map.error_count
+        @message = "expected the record valid? to be false but was #{@record.valid?}" and return false if @record.valid? == true
 
+        @message = error_count_mismatch and return false unless @actual_errors.size == @field_error_map.error_count
         @actual_errors.each_error {|attr, error|
-          @message = "expected  error #{error.type} on #{attr} but was not present" and return false unless @field_error_map[attr.to_sym].include?(error.type)
+          @message = "expected  error #{error.type} on #{attr} but was not present" and return false unless @field_error_map[attr.to_sym] && @field_error_map[attr.to_sym].include?(error.type)
         }
       end
 

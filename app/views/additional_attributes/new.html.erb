@@ -1,0 +1,24 @@
+<% form_for @additional_attribute do |f| %>
+    <%= f.error_messages %>
+    <p>
+      <%= f.label :name %><br/>
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label :resource_type %><br/>
+      <%= f.select :resource_type, AdditionalAttribute.resource_types_for_select %>
+    </p>
+    <p>
+      <%= f.label :field_type %><br/>
+      <%= f.select :field_type, AdditionalAttribute.field_types_for_select %>
+    </p>
+    <p>
+      <%= f.label :length %><br/>
+      <%= f.text_field :length %>
+    </p>
+    <p>
+      <%= f.label :precision %><br/>
+      <%= f.text_field :precision %>
+    </p>
+    <p><%= f.submit submit_caption(@additional_attribute) %></p>
+<% end %>

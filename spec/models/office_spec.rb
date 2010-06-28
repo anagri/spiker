@@ -17,23 +17,23 @@ describe Office do
   describe 'invalid office' do
     it 'should fail validation if name not provided' do
       invalid_office = Office.without_access_control_do_create(:name => nil, :parent => @head_office, :office_type => @office_type)
-      assert_invalid_record(invalid_office, :name => :blank)
+      invalid_office.should have_ar_errors(:name => :blank)
     end
 
     it 'should fail validation if name is blank' do
       invalid_office = Office.without_access_control_do_create(:name => '', :parent => @head_office, :office_type => @office_type)
-      assert_invalid_record(invalid_office, :name => :blank)
+      invalid_office.should have_ar_errors(:name => :blank)
     end
 
     it 'should fail validation if name is not unique' do
       existing_office = Office.without_access_control_do_create(:name => 'already present', :parent => @head_office, :office_type => @office_type)
       invalid_office = Office.without_access_control_do_create(:name => existing_office.name, :parent => @head_office, :office_type => @office_type)
-      assert_invalid_record(invalid_office, :name => :taken)
+      invalid_office.should have_ar_errors(:name => :taken)
     end
 
     it 'should fail validation if name is very long' do
       invalid_office = Office.without_access_control_do_create(:name => 'a'*31, :parent => @head_office, :office_type => @office_type)
-      assert_invalid_record(invalid_office, :name => :too_long)
+      invalid_office.should have_ar_errors(:name => :too_long)
     end
 
     it 'should pass validation if name is under limit' do
@@ -43,7 +43,7 @@ describe Office do
 
     it 'should fail validation if parent office not present' do
       invalid_office = Office.without_access_control_do_create(:name => 'some office', :office_type => @office_type)
-      assert_invalid_record(invalid_office, :parent => :blank)
+      invalid_office.should have_ar_errors(:parent => :blank)
     end
   end
 
@@ -63,5 +63,13 @@ describe Office do
       @sub_office.ancestors_including_self.should == [@head_office, @sub_office]
       @head_office.ancestors_including_self.should == [@head_office]
     end
+  end
+
+  describe 'validates name' do
+    before(:each) do
+      @resource = Office.new(:parent => @branch_office,:office_type => @office_type)
+    end
+    
+    it_should_behave_like 'validates name'
   end
 end

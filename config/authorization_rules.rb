@@ -41,11 +41,11 @@ authorization do
 
   role :staff do
     includes :authenticated_user
-    has_permission_on [:offices, :office_types, :client_types], :to => :view
+    has_permission_on [:offices, :additional_attributes, :office_types, :client_types], :to => :view
   end
 
   role :admin do
     includes :authenticated_user
-    has_permission_on [:users, :offices, :office_types, :client_types], :to => :manage
+    has_permission_on [:users, :additional_attributes, :offices, :office_types, :client_types], :to => :manage
   end
 end

@@ -1,4 +1,4 @@
-module Spiker
+module App
   module RequestUtils
     def self.included(klass)
       klass.class_eval do
@@ -27,7 +27,7 @@ module Spiker
   end
 end
 
-include Spiker::RequestUtils
+include App::RequestUtils
 
 def view_actions
   show_actions + index_actions

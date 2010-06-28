@@ -30,7 +30,7 @@ describe OfficeType do
       it 'should not add node if causes circular hierarchy' do
         @head_office_type.parent = @leaf_office_type
         @head_office_type.save
-        assert_invalid_record(@head_office_type, :parent => :circular_hierarchy)
+        @head_office_type.should have_ar_errors(:parent => :circular_hierarchy)
       end
 
       it 'should get all ancestors including self' do
@@ -45,5 +45,14 @@ describe OfficeType do
         @head_office_type.ancestors_including_self.should == [@head_office_type]
       end
     end
+  end
+
+  describe 'name validation' do
+    before(:each) do
+      office_type = Factory.without_access_control_do_create(:office_type)
+      @resource = OfficeType.new(:parent => office_type)
+    end
+
+    it_should_behave_like 'validates name'
   end
 end
