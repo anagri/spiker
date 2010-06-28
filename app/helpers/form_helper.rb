@@ -4,6 +4,6 @@ module FormHelper
   end
 
   def submit_caption(record)
-    record.new_record? ? t('view.users.create') : t('view.users.update')
+    record.new_record? ? t("view.#{record.class.name.tableize}.create") : t("view.#{record.class.name.tableize}.update")
   end
 end
