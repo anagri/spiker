@@ -1,0 +1,43 @@
+<mockup version="1.0" skin="sketch" measuredW="1794" measuredH="811" mockupW="1783" mockupH="768">
+  <controls>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::StickyNote" x="1" y="43" w="731" h="758" measuredW="109" measuredH="123" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Logout%20%3A%0AIs%20the%20user%20able%20to%20locate%20logout%20%3F%20know%20he%20has%20been%20logged%20in%20%3F%20How%20much%20help%20is%20the%20title%20bar%20providing%20%3F%20How%20much%20help%20is%20the%20login%20bar%20providing%20%3F%0AIs%20the%20user%20able%20to%20understand%20on%20the%20first%20login%20that%20he%20can%20change%20his%20password%20from%20Profile%20link%20%3F%20what%20can%20be%20a%20better%20indicator%20%3F%20%0AIs%20after%20learning%20how%20to%20change%20password%20he%20is%20able%20to%20perform%20from%20next%20time%20without%20any%20issue%2C%20will%20a%20tool%20tip%20on%20first%20login%20help%20him%20about%20this%20funcitonality.%0A%20%0ATabs%20%3A%20%0AIs%20the%20user%20able%20to%20understand%20what%20funcitonality%20lies%20inside%20each%20tab%20%3F%20%0AIs%20he%20able%20to%20guess%20if%20he%20needs%20to%20see%20the%20background%20processes/batch%20jobs%20he%20needs%20to%20go%20to%20the%20system%0A%20%0A%20%0AQ.%20What%20is%20that%20Ashok%28Administrator%29%20wants%20to%20see%20as%20soon%20as%20logging%20in%20%3F%0AA.%20%0A1.%20Some%20charts%20%3F%20what%20should%20the%20charts%20display%20%3F%0A2.%20Text%20reports%20%3F%20%0A3.%20Daily%20Data%20Input%20%3F%0A4.%20Calendar%20for%20events%20%3F%0A5.%20System%20health%20%3F%0A6.%20Batch%20Job%20run%20status%20%3F%0A7.%20Any%20alerts%20that%20admin%20needs%20to%20know%20%3F%0A8.%20Recent%20activities%20by%20user%20%3F%0A%20%0A%20%0AWill%20Dashboard%20functioning%20as%20a%20launchpad%20describing%20activities%20possible%20and%20giving%20a%20link%20for%20those%20activities%20help%20%3F%0AWill%20this%20create%20User%20coming%20to%20dashboard%20everytime%20to%20go%20to%20an%20activity%20or%20he%20will%20directly%20click%20on%20tab%20%3F%0AWill%20displaying%20these%20activities%20in%20the%20same%20group%20heading%20as%20tabs%20give%20an%20indicator%20to%20user%20</text>
+      </controlProperties>
+    </control>
+    <control controlID="9" controlTypeID="__group__" x="760" y="33" w="-1" h="-1" measuredW="1024" measuredH="768" zOrder="1" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="__group__" x="0" y="0" w="-1" h="-1" measuredW="1024" measuredH="768" zOrder="0" locked="false" isInGroup="9">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="1024" h="768" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="0">
+              <controlProperties>
+                <text>Samartha%20Microfinanace%20%3A%3A%20Microfinance%20MIS%20%3A%3A%20Ashok%20%28Administrator%29</text>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::Title" x="1" y="72" w="1022" h="-1" measuredW="749" measuredH="40" zOrder="1" locked="false" isInGroup="0">
+              <controlProperties>
+                <size>24</size>
+                <text>Samartha%20Microfinance%20%3A%3A%20Realising%20the%20Potential%20of%20Rural%20India</text>
+              </controlProperties>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::HRule" x="7" y="104" w="1010" h="-1" measuredW="100" measuredH="5" zOrder="1" locked="false" isInGroup="9"/>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::HRule" x="7" y="139" w="1010" h="-1" measuredW="100" measuredH="5" zOrder="2" locked="false" isInGroup="9"/>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="678" y="119" w="-1" h="-1" measuredW="339" measuredH="25" zOrder="3" locked="false" isInGroup="9">
+          <controlProperties>
+            <text>Logged%20in%20as%20Ashok%20%28Administrator%29%20%7C%20Profile%20%7C%20Logout</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::TabBar" x="780" y="190" w="988" h="559" measuredW="515" measuredH="100" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <hrefs>Administrator%20-%20Dashboard%26bm%3BAdministrator%20-%20Dashboard.bmml%26bm%3BAdministrator%20-%20Dashboard.bmml%26bm%3BAdministrator%20-%20Dashboard.bmml%2CAdministrator%20-%20Offices-Browse%26bm%3BAdministrator%20-%20Offices-Browse.bmml%26bm%3BAdministrator%20-%20Offices-Browse.bmml%26bm%3BAdministrator%20-%20Offices-Browse.bmml%2CAdministrator%20-%20Clients%26bm%3BAdministrator%20-%20Clients.bmml%26bm%3BAdministrator%20-%20Clients.bmml%26bm%3BAdministrator%20-%20Clients.bmml%2CAdministrator%20-%20Users%26bm%3BAdministrator%20-%20Users.bmml%26bm%3BAdministrator%20-%20Users.bmml%26bm%3BAdministrator%20-%20Users.bmml%2CAdministrator%20-%20Products%26bm%3BAdministrator%20-%20Products.bmml%26bm%3BAdministrator%20-%20Products.bmml%26bm%3BAdministrator%20-%20Products.bmml%2CAdministrator%20-%20Reports%26bm%3BAdministrator%20-%20Reports.bmml%26bm%3BAdministrator%20-%20Reports.bmml%26bm%3BAdministrator%20-%20Reports.bmml%2CAdministrator%20-%20System%26bm%3BAdministrator%20-%20System.bmml%26bm%3BAdministrator%20-%20System.bmml%26bm%3BAdministrator%20-%20System.bmml</hrefs>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22799%2C157%2C874%2C186%22%20href%3D%22Administrator%20-%20Dashboard.bmml%22%20alt%3D%22Administrator%20-%20Dashboard%22%20id%3D%2217_0%22/%3E%0A%3Carea%20shape%3D%22rect%22%20coords%3D%22874%2C157%2C935%2C186%22%20href%3D%22Administrator%20-%20Offices.bmml%22%20alt%3D%22Administrator%20-%20Offices%22%20id%3D%2217_1%22/%3E%0A%3Carea%20shape%3D%22rect%22%20coords%3D%22935%2C157%2C988%2C186%22%20href%3D%22Administrator%20-%20Clients.bmml%22%20alt%3D%22Administrator%20-%20Clients%22%20id%3D%2217_2%22/%3E%0A%3Carea%20shape%3D%22rect%22%20coords%3D%22988%2C157%2C1037%2C186%22%20href%3D%22Administrator%20-%20Users.bmml%22%20alt%3D%22Administrator%20-%20Users%22%20id%3D%2217_3%22/%3E%0A%3Carea%20shape%3D%22rect%22%20coords%3D%221037%2C157%2C1096%2C186%22%20href%3D%22Administrator%20-%20Reports.bmml%22%20alt%3D%22Administrator%20-%20Reports%22%20id%3D%2217_4%22/%3E%0A%3Carea%20shape%3D%22rect%22%20coords%3D%221096%2C157%2C1154%2C186%22%20href%3D%22Administrator%20-%20System.bmml%22%20alt%3D%22Administrator%20-%20System%22%20id%3D%2217_5%22/%3E%0A</map>
+        <selectedIndex>0</selectedIndex>
+        <text>Dashboard%2C%20Offices%2C%20Clients%2C%20Users%2C%20Products%2C%20Reports%2C%20System</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

@@ -1,0 +1,151 @@
+<mockup version="1.0" skin="sketch" measuredW="1794" measuredH="811" mockupW="1783" mockupH="768">
+  <controls>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::StickyNote" x="1" y="43" w="731" h="758" measuredW="109" measuredH="123" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Comparison%20of%20Tab%20v/s%20Drop%20down%0ATechnically%20%3A%0ADrop%20down%20Saves%20screen%20real%20estate%0A%20%0A%20%0AUsability%20%3A%0ADrop%20down%20not%20so%20obvious%2C%20have%20its%20learning%20curve</text>
+      </controlProperties>
+    </control>
+    <control controlID="9" controlTypeID="__group__" x="760" y="33" w="-1" h="-1" measuredW="1024" measuredH="768" zOrder="1" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="__group__" x="0" y="0" w="-1" h="-1" measuredW="1024" measuredH="768" zOrder="0" locked="false" isInGroup="9">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="1024" h="768" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="0">
+              <controlProperties>
+                <text>Samartha%20Microfinanace%20%3A%3A%20Microfinance%20MIS%20%3A%3A%20Ashok%20%28Administrator%29</text>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::Title" x="1" y="72" w="1022" h="-1" measuredW="749" measuredH="40" zOrder="1" locked="false" isInGroup="0">
+              <controlProperties>
+                <size>24</size>
+                <text>Samartha%20Microfinance%20%3A%3A%20Realising%20the%20Potential%20of%20Rural%20India</text>
+              </controlProperties>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::HRule" x="7" y="104" w="1010" h="-1" measuredW="100" measuredH="5" zOrder="1" locked="false" isInGroup="9"/>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::HRule" x="7" y="139" w="1010" h="-1" measuredW="100" measuredH="5" zOrder="2" locked="false" isInGroup="9"/>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="678" y="119" w="-1" h="-1" measuredW="339" measuredH="25" zOrder="3" locked="false" isInGroup="9">
+          <controlProperties>
+            <text>Logged%20in%20as%20Ashok%20%28Administrator%29%20%7C%20Profile%20%7C%20Logout</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::FieldSet" x="773" y="181" w="998" h="578" measuredW="200" measuredH="170" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::Label" x="775" y="148" w="-1" h="-1" measuredW="42" measuredH="25" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Go%20To</text>
+      </controlProperties>
+    </control>
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::ComboBox" x="834" y="145" w="-1" h="-1" measuredW="96" measuredH="152" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22833%2C112%2C929%2C244%22%20href%3D%22Administrator%20-%20Clients.bmml%22%20alt%3D%22Administrator%20-%20Clients%22%20id%3D%2213%22/%3E</map>
+        <text>Dashboard%0AOffices%0AClients%0AUsers%0AProducts%0AReports%0ASystem</text>
+      </controlProperties>
+    </control>
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::ButtonBar" x="1192" y="178" w="-1" h="-1" measuredW="161" measuredH="31" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Browse%2C%20Configure</text>
+      </controlProperties>
+    </control>
+    <control controlID="33" controlTypeID="__group__" x="801" y="261" w="-1" h="-1" measuredW="451" measuredH="449" zOrder="4" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::FieldSet" x="0" y="0" w="451" h="449" measuredW="200" measuredH="170" zOrder="0" locked="false" isInGroup="33">
+          <controlProperties>
+            <text>Office%20Types</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="__group__" x="64" y="53" w="-1" h="-1" measuredW="322" measuredH="112" zOrder="1" locked="false" isInGroup="33">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::RadioButtonGroup" x="0" y="1" w="161" h="111" measuredW="115" measuredH="100" zOrder="0" locked="false" isInGroup="1">
+              <controlProperties>
+                <text>%28%20%29%20Head%20Office%20%0A%28%20%29%20Branch%20Office%0A%28%20%29%20Center%0A%28%20%29%20Taluk</text>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::RadioButtonGroup" x="161" y="0" w="161" h="111" measuredW="45" measuredH="100" zOrder="1" locked="false" isInGroup="1">
+              <controlProperties>
+                <text>Delete%0ADelete%0ADelete%0ADelete</text>
+              </controlProperties>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::TextInput" x="64" y="222" w="150" h="-1" measuredW="125" measuredH="29" zOrder="2" locked="false" isInGroup="33">
+          <controlProperties>
+            <text>New%20Office%20Type</text>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="64" y="188" w="189" h="25" measuredW="148" measuredH="25" zOrder="3" locked="false" isInGroup="33">
+          <controlProperties>
+            <text>Add%20New%20Office%20Type</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Button" x="223" y="222" w="45" h="28" measuredW="49" measuredH="28" zOrder="4" locked="false" isInGroup="33">
+          <controlProperties>
+            <text>Add</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="34" controlTypeID="__group__" x="1263" y="261" w="-1" h="-1" measuredW="475" measuredH="449" zOrder="7" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::FieldSet" x="0" y="0" w="475" h="449" measuredW="200" measuredH="170" zOrder="0" locked="false" isInGroup="34">
+          <controlProperties>
+            <text>Additional%20Fields</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::DataGrid" x="15" y="29" w="445" h="186" measuredW="255" measuredH="148" zOrder="1" locked="false" isInGroup="34">
+          <controlProperties>
+            <text>Name%20%5E%2C%20Type%2C%20Mandatory%0AAddress%2C%20String%2C%20%5Bx%5D%0ACity%2C%20String%2C%20%5Bx%5D%0AState%2C%20String%2C%20%5Bx%5D%0AContact%20Phone%2C%20Integer%2C%20%5B%5D%0A%7B75L%2C%200R%2C%200C%7D</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="15" y="230" w="189" h="25" measuredW="147" measuredH="25" zOrder="2" locked="false" isInGroup="34">
+          <controlProperties>
+            <text>Add%20New%20Office%20Field</text>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="15" y="266" w="168" h="25" measuredW="41" measuredH="25" zOrder="3" locked="false" isInGroup="34">
+          <controlProperties>
+            <align>right</align>
+            <text>Name</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Label" x="15" y="300" w="168" h="25" measuredW="36" measuredH="25" zOrder="4" locked="false" isInGroup="34">
+          <controlProperties>
+            <align>right</align>
+            <text>Type</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::Label" x="15" y="340" w="168" h="25" measuredW="72" measuredH="25" zOrder="5" locked="false" isInGroup="34">
+          <controlProperties>
+            <align>right</align>
+            <text>Mandatory</text>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::TextInput" x="198" y="263" w="179" h="-1" measuredW="83" measuredH="29" zOrder="6" locked="false" isInGroup="34">
+          <controlProperties>
+            <text>Field%20Name</text>
+          </controlProperties>
+        </control>
+        <control controlID="7" controlTypeID="com.balsamiq.mockups::ComboBox" x="198" y="299" w="177" h="-1" measuredW="71" measuredH="25" zOrder="7" locked="false" isInGroup="34">
+          <controlProperties>
+            <text>String</text>
+          </controlProperties>
+        </control>
+        <control controlID="8" controlTypeID="com.balsamiq.mockups::RadioButtonGroup" x="198" y="340" w="177" h="50" measuredW="46" measuredH="50" zOrder="8" locked="false" isInGroup="34">
+          <controlProperties>
+            <text>%28o%29%20Yes%0A%28%20%29%20No</text>
+          </controlProperties>
+        </control>
+        <control controlID="9" controlTypeID="com.balsamiq.mockups::Button" x="198" y="399" w="55" h="28" measuredW="49" measuredH="28" zOrder="9" locked="false" isInGroup="34">
+          <controlProperties>
+            <text>Add</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+  </controls>
+</mockup>

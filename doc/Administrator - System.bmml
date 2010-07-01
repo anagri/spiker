@@ -1,0 +1,43 @@
+<mockup version="1.0" skin="sketch" measuredW="1794" measuredH="811" mockupW="1783" mockupH="768">
+  <controls>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::StickyNote" x="1" y="43" w="731" h="758" measuredW="109" measuredH="123" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="9" controlTypeID="__group__" x="760" y="33" w="-1" h="-1" measuredW="1024" measuredH="768" zOrder="1" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="__group__" x="0" y="0" w="-1" h="-1" measuredW="1024" measuredH="768" zOrder="0" locked="false" isInGroup="9">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="1024" h="768" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="0">
+              <controlProperties>
+                <text>Samartha%20Microfinanace%20%3A%3A%20Microfinance%20MIS%20%3A%3A%20Ashok%20%28Administrator%29</text>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::Title" x="1" y="72" w="1022" h="-1" measuredW="749" measuredH="40" zOrder="1" locked="false" isInGroup="0">
+              <controlProperties>
+                <size>24</size>
+                <text>Samartha%20Microfinance%20%3A%3A%20Realising%20the%20Potential%20of%20Rural%20India</text>
+              </controlProperties>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::HRule" x="7" y="104" w="1010" h="-1" measuredW="100" measuredH="5" zOrder="1" locked="false" isInGroup="9"/>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::HRule" x="7" y="139" w="1010" h="-1" measuredW="100" measuredH="5" zOrder="2" locked="false" isInGroup="9"/>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="678" y="119" w="-1" h="-1" measuredW="339" measuredH="25" zOrder="3" locked="false" isInGroup="9">
+          <controlProperties>
+            <text>Logged%20in%20as%20Ashok%20%28Administrator%29%20%7C%20Profile%20%7C%20Logout</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::TabBar" x="780" y="190" w="988" h="559" measuredW="512" measuredH="100" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <hrefs>Administrator%20-%20Dashboard%26bm%3BAdministrator%20-%20Dashboard.bmml%26bm%3BAdministrator%20-%20Dashboard.bmml%26bm%3BAdministrator%20-%20Dashboard.bmml%2CAdministrator%20-%20Offices-Browse%26bm%3BAdministrator%20-%20Offices-Browse.bmml%26bm%3BAdministrator%20-%20Offices-Browse.bmml%26bm%3BAdministrator%20-%20Offices-Browse.bmml%2CAdministrator%20-%20Clients%26bm%3BAdministrator%20-%20Clients.bmml%26bm%3BAdministrator%20-%20Clients.bmml%26bm%3BAdministrator%20-%20Clients.bmml%2CAdministrator%20-%20Users%26bm%3BAdministrator%20-%20Users.bmml%26bm%3BAdministrator%20-%20Users.bmml%26bm%3BAdministrator%20-%20Users.bmml%2CAdministrator%20-%20Products%26bm%3BAdministrator%20-%20Products.bmml%26bm%3BAdministrator%20-%20Products.bmml%26bm%3BAdministrator%20-%20Products.bmml%2CAdministrator%20-%20Reports%26bm%3BAdministrator%20-%20Reports.bmml%26bm%3BAdministrator%20-%20Reports.bmml%26bm%3BAdministrator%20-%20Reports.bmml%2CAdministrator%20-%20System%26bm%3BAdministrator%20-%20System.bmml%26bm%3BAdministrator%20-%20System.bmml%26bm%3BAdministrator%20-%20System.bmml</hrefs>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22799%2C157%2C874%2C186%22%20href%3D%22Administrator%20-%20Dashboard.bmml%22%20alt%3D%22Administrator%20-%20Dashboard%22%20id%3D%2212_0%22/%3E%0A%3Carea%20shape%3D%22rect%22%20coords%3D%22874%2C157%2C935%2C186%22%20href%3D%22Administrator%20-%20Offices.bmml%22%20alt%3D%22Administrator%20-%20Offices%22%20id%3D%2212_1%22/%3E%0A%3Carea%20shape%3D%22rect%22%20coords%3D%22935%2C157%2C988%2C186%22%20href%3D%22Administrator%20-%20Clients.bmml%22%20alt%3D%22Administrator%20-%20Clients%22%20id%3D%2212_2%22/%3E%0A%3Carea%20shape%3D%22rect%22%20coords%3D%22988%2C157%2C1037%2C186%22%20href%3D%22Administrator%20-%20Users.bmml%22%20alt%3D%22Administrator%20-%20Users%22%20id%3D%2212_3%22/%3E%0A%3Carea%20shape%3D%22rect%22%20coords%3D%221037%2C157%2C1102%2C186%22%20href%3D%22Administrator%20-%20Products.bmml%22%20alt%3D%22Administrator%20-%20Products%22%20id%3D%2212_4%22/%3E%0A%3Carea%20shape%3D%22rect%22%20coords%3D%221102%2C157%2C1161%2C186%22%20href%3D%22Administrator%20-%20Reports.bmml%22%20alt%3D%22Administrator%20-%20Reports%22%20id%3D%2212_5%22/%3E%0A%3Carea%20shape%3D%22rect%22%20coords%3D%221161%2C157%2C1217%2C186%22%20href%3D%22Administrator%20-%20System.bmml%22%20alt%3D%22Administrator%20-%20System%22%20id%3D%2212_6%22/%3E%0A</map>
+        <selectedIndex>6</selectedIndex>
+        <text>Dashboard%2C%20Offices%2C%20Clients%2C%20Users%2C%20Products%2C%20Reports%2C%20System</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

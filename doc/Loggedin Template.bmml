@@ -1,0 +1,30 @@
+<mockup version="1.0" skin="sketch" measuredW="1794" measuredH="811" mockupW="1024" mockupH="768">
+  <controls>
+    <control controlID="9" controlTypeID="__group__" x="760" y="33" w="-1" h="-1" measuredW="1024" measuredH="768" zOrder="0" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="__group__" x="0" y="0" w="-1" h="-1" measuredW="1024" measuredH="768" zOrder="0" locked="false" isInGroup="9">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="1024" h="768" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="0">
+              <controlProperties>
+                <text>Samartha%20Microfinanace%20%3A%3A%20Microfinance%20MIS%20%3A%3A%20Ashok%20%28Administrator%29</text>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::Title" x="1" y="72" w="1022" h="-1" measuredW="749" measuredH="40" zOrder="1" locked="false" isInGroup="0">
+              <controlProperties>
+                <size>24</size>
+                <text>Samartha%20Microfinance%20%3A%3A%20Realising%20the%20Potential%20of%20Rural%20India</text>
+              </controlProperties>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::HRule" x="7" y="104" w="1010" h="-1" measuredW="100" measuredH="5" zOrder="1" locked="false" isInGroup="9"/>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::HRule" x="7" y="139" w="1010" h="-1" measuredW="100" measuredH="5" zOrder="2" locked="false" isInGroup="9"/>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="678" y="119" w="-1" h="-1" measuredW="339" measuredH="25" zOrder="3" locked="false" isInGroup="9">
+          <controlProperties>
+            <text>Logged%20in%20as%20Ashok%20%28Administrator%29%20%7C%20Profile%20%7C%20Logout</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+  </controls>
+</mockup>

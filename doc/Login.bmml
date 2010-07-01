@@ -1,0 +1,66 @@
+<mockup version="1.0" skin="sketch" measuredW="1792" measuredH="812" mockupW="1762" mockupH="768">
+  <controls>
+    <control controlID="16" controlTypeID="__group__" x="1139" y="278" w="-1" h="-1" measuredW="264" measuredH="200" zOrder="1" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::Button" x="105" y="167" w="55" h="33" measuredW="55" measuredH="28" zOrder="0" locked="false" isInGroup="16">
+          <controlProperties>
+            <text>Login</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::CheckBox" x="105" y="139" w="-1" h="-1" measuredW="109" measuredH="22" zOrder="1" locked="false" isInGroup="16">
+          <controlProperties>
+            <text>Remember%20Me</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="26" y="59" w="-1" h="-1" measuredW="65" measuredH="25" zOrder="2" locked="false" isInGroup="16">
+          <controlProperties>
+            <text>Username</text>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="31" y="99" w="-1" h="-1" measuredW="60" measuredH="25" zOrder="3" locked="false" isInGroup="16">
+          <controlProperties>
+            <text>Password</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::TextInput" x="105" y="55" w="135" h="-1" measuredW="47" measuredH="29" zOrder="4" locked="false" isInGroup="16">
+          <controlProperties>
+            <text>ashok</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::TextInput" x="105" y="99" w="135" h="-1" measuredW="56" measuredH="29" zOrder="5" locked="false" isInGroup="16">
+          <controlProperties>
+            <text>******</text>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::Title" x="0" y="0" w="-1" h="-1" measuredW="264" measuredH="34" zOrder="6" locked="false" isInGroup="16">
+          <controlProperties>
+            <size>20</size>
+            <text>Login%20to%20Microfinance%20MIS</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="19" controlTypeID="__group__" x="758" y="34" w="-1" h="-1" measuredW="1024" measuredH="768" zOrder="0" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="1024" h="768" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="19">
+          <controlProperties>
+            <text>Samartha%20Mircrofinance%20%3A%3A%20Microfinanace%20MIS%20%3A%3A%20Login</text>
+            <verticalScrollbar>false</verticalScrollbar>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::Title" x="7" y="72" w="1010" h="-1" measuredW="749" measuredH="40" zOrder="1" locked="false" isInGroup="19">
+          <controlProperties>
+            <align>center</align>
+            <size>24</size>
+            <text>Samartha%20Microfinance%20%3A%3A%20Realising%20the%20Potential%20of%20Rural%20India</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="20" controlTypeID="com.balsamiq.mockups::StickyNote" x="20" y="47" w="697" h="742" measuredW="109" measuredH="123" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Is%20user%20able%20to%20understand%20the%20%22Remember%20Me%22%20functionality%2C%20what%20are%20the%20alternatives%20%3F</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
