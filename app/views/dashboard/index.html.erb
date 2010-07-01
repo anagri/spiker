@@ -1,4 +1,35 @@
-You are on dashboard<br/>
+<div class="tabs">
+    <ul>
+        <li><a href="#tabs-dashboard">Dashboard</a></li>
+        <li><%= link_to t('view.offices.tab'), offices_path, :id => 'tabs-offices'%></li>
+        <li><a href="#tabs-clients">Clients</a></li>
+        <li><%= link_to t('view.users.tab'), users_path, :id => 'tabs-users' %></li>
+        <li><a href="#tabs-products">Products</a></li>
+        <li><a href="#tabs-reports">Reports</a></li>
+        <li><a href="#tabs-accounts">Accounts</a></li>
+        <li><a href="#tabs-system">System</a></li>
+    </ul>
+  <div id="tabs-dashboard" class="tab-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+    commodo consequat.
+  </div>
+  <div id="tabs-clients" class="tab-content">2 Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum
+    eget, sagittis et, con sequat vestibulum, lacus. Mauris porttitor ullamcorper augue.
+  </div>
+  <div id="tabs-products" class="tab-content">4 Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum
+    eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.
+  </div>
+  <div id="tabs-reports" class="tab-content">5 Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum
+    eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.
+  </div>
+  <div id="tabs-accounts" class="tab-content">6 Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum
+    eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.
+  </div>
+  <div id="tabs-system" class="tab-content">7 Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum
+    eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.
+  </div>
+</div>
+
 
 Actions : <br/>
 <%= link_to t('view.offices.manage'), offices_path %> <br/>

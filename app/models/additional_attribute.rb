@@ -2,6 +2,9 @@ class AdditionalAttribute < ActiveRecord::Base
   # authorization
   using_access_control
 
+  #callbacks
+  before_save :create_additional_columns
+
   # acts as
 
   # relationships
@@ -32,5 +35,14 @@ class AdditionalAttribute < ActiveRecord::Base
 
   def self.resource_types_for_select
     resource_types.map {|resource_type| [resource_type.name, resource_type.name]}
+  end
+
+  protected
+  def create_additional_columns
+    connection.add_column(resource_type.tableize.to_sym,
+                          name,
+                          field_type.to_sym,
+                          :length => length.to_i)
+    resource_type.constantize.reset_column_information
   end
 end

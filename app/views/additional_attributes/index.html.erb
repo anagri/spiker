@@ -1,15 +1,28 @@
 <h3><%= t('view.additional_attributes.header') %></h3>
-
-<h4><%= t('view.additional_attributes.name') %> | <%= t('view.additional_attributes.resource_type') %>
-  | <%= t('view.additional_attributes.field_type') %> | <%= t('view.additional_attributes.length') %> | <%= t('view.additional_attributes.edit') %></h4>
-
-<% @additional_attributes.each do |additional_attribute| %>
-    <span><%= additional_attribute.name %></span> |
-    <span><%= additional_attribute.resource_type %></span> |
-    <span><%= additional_attribute.field_type %></span> |
-    <span><%= additional_attribute.length %></span>
-    <span><%= link_to t('view.additional_attributes.edit'), edit_additional_attribute_path(additional_attribute) %></span>
-<% end %>
+<table>
+  <thead>
+  <tr>
+    <td><%= t('view.additional_attributes.name') %></td>
+    <td><%= t('view.additional_attributes.resource_type') %></td>
+    <td><%= t('view.additional_attributes.field_type') %></td>
+    <td><%= t('view.additional_attributes.length') %></td>
+    <td><%= t('view.additional_attributes.precision') %></td>
+    <td><%= t('view.additional_attributes.delete') %></td>
+  </tr>
+  </thead>
+  <tbody>
+    <% @additional_attributes.each do |additional_attribute| %>
+      <tr>
+        <td><%= additional_attribute.name %></td>
+        <td><%= additional_attribute.resource_type %></td>
+        <td><%= additional_attribute.field_type %></td>
+        <td><%= additional_attribute.length %></td>
+        <td><%= additional_attribute.precision %></td>
+        <td><%= link_to t('view.additional_attributes.delete'), additional_attribute_path(additional_attribute, :method => :delete) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <br/>
 <%= link_to t('view.additional_attributes.new'), new_additional_attribute_path %>

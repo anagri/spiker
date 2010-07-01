@@ -40,4 +40,8 @@ en:
     create:
       success:   'Office Type created successfully'
       error:    'Error while creating Office Type'
+  additional_attributes:
+    create:
+      success:   'Additional Attribute created successfully'
+      error:    'Error while creating Additional Attribute'
 

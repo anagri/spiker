@@ -9,12 +9,16 @@ en:
   view:
     index:
       dashboard: 'Dashboard'
+    dashboard:
+      tabs: 'Dashboard'
     common: &common
       create: 'Create'
       update: 'Update'
       edit: 'Edit'
+      delete: 'Delete'
       back: 'Back'
     offices:
+      tab: 'Offices'
       manage: 'Manage Offices'
       header: 'Office'
       parent: 'Parent Office'
@@ -23,16 +27,18 @@ en:
       back: 'Back to Manage Offices'
       <<: *common
     additional_attributes:
-      manage: 'Manage Office Attributes'
+      manage: 'Manage Additional Attributes'
       header: 'Additional Attributes'
       name: 'Name'
       field_type: 'Field Type'
       resource_type: 'Resource Type'
       length: 'Length'
+      precision: 'Precision'
       new: 'Create New Additional Attribute'
       back: 'Back to Manage Additional Attributes'
       <<: *common
     users:
+      tab: 'Users'
       manage: 'Manage Users'
       header: 'Users'
       username: 'Username'

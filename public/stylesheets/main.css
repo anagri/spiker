@@ -2,10 +2,18 @@
     
 }
 
-.flash_notice {
-    border: 2px solid black;
+.flash_info {
+    border: 2px solid green;
 }
 
 .flash_error {
     border: 2px solid red;
+}
+
+.banner {
+    text-align: center;
+}
+
+.tab-content {
+    height: 300px;
 }
