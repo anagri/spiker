@@ -33,30 +33,23 @@ $(function() {
             $content_body.unbind('content-ready');
         }
 
-        $content_body = $('#' + $panel.find('div.side-bar').attr('rel'));
-        $panel.find('div.main-content a').bind('click', function(event) {
-            event.preventDefault();
-            $.get(this.href, {}, function(response) {
-                $content_body.html(response);
-                $content_body.css('backgroundColor', 'yellow');
-                $content_body.animate({backgroundColor: 'white'}, 2000);
-                $content_body.trigger('content-ready');
-            });
-        });
+        $content_body = $('#' + $panel.find('div.side_content').attr('rel'));
+        $panel.find('div.container a').bind('click', handle_content_click($content_body));
 
         // autoselect the first tab
-        if(typeof(content_body_location) != "undefined" && content_body_location != null) {
-            $('.side-bar ul li a').each(function(index, element){
+        if (typeof(content_body_location) != "undefined" && content_body_location != null) {
+            $('.side_content ul li a').each(function(index, element) {
                 var $element = $(element);
                 var url_regex = new RegExp($element.attr('href'), 'g');
-                if(url_regex.test(content_body_location)) {
+                if (url_regex.test(content_body_location)) {
                     $element.click();
                 }
             });
             content_body_location = null;
         } else {
-            $('.side-bar ul li a').first().click();
+            $panel.find('div.side_content ul li a').first().click();
         }
+
 
         // assign new event handler
         $content_body.bind('content-ready', function() {
@@ -72,6 +65,7 @@ $(function() {
                     $tabs.tabs('load', $tabs.tabs('option', 'selected'));
                 }
             });
+            $content_body.find('a').bind('click', handle_content_click($content_body));
         });
     });
 });
@@ -87,5 +81,17 @@ $(function() {
     });
 });
 
+
+handle_content_click = function($content_body) {
+    return function(event) {
+        event.preventDefault();
+        $.get(this.href, {}, function(response) {
+            $content_body.html(response);
+            $content_body.css('backgroundColor', 'yellow');
+            $content_body.animate({backgroundColor: 'white'}, 2000);
+            $content_body.trigger('content-ready');
+        });
+    }
+}
 
 

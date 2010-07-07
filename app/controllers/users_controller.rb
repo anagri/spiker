@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :support_xhr, :only => [:index, :new, :show, :create, :edit, :update]
   before_filter :load_user_for_edit_profile, :only => :edit_profile
   filter_resource_access
   restrict_attributes_update [:username, :email, :role, :office]
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
       end
     else
       flash[:error] = error_msg
-      render :action => 'new'
+      render :action => 'new', :status => :unprocessable_entity
     end
   end
 
@@ -39,8 +40,9 @@ class UsersController < ApplicationController
       flash[:info] = success_msg
       redirect_to @user
     else
-      render :action => 'edit'
+      pp @user.errors.full_messages
       flash[:error] = error_msg
+      render :action => 'new', :status => :unprocessable_entity
     end
   end
 

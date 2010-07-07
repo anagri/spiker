@@ -14,7 +14,7 @@ class Role
     I18n.t("role.#{role}")
   end
 
-  def self.roles_for_select_option
+  def self.html_options
     roles.collect {|role| [role_name(role), role]}
   end
 

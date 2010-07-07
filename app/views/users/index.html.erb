@@ -1,5 +1,14 @@
-<div><%= t('view.users.username') %> | <%= t('view.users.email') %> | <%= t('view.common.edit') %> </div>
-<% @users.each do |user| %>
-    <div class="<%="edit_user_#{user.id}"%>"><%= user.username %> <%= user.email %> <%= link_to t('view.common.edit'), edit_user_path(user) %></div>
-<% end %>
-<%= link_to t('view.users.new'), new_user_path %>
+<div class="container">
+  <div class="side_content" rel="user_content">
+    <div><%= t('view.users.username') %> (<%= t('view.users.email') %>)</div>
+    <ul>
+    <% @users.each do |user| %>
+        <li><span class="<%= "user-#{user.id}" %>"><%= link_to "#{user.username}(#{user.email})", user_path(user) %></span></li>
+    <% end %>
+    </ul>
+  </div>
+  <div id="user_content" class="main_content">
+  </div>
+  <div style="clear:left;"></div>
+  <%= link_to t('view.users.new'), new_user_path %>
+</div>

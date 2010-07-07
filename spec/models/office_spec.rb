@@ -48,7 +48,7 @@ describe Office do
   end
 
   it 'should get offices for select option' do
-    Office.for_select_option.should == [[@branch_office.name, @branch_office.id], [@head_office.name, @head_office.id], [@sub_office.name, @sub_office.id]]
+    Office.html_options.should == [[@branch_office.name, @branch_office.id], [@head_office.name, @head_office.id], [@sub_office.name, @sub_office.id]]
   end
 
   describe 'enhanced acts as tree' do

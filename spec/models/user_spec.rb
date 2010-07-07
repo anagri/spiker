@@ -58,6 +58,18 @@ describe User do
       invalid_user = User.without_access_control_do_new(:username => 'testuser', :email => 'testuser@email.com', :password => 'testpass', :password_confirmation => 'testpass', :role => Role::ADMIN, :office => branch_office)
       invalid_user.should have_ar_errors(:office => :head_office_for_admin_role)
     end
+
+    it 'should be invalid if username contains spaces and special symbols' do
+      ['test user', 'testuser@'].each do |username|
+        invalid_user = User.without_access_control_do_new(:username => username, :email => 'testuser@email.com', :password => 'testpass', :password_confirmation => 'testpass', :role => 'none', :office => @office, :role => Role::STAFF)
+        invalid_user.should have_ar_errors(:username => :invalid)
+      end
+    end
+
+    it 'should be valid if username contains letters, numbers and underscore' do
+      invalid_user = User.without_access_control_do_new(:username => 'test_user', :email => 'testuser@email.com', :password => 'testpass', :password_confirmation => 'testpass', :role => 'none', :office => @office, :role => Role::STAFF)
+      invalid_user.should be_valid
+    end
   end
 
 

@@ -10,8 +10,7 @@ class OfficesController < ApplicationController
     @parent_office = current_user.office
   end
 
-  def show;
-  end
+  def show; end
 
   def create
     @parent_office = current_user.office

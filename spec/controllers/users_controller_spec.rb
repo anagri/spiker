@@ -12,6 +12,8 @@ describe UsersController do
         @allowed_actions = modify_actions
         @update_params = {:id => @user.id, :user => {}}
         @resource_id = @user.id
+        User.any_instance.stubs(:update_attributes).returns(true)
+        Session.stubs(:create)
       end
 
       it_should_behave_like 'authorized controller'
@@ -37,6 +39,8 @@ describe UsersController do
         @create_params = {:user => {:username => 'testuser', :password => 'testpass', :email => 'test@user.com', :password_confirmation => 'testpass', :office => Factory.build(:office), :role => 'staff'}}
         @resource_id = @user.id
         User.stubs(:all).returns([])
+        User.any_instance.stubs(:update_attributes).returns(true)
+        Session.stubs(:create)
       end
 
       it_should_behave_like 'authorized controller'

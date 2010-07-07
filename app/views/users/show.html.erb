@@ -1,1 +1,9 @@
-<%= render :partial => 'user', :object => @user %> <br/>
+<p>
+  Username : <%= @user.username %><br/>
+  Email : <%= @user.email %><br/>
+  Role : <%= Role.role_name(@user.role) %><br/>
+  Created At : <%= @user.created_at %><br/>
+  Updated At : <%= @user.updated_at %><br/>
+</p>
+
+<%= link_to t('view.users.edit'), edit_user_path(@user) %>

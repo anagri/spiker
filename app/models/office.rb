@@ -13,15 +13,6 @@ class Office < ActiveRecord::Base
   validates_name
   validates_presence_of :office_type
 
-  #todo extract in a plugin/extension
-  def self.for_select_option
-    all.sort do |office, other_office|
-      office.name <=> other_office.name
-    end.collect do |o|
-      [o.name, o.id]
-    end
-  end
-
 =begin
 todo validation only one head office can exists office_type 
 can be head|root for only one office that too is setup during migration

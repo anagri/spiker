@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   validates_presence_of :office
 
   validate :office_for_role
+  validates_format_of :username, :with => /\A([a-z0-9_]+)\Z/i, :unless => Proc.new {|record| record.username.blank?}
+
 
   def role_symbols
     [role.to_sym]

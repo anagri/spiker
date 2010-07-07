@@ -31,7 +31,8 @@ Feature: manage users
     And I am "admin"
     And I am on the dashboard page
     And follow #"t view.users.manage"
-    And follow #"t view.common.edit" within #"e '.edit_user_'+@testuser.id.to_s"
+    And follow #"e @testuser.username << '(' << @testuser.email << ')'"
+    And follow #"t view.common.edit"
     When fill in "user_password" with "newsecret"
     And fill in "user_password_confirmation" with "newsecret"
     And press #"t view.users.update"

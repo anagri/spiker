@@ -33,37 +33,21 @@ class ApplicationController < ActionController::Base
   end
 
   def support_xhr
-    @before = instance_variable_names
+    @support_xhr = true
   end
 
   # render xhr request with partials
   def render(options = nil, extra_options = {}, &block)
-    unless instance_variable_defined?("@before".to_sym)
-      return super
-    end
-
-    @before << "@before"
-    set_vars = instance_variable_names - @before
-
-    locals = HashWithIndifferentAccess.new
-    set_vars.each do |var|
-      locals[var.gsub(/@/, '').to_sym] = instance_variable_get(var.to_sym)
-    end
-
-    default_options = {:action => params[:action], :status => 200}.merge(options || {})
-    if request.xhr?
-      if interpret_status(default_options[:status]) =~ /^(201|301|302).*$/ # rendering headless requests
-        super
-      else
-        super :partial => default_options[:action], :status => default_options[:status], :locals => locals
-      end
+    if instance_variable_defined?(:@support_xhr) && request.xhr?
+      (options || extra_options).merge!(:layout => false)
+      super(options || params[:action], extra_options, &block)
     else
       super
     end
   end
 
   def redirect_to(options = {}, response_status = {})
-    unless instance_variable_defined?("@before".to_sym)
+    unless instance_variable_defined?(:@support_xhr)
       return super
     end
     if request.xhr?

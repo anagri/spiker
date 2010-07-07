@@ -14,7 +14,7 @@ shared_examples_for 'authorized controller' do
   it 'should allow access to allowed actions' do
     @allowed_actions.each do |action|
       do_request(@user, action)
-      be_result, msg = action =~ /create/ ? [be_redirect, "authorization on #{controller.class}.#{action} failed"] : [be_success, "authorization on #{controller.class}.#{action} failed"]
+      be_result, msg = action =~ /(?:create|update)/ ? [be_redirect, "authorization on #{controller.class}.#{action} failed"] : [be_success, "authorization on #{controller.class}.#{action} failed"]
       response.should(instance_variable_get(:"@#{action}_expectation")|| be_result, msg)
     end
   end

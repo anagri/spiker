@@ -6,7 +6,7 @@ describe Role do
   end
 
   it 'should return roles for select options' do
-    Role.roles_for_select_option.should == [['Admin', 'admin'], ['Manager', 'manager'], ['Staff', 'staff'], ['Loan Officer', 'loan_officer'], ['Client', 'client'], ['Maintenance', 'maintenance']]
+    Role.html_options.should == [['Admin', 'admin'], ['Manager', 'manager'], ['Staff', 'staff'], ['Loan Officer', 'loan_officer'], ['Client', 'client'], ['Maintenance', 'maintenance']]
   end
 
   it 'should verify office roles' do

@@ -1,1 +1,28 @@
-<%= render :partial => 'user_form', :locals => {:user => @user} %>
+<% form_for @user do |f| %>
+    <%= f.error_messages %>
+    <p>
+      <%= f.label :username %><br/>
+      <%= f.text_field :username, disabled(@user) %>
+    </p>
+    <p>
+      <%= f.label :email %><br/>
+      <%= f.text_field :email, disabled(@user) %>
+    </p>
+    <p>
+      <%= f.label :password %><br/>
+      <%= f.password_field :password %>
+    </p>
+    <p>
+      <%= f.label :password_confirmation %><br/>
+      <%= f.password_field :password_confirmation %>
+    </p>
+    <p>
+      <%= f.label :role %><br/>
+      <%= f.select :role, Role.html_options, {}, disabled(@user) %>
+    </p>
+    <p>
+      <%= f.label :office_id, 'Office' %><br/>
+      <%= f.select :office_id, Office.html_options, {}, disabled(@user) %>
+    </p>
+    <p><%= f.submit submit_caption(@user) %></p>
+<% end %>

@@ -5,10 +5,6 @@ class OfficeTypesController < ApplicationController
 
   def index; end
 
-  def edit; end
-
-  def update; end
-
   def create
     if @office_type.save
       flash[:info] = success_msg

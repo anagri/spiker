@@ -18,15 +18,14 @@
     height: 300px;
 }
 
-.side-bar {
+.side_content {
     width: 20em;
     margin: 0 0 0 1em;
     float: left;
     overflow: auto;
 }
 
-.content-bar {
-    width: 400px;
+.main_content {
     margin: 0 0 0 20em;
 }
 

@@ -17,3 +17,5 @@ en:
       messages:
         head_office_for_admin_role: 'Admin should be assigned to Head Office'
         circular_hierarchy: 'Circular hierarchy detected'
+  error_messages:
+    login_invalid: 'should use only letters, numbers'
