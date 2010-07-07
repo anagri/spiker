@@ -20,7 +20,7 @@ class OfficesController < ApplicationController
       redirect_to @office
     else
       flash[:error] = error_msg
-      render :action => 'new'
+      render :action => 'new', :status => :unprocessable_entity
     end
   end
 end

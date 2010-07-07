@@ -38,11 +38,6 @@ class ApplicationController < ActionController::Base
 
   # render xhr request with partials
   def render(options = nil, extra_options = {}, &block)
-    # only render for default_render, when options is nil
-    unless options.nil?
-      return super
-    end
-
     unless instance_variable_defined?("@before".to_sym)
       return super
     end
@@ -55,8 +50,13 @@ class ApplicationController < ActionController::Base
       locals[var.gsub(/@/, '').to_sym] = instance_variable_get(var.to_sym)
     end
 
+    default_options = {:action => params[:action], :status => 200}.merge(options || {})
     if request.xhr?
-      super :partial => params[:action], :locals => locals
+      if interpret_status(default_options[:status]) =~ /^(201|301|302).*$/ # rendering headless requests
+        super
+      else
+        super :partial => default_options[:action], :status => default_options[:status], :locals => locals
+      end
     else
       super
     end
