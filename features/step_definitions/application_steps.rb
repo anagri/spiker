@@ -6,7 +6,7 @@
 When /^(?:|I )visit the "users" page for user "([^\"]*)"$/ do |username|
   user = User.find_by_username(username)
   steps %Q{
-    Then I visit the "users" page for #{user.id} 
+    Then I visit the "users" page for #{user.id}
   }
 end
 
@@ -28,8 +28,12 @@ When /^(?:|I )fill in "([^\"]*)" with current user$/ do |field|
   Then %Q{I fill in "#{field}" with "#{@user.send(field.to_sym)}"}
 end
 
-Then /^(?:|I )should see #"([^\"]*)"$/ do |var_str|
-  Then %Q{I should see "#{process(var_str)}"}
+Then /^(?:|I )should see #"([^\"]*)"(?: within #"([^\"]*)")?$/ do |var_str, field_str|
+  unless field_str
+    Then %Q{I should see "#{process(var_str)}"}
+  else
+    Then %Q{I should see "#{process(var_str)}" within "#{process(var_str)}"}
+  end
 end
 
 Then /^I should be on\# "([^\"]*)"$/ do |var_str|

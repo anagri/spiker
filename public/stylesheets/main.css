@@ -1,5 +1,5 @@
 .top_status_bar {
-    
+
 }
 
 .flash_info {
@@ -17,3 +17,16 @@
 .tab-content {
     height: 300px;
 }
+
+.side-bar {
+    width: 20em;
+    margin: 0 0 0 1em;
+    float: left;
+    overflow: auto;
+}
+
+.content-bar {
+    width: 400px;
+    margin: 0 0 0 20em;
+}
+

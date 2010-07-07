@@ -6,22 +6,52 @@ end
 describe 'ApplicationController', :type => :controller do
   controller_name :stub
 
-  before(:each) do
-    StubController.class_eval do
-      filter_access_to :restricted_action
+  describe 'Retricted Actions' do
+    before(:each) do
+      StubController.class_eval do
+        filter_access_to :restricted_action
 
-      def restricted_action
+        def restricted_action
+        end
+      end
+
+      ActionController::Routing::Routes.draw do |map|
+        map.connect 'restricted', :controller => :stub, :action => 'restricted_action'
       end
     end
 
-    ActionController::Routing::Routes.draw do |map|
-      map.connect 'restricted', :controller => :stub, :action => 'restricted_action'
+    it 'should render unauthorized page if permission denied' do
+      get :restricted_action
+      response.should be_unauthorized
+      response.should render_template('unauthorized')
     end
   end
 
-  it 'should render unauthorized page if permission denied' do
-    get :restricted_action
-    response.should be_unauthorized
-    response.should render_template('unauthorized')
+  describe 'support xhr' do
+    before(:each) do
+      @resource = Factory._create(:office)
+      StubController.class_eval do
+        before_filter :support_xhr, :only => [:create, :index]
+        @@resource = nil
+        def create
+          redirect_to @@resource
+        end
+
+        def index
+        end
+      end
+      StubController.send(:class_variable_set, :@@resource, @resource)
+
+      ActionController::Routing::Routes.draw do |map|
+        map.connect 'create', :controller => :stub, :action => 'create'
+        map.connect 'index', :controller => :stub, :action => 'index'
+      end
+    end
+
+    it 'should send head created if redirect_to called' do
+      xhr :get, :create
+      response.code.should == '201'
+      response.location.should == "http://test.host/offices/#{@resource.id}"
+    end
   end
 end

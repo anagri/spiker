@@ -14,8 +14,8 @@ Feature: manage office
     And a office exists and assigned to "@branch_office" with parent "@sub_head_office" 
     When I follow #"t view.offices.manage"
     Then I should see #"e @head_office.name"
-    And should see #"e '>' << @sub_head_office.name"
-    And should see #"e '>>' << @branch_office.name"
+    And should see #"e @sub_head_office.name"
+    And should see #"e @branch_office.name"
 
 
 

@@ -1,6 +1,14 @@
-Existing Offices : <br/>
+<div class="main-content" id="new_office_link">
+  Existing Offices :
+  <div>
+    <div class="treeview side-bar" rel="office-content-bar">
+      <%= tree(@parent_office) %>
+    </div>
 
-<%= tree(@parent_office, "<br/>&gt;") %>
-
-<br/>
-<%=link_to t('view.offices.new'), new_office_path %>
+    <div id="office-content-bar" class="content-bar">
+    </div>
+  </div>
+  <div style="clear:left;"></div>
+  <%= link_to t('view.offices.new'), new_office_path, :id => 'new_office_link' %>
+  <br/>
+</div>

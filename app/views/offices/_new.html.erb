@@ -1,0 +1,16 @@
+<% form_for office do |f| %>
+    <%= f.error_messages %>
+    <p>
+      <%= f.label :name %><br/>
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label :parent_id, 'Parent Office' %><br/>
+      <%= f.select :parent_id, parent_office.self_and_children_options %>
+    </p>
+    <p>
+      <%= f.label :office_type_id, 'Select Office Type' %><br/>
+      <%= f.select :office_type_id, OfficeType.all.collect {|office_type| [office_type.name, office_type.id]} %>
+    </p>
+    <%= f.submit t('view.offices.create') %>
+<% end %>

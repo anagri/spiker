@@ -1,20 +1,17 @@
 class OfficesController < ApplicationController
+  before_filter :support_xhr, :only => [:new, :index, :show, :create]
   filter_resource_access
+
   def index
     @parent_office = current_user.office
-    if request.xhr?
-      render :partialx => 'index'
-    end
-#    respond_to do |format|
-#      format.html
-#    end
   end
 
   def new
     @parent_office = current_user.office
   end
 
-  def show; end
+  def show;
+  end
 
   def create
     @parent_office = current_user.office

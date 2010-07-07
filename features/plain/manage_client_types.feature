@@ -16,9 +16,8 @@ Feature: manage client types
     And follow #"t view.client_types.manage"
     Then I should be on the client types page
     And should see #"e @group.name"
-    And should see #"e '>' + @center.name"
-    And should see #"e '>' + @individual.name"
-    And should see #"e '>>' + @individual.name"
+    And should see #"e @center.name"
+    And should see #"e @individual.name"
     And should see #"t view.client_types.new"
 
 

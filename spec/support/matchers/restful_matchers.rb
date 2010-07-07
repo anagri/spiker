@@ -95,10 +95,9 @@ MESSAGE
 
       def matches?(target)
         @response = target
-        failed = false
-        @message = "expected the created resource to be non nil but was nil" and failed = true unless failed || !@options[:resource].nil?
-        @message = "expected the response code to be #{@options[:status]} but was #{@response.code}" and failed = true unless failed || @response.code == @options[:status]
-        !failed
+        @message = "expected the created resource to be non nil but was nil" and return false if @options[:resource].nil?
+        @message = "expected the response code to be #{@options[:status]} but was #{@response.code}" and return false if @response.code != @options[:status]
+        true
       end
 
       def failure_message_for_should

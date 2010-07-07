@@ -8,7 +8,7 @@ module FactoryGirlDeclarativeAuthorizationExtension
 
   module ClassMethods
     def method_missing(symbol, *args)
-      if symbol.to_s =~ /^without_access_control_do_(.*)$/
+      if symbol.to_s =~ /^without_access_control_do_(.*)$/ || symbol.to_s =~ /^_(.*)$/
         resource = without_access_control do
           Factory.send $1.to_sym, args.shift, *args
         end
