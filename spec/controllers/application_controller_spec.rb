@@ -53,5 +53,11 @@ describe 'ApplicationController', :type => :controller do
       response.code.should == '201'
       response.location.should == "http://test.host/offices/#{@resource.id}"
     end
+
+    it 'should render partial if render called' do
+      xhr :get, :index
+      response.code.should == '200'
+      response.should render_template('_index')
+    end
   end
 end

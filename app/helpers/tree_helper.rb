@@ -6,7 +6,7 @@ module TreeHelper
     resources.each {|resource|
       config = HashWithIndifferentAccess.new({
               :html_id => "#{resource.class.name}-#{resource.id}",
-              :path => office_path(resource.id)
+              :path => send("#{resource.class.name.singularize.underscore}_path", resource.id)
       });
 
       out << "<li><span id=\"#{config[:html_id]}\">" << surround_with_link(config[:path]) {resource.name} << "</span>\n"

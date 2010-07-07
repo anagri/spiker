@@ -58,6 +58,8 @@ en:
       header: 'Client Types'
       name: 'Name'
       parent: 'Parent'
+      parents: 'Parents'
+      children: 'Children'
       new: 'New Client Type'
       back: 'Back to Manage Client Types'
       <<: *common

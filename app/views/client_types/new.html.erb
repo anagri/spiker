@@ -1,0 +1,13 @@
+<%= t('view.client_types.new') %>
+<% form_for (@client_type || ClientType.new) do |f| %>
+    <%= f.error_messages %>
+    <p>
+      <%= f.label :name, t('view.client_types.name') %><br/>
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label :parent_ids, t('view.client_types.parent') %><br/>
+      <%= f.select :parent_ids, ClientType.html_options, {}, {:multiple => true} %><br/>
+    </p>
+    <p><%= f.submit t('view.office_types.create') %></p>
+<% end %>

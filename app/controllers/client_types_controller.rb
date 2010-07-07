@@ -5,13 +5,17 @@ class ClientTypesController < ApplicationController
     @client_types = ClientType.roots
   end
 
+  def new; end
+
+  def show; end
+
   def create
     if @client_type.save
       flash[:msg] = success_msg
-      redirect_to client_types_url
+      redirect_to @client_type
     else
       flash[:error] = error_msg
-      render :action => 'index'
+      render :action => 'new'
     end
   end
 end

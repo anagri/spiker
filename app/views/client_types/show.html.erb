@@ -1,0 +1,14 @@
+<h2><%= t('view.client_types.header') %></h2>
+<p>
+  <%= t('view.client_types.name') %> :
+  <%= @client_type.name %>
+</p>
+<p>
+  <%= t('view.client_types.parent') %> :
+  <%= @client_type.parents.map(&:name).join(', ') %>
+</p>
+<p>
+  <%= t('view.client_types.children') %> :
+  <%= @client_type.children.map(&:name).join(', ') %>
+</p>
+

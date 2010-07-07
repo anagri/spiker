@@ -116,6 +116,31 @@ MESSAGE
       HaveCreatedResource.new(options)
     end
 
+    class BeCreated
+      def initialize(location)
+        @location = location
+      end
+
+      def matches?(target)
+        @response = target
+        @message = "expected the response code to be 201 but was #{@response.code}" and return false if @response.code != '201'
+        @message = "expected the response header location to be #{location} but was #{@response.headers['Location']}" and return false if @response.headers['Location'] != location
+        return true
+      end
+
+      def failure_message_for_should
+        @message
+      end
+
+      def failure_message_for_should_not
+        "expected the response code to be not 201 but was #{@response.code} and location not to be #{location} but was #{@response.header['Location']}"
+      end
+    end
+
+    def be_created(location)
+      BeCreated.new(location)
+    end
+
     class BeRestful
       def matches?(target)
         @resource = target.to_s

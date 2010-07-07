@@ -44,4 +44,8 @@ en:
     create:
       success:   'Additional Attribute created successfully'
       error:    'Error while creating Additional Attribute'
+  client_types:
+    create:
+      success:   'Client Type created successfully'
+      error:    'Error while creating Client Type'
 

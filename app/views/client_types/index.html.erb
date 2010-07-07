@@ -1,22 +1,8 @@
 <h3><%= t('view.client_types.header') %></h3>
 <h4><%= t('view.client_types.name') %></h4>
-<ul>
-  <% @client_types.each do |client_type| %>
-      <li><%= tree(client_type) %></li>
-  <% end %>
-</ul>
-
+<div class='treeview'>
+  <%= tree(@client_types) %>
+</div>
 <hr/>
 
-<%= t('view.client_types.new') %>
-<% form_for (@client_type || ClientType.new) do |f| %>
-    <p>
-      <%= f.label :name, t('view.client_types.name') %><br/>
-      <%= f.text_field :name %>
-    </p>
-    <p>
-      <%= f.label :parent_ids, t('view.client_types.parent') %><br/>
-      <%= f.select :parent_ids, ClientType.all.collect {|client_type| [client_type.name, client_type.id]}, {}, {:multiple => true} %><br/>
-    </p>
-    <p><%= f.submit t('view.office_types.create') %></p>
-<% end %>
+<%= render :file => 'client_types/new', :locals => {:client_type => @client_type} %>
