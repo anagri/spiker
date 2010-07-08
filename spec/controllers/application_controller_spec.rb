@@ -29,7 +29,8 @@ describe 'ApplicationController', :type => :controller do
 
   describe 'support xhr' do
     before(:each) do
-      @resource = Factory._create(:office)
+      @office_type = Factory._create(:office_type)
+      @resource = Factory._create(:office, :office_type => @office_type)
       StubController.class_eval do
         before_filter :support_xhr, :only => [:create, :index]
         @@resource = nil

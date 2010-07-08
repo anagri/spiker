@@ -39,3 +39,8 @@ end
 Then /^I should be on\# "([^\"]*)"$/ do |var_str|
   URI.parse(current_url).path.should == process(var_str)
 end
+
+Given /^application is setup$/ do
+  @office_type = Factory._create(:office_type)
+  @office = Factory._create(:office, :office_type => @office_type)
+end

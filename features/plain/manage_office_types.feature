@@ -5,7 +5,8 @@ Feature: manage office types
   so that I can use the application correctly
 
   Background:
-    Given office type exists and assigned to "@head_office_type"
+    Given application is setup
+    And office type exists and assigned to "@head_office_type"
     And office type exists and assigned to "@sub_head_office_type"
 
   Scenario: admin should be able to see add/edit office types

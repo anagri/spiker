@@ -5,6 +5,7 @@ Feature: logout
   so that no authorized action can be performed using my login
 
   Background:
+    Given application is setup
     And a user "testuser" with password "testpass" exists
     And I login
 

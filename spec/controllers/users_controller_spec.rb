@@ -36,7 +36,8 @@ describe UsersController do
         @user = admin
         @allowed_actions = manage_actions + Set['edit_profile']
         @update_params = {:id => @user.id, :user => {}}
-        @create_params = {:user => {:username => 'testuser', :password => 'testpass', :email => 'test@user.com', :password_confirmation => 'testpass', :office => Factory.build(:office), :role => 'staff'}}
+        @office_type = Factory._create(:office_type)
+        @create_params = {:user => {:username => 'testuser', :password => 'testpass', :email => 'test@user.com', :password_confirmation => 'testpass', :office => Factory.build(:office, :office_type => @office_type), :role => 'staff'}}
         @resource_id = @user.id
         User.stubs(:all).returns([])
         User.any_instance.stubs(:update_attributes).returns(true)

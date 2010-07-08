@@ -5,7 +5,8 @@ Feature: manage office
   so that I can use the application correctly
 
   Background:
-    Given net connections are enabled
+    Given application is setup
+    And net connections are enabled
     And office type exists and assigned to "@head_office_type"
     And office type exists and assigned to "@branch_office_type" with parent "@head_office_type" 
     And office exists and assigned to "@head_office"
@@ -17,7 +18,6 @@ Feature: manage office
     And follow #"t view.offices.new"
     And fill in "office_name" with "branch office"
     And select #"e @head_office.name" from "office_parent_id"
-    And select #"e @branch_office_type.name" from "office_office_type_id"
     When I press #"t view.offices.create"
     Then I should see #"t offices.create.success"
     And  should see "branch office"

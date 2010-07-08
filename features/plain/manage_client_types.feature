@@ -6,7 +6,8 @@ Feature: manage client types
 
 
   Background:
-    Given a client type "group" exists and assigned to "@group"
+    Given application is setup
+    And a client type "group" exists and assigned to "@group"
     And a client type "center" exists with parent "@group" and assigned to "@center"
     And a client type "individual" exists with parents "@group,@center" and assigned to "@individual" 
 

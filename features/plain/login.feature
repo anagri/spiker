@@ -5,6 +5,7 @@ Feature: login
   so that I can do authorized actions
 
   Background:
+    Given application is setup
 
   Scenario: valid login
     Given a user "testuser" with password "testpass" exists

@@ -20,7 +20,5 @@ def get_head_office_type
 end
 
 def get_head_office
-  Office.root || Factory.without_access_control_do_create(:office)
-rescue Exception => e
-  e.backtrace.each {|str| p str}
+  Office.root || Factory._create(:office, :office_type => get_head_office_type)
 end

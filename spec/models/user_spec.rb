@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/spec_helper'
 describe User do
   before(:each) do
     @office_type = Factory.without_access_control_do_build(:office_type)
-    @office = Factory.without_access_control_do_build(:office)
+    @office = Factory.without_access_control_do_build(:office, :office_type => @office_type)
   end
 
   describe 'valid user' do
@@ -54,7 +54,7 @@ describe User do
 
     it 'should be invalid admin if not assigned root office' do
       branch_office_type = Factory.without_access_control_do_build(:office_type, :parent => @office_type)
-      branch_office = Factory.without_access_control_do_build(:office, :parent => @office, :office_type => branch_office_type)
+      branch_office = Factory.without_access_control_do_build(:office, :parent => @office)
       invalid_user = User.without_access_control_do_new(:username => 'testuser', :email => 'testuser@email.com', :password => 'testpass', :password_confirmation => 'testpass', :role => Role::ADMIN, :office => branch_office)
       invalid_user.should have_ar_errors(:office => :head_office_for_admin_role)
     end

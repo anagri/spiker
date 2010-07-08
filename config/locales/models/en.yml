@@ -16,6 +16,8 @@ en:
     errors:
       messages:
         head_office_for_admin_role: 'Admin should be assigned to Head Office'
+        office_type_invalid: 'Office Type should be child of parent office type'
+        office_root_have_office_type_root: 'Head Office should have root office type'
         circular_hierarchy: 'Circular hierarchy detected'
   error_messages:
     login_invalid: 'should use only letters, numbers'

@@ -5,7 +5,8 @@ Feature: manage users
   so that users can use application
 
   Background:
-    Given a admin "testadmin" with password "testpass" exists
+    Given application is setup
+    And a admin "testadmin" with password "testpass" exists
     And office exists and assigned to "@branch_office"
     And I login
 
