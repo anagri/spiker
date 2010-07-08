@@ -10,7 +10,8 @@ en:
     index:
       dashboard: 'Dashboard'
     dashboard:
-      tabs: 'Dashboard'
+      tab: 'Dashboard'
+      go: 'Go'
     common: &common
       create: 'Create'
       update: 'Update'
@@ -45,6 +46,21 @@ en:
       email: 'Email'
       new: 'New User'
       back: 'Back to Manage Users'
+      <<: *common
+    clients:
+      tab: 'Clients'
+      <<: *common
+    products:
+      tab: 'Products'
+      <<: *common
+    reports:
+      tab: 'Reports'
+      <<: *common
+    accounts:
+      tab: 'Accounts'
+      <<: *common
+    system:
+      tab: 'System'
       <<: *common
     office_types:
       manage: 'Manage Office Types'

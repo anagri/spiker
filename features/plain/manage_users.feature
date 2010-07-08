@@ -45,7 +45,7 @@ Feature: manage users
     And I am "admin"
     And I am on the users page
     And visit the "users" page for user "staff"
-    When uncheck "active"                     m
+    When uncheck "active"
     And press "Submit"
     Then I should see #"t users.update.deactivated"
 

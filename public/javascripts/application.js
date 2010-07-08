@@ -92,6 +92,13 @@ handle_content_click = function($content_body) {
             $content_body.trigger('content-ready');
         });
     }
-}
+};
+
+// submit on change
+$(function() {
+    $('.submit_on_change').bind('change', function(){
+        $(this).parent().submit();
+    });
+});
 
 

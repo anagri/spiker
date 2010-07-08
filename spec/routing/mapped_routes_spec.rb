@@ -20,4 +20,8 @@ describe 'Mapped Routes' do
   it 'should map /edit_profile to users#edit_profile' do
     {:get => '/edit_profile'}.should route_to(:controller => 'users', :action => 'edit_profile')
   end
+
+  it 'should map /navigate to dashboard#navigate' do
+    {:get => '/navigate'}.should route_to(:controller => 'dashboard', :action => 'navigate')
+  end
 end

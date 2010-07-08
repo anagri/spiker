@@ -17,6 +17,10 @@ describe 'Named Routes' do
     it 'should generate edit_profile_path' do
       edit_profile_path.should == '/edit_profile'
     end
+
+    it 'should generate navigate_path' do
+      navigate_path.should == '/navigate'
+    end
   end
 
   it 'should generate restful user resources routes' do
