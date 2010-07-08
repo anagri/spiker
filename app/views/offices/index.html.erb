@@ -1,4 +1,4 @@
-<div class="container 2_col_panel" side-content="office_side_content" main-content="office_main_content" action-content="office_action_content" id="display">
+<div class="container 2_col_panel" side-content="office_side_content" main-content="office_main_content" action-content="office_action_content">
   <div class="treeview side_content" id="office_side_content">
     Existing Offices :
     <%= tree(@parent_office) %>
@@ -6,7 +6,4 @@
   <div id="office_main_content" class="main_content"></div>
   <div style="clear:left;"></div>
   <div id="office_action_content"><%= link_to t('view.offices.new'), new_office_path %></div>
-</div>
-<div id="configure">
-  Mardi Gras
 </div>

@@ -33,7 +33,7 @@ authorization do
 
   role :authenticated_user do
     has_permission_on :sessions, :to => [:create, :destroy]
-    has_permission_on :dashboard, :to => [:index, :navigate]
+    has_permission_on :dashboard, :to => [:index, :navigate, :offices]
     has_permission_on :users, :to => [:edit_profile, :modify] do
       if_attribute :id => is {user.id}
     end
