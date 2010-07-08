@@ -1,0 +1,11 @@
+<% content_for :pre_body do %>
+    <div class="tabs">
+      <ul>
+        <li><a href="#display" title="Offices Display">Offices</a></li>
+        <li><a href="#configure" title="Offices Configure">Configure</a></li>
+      </ul>
+      <%= yield %>
+    </div>
+<% end %>
+<% content_for :content do %><% end %>
+<%= render :file => 'layouts/application' %>

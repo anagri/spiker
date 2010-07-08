@@ -12,4 +12,5 @@ ActionController::Routing::Routes.draw do |map|
   map.navigate '/navigate', :controller => 'dashboard', :action => 'navigate', :conditions => {:method => :get}
   map.resources :users, :offices, :office_types, :client_types
   map.resources :additional_attributes, :only => [:index, :new, :create, :show]
+  map.offices_configure '/offices/configure', :controller => :offices, :action => :configure
 end

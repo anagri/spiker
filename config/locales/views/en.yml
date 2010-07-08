@@ -20,6 +20,8 @@ en:
       back: 'Back'
     offices:
       tab: 'Offices'
+      configure:
+        tab: 'Configure'
       manage: 'Manage Offices'
       header: 'Office'
       parent: 'Parent Office'

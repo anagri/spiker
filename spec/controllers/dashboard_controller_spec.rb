@@ -10,6 +10,8 @@ describe DashboardController do
       before(:each) do
         @user = staff
         @allowed_actions = all_actions(controller)
+        @navigate_params = {:navigate => {:to => offices_path}}
+        @navigate_expectation = be_redirect_to(offices_url)
       end
 
       it_should_behave_like "authorized controller"

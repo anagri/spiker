@@ -6,34 +6,35 @@
 </head>
 <body>
 <% if current_user %>
-    <div class="top_status_bar"><%=link_to t('view.index.dashboard'), dashboard_path %>|
-      <%= link_to "Edit Profile", edit_profile_path %> | logged in as <%= current_user.username %> (<%= current_user.role %>) | <%= link_to t('layout.logout'), logout_path %> </div>
+    <div class="top_status_bar"><%= link_to t('view.index.dashboard'), dashboard_path %>|
+      <%= link_to "Edit Profile", edit_profile_path %> | logged in as <%= current_user.username %>
+      (<%= current_user.role %>) | <%= link_to t('layout.logout'), logout_path %> </div>
 <% else %>
-    <div class="top_status_bar"><%= link_to "Forgot Password", new_password_reset_path %> | <%= link_to "Login", login_path %></div>
+    <div class="top_status_bar"><%= link_to "Forgot Password", new_password_reset_path %>
+      | <%= link_to "Login", login_path %></div>
 <% end %>
 <br/>
-<div class="msg_container fixed_container">
-<% if flash[:info] %>
-    <div class="flash_info"><%= t(flash[:info]) %></div>
-<% end %>
-<% if flash[:error] %>
-    <div class="flash_error"><%= t(flash[:error]) %></div>
-<% end %>
-</div>
-<% form_tag navigate_path, :method => :get do %>
-    <%= select :navigate, :to, navigate_html_options, {:selected => '/'+params[:controller].decontrolled}, :class => 'submit_on_change' %>
-    <%= submit_tag t('view.dashboard.go') %>
-<% end %>
-<br/>
-<%= yield %>
 
+<div class="msg_container">
+  <% if flash[:info] %>
+      <div class="flash_info"><%= t(flash[:info]) %></div>
+  <% end %>
+  <% if flash[:error] %>
+      <div class="flash_error"><%= t(flash[:error]) %></div>
+  <% end %>
+</div>
+<span>
+    <% form_tag navigate_path, :method => :get do %>
+        <%= select :navigate, :to, navigate_html_options, {:selected => '/'+params[:controller].decontrolled}, :class => 'submit_on_change' %>
+          <%= submit_tag t('view.dashboard.go') %>
+    <% end %>
+</span>
+<%= yield :pre_body %>
+<%= yield :content or yield %>
 <hr/>
 <%= back_link %>
 <!-- Javascript assets -->
-<%= javascript_include_tag 'jquery-1.4.2' %>
-<%= javascript_include_tag 'js/jquery-ui-1.8.2.custom.min'%>
-<%= javascript_include_tag 'js/jquery.treeview'%>
-<%= javascript_include_tag 'js/jquery.form'%>
+<%= javascript_include_tag 'jquery-1.4.2', 'js/jquery-ui-1.8.2.custom.min', 'js/jquery.treeview', 'js/jquery.form', :cache => :jquery %>
 <%= javascript_include_tag 'application' %>
 </body>
 <%= end_html %>

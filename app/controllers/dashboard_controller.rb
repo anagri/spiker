@@ -4,7 +4,7 @@ class DashboardController < ApplicationController
   def index; end
 
   def navigate
-    redirect_to params[:navigate][:to]
+    redirect_to (params[:navigate] && params[:navigate][:to]) || dashboard_path
   end
 
   protected
