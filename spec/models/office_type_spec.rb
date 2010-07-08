@@ -23,15 +23,6 @@ describe OfficeType do
         @leaf_office_type = Factory.without_access_control_do_create(:office_type, :parent_id => @branch_office_type.id)
       end
 
-      it 'should not allow creation of orphaned office type' do
-        @head_office_type.without_access_control_do_child = @leaf_office_type
-        @leaf_office_type.without_access_control_do_save!
-        @head_office_type.without_access_control_do_save!
-        @branch_office_type.without_access_control_do_save!
-        pp @head_office_type.inspect, @branch_office_type.inspect, @leaf_office_type.inspect
-        pp @head_office_type.child.inspect, @branch_office_type.child.inspect, @leaf_office_type.child.inspect
-      end
-
       it 'should return leaf node' do
         OfficeType.leaf.should == @leaf_office_type
       end

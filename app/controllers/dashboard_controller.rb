@@ -1,8 +1,6 @@
 class DashboardController < ApplicationController
   filter_access_to :all
 
-  layout 'offices_dashboard', :only => :offices
-
   def index; end
 
   def offices
@@ -10,6 +8,7 @@ class DashboardController < ApplicationController
     @parent_office = current_user.office
     @office_types = OfficeType.all
     @office_type = OfficeType.new
+    render :layout => 'offices_dashboard'
   end
 
   def navigate
