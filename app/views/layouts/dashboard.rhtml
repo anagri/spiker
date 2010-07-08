@@ -1,0 +1,11 @@
+<% content_for :content do %>
+    <span>
+        <% form_tag({:controller => :dashboard, :action => :navigate}, {:method => :get}) do %>
+            <%= select :navigate, :to, navigate_html_options, {:selected => '/'+params[:controller].decontrolled + '/' + params[:action]},
+                       :class => 'submit_on_change' %>
+            <%= submit_tag t('view.dashboard.go') %>
+        <% end %>
+    </span>
+    <%= yield :dashboard_content or yield %>
+<% end %>
+<%= render :file => 'layouts/application' %>

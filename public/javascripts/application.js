@@ -53,7 +53,7 @@ $.extend({
             },
             success: function(responseText, statusText, xhr) {
                 var new_resource_path = xhr.getResponseHeader("Location").replace(/https?:\/\/.*?\//, '/');
-                location.href = location.pathname + '?selected=' + new_resource_path + location.hash;
+                location.href = location.pathname + '?selected=' + new_resource_path + '#' + $container_panel.parent().attr('id');
             }
         });
     },
@@ -70,6 +70,13 @@ $.extend({
             var $container_panel = $panel.find('div.container');
             $.ajaxifyPanel($container_panel);
         }
+    },
+
+    any: function(iterable, predicate) {
+        var result = false;
+        iterable.each(function(index, element){
+            if(!result) result = predicate(element)
+        });
     }
 });
 
@@ -103,25 +110,23 @@ $(function() {
 
 // ajaxify 2_col_content
 $(function() {
-    var $container_panels = $('.2_col_panel:visible');
+    var $container_panels = $('.2_col_panel');
     $container_panels.each(function(index, element) {
         var $container_panel = $(element);
         var $side_panel = $('#' + $container_panel.attr('side-content'));
         var $main_panel = $('#' + $container_panel.attr('main-content'));
-        var $action_panel = $('#' + $container_panel.attr('action-content'));
         var handle_click = $.ajaxyClick($main_panel);
+
+        var $result = $side_panel.find('a').first();
 
         if ($.urlParam('selected') != undefined) {
             var selected = $.urlParam('selected');
-            $side_panel.find('a').each(function(index, element) {
-                var $element = $(element);
-                var url_regex = new RegExp($element.attr('href'), 'g');
-                if (url_regex.test(selected)) {
-                    $element.click();
-                }
-            });
-        } else {
-            $.ajaxyLoad($main_panel, $side_panel.find('a').first().attr('href'));
+            var $required_elem = $side_panel.find("a[href$='"+selected+"']");
+            if($required_elem.size() != 0)
+                $result = $required_elem;
         }
+        $.ajaxyLoad($main_panel, $result.attr('href'));
     });
 });
+
+

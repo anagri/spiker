@@ -1,4 +1,4 @@
-<% content_for :pre_body do %>
+<% content_for :dashboard_content do %>
     <div class="tabs">
       <ul>
         <li><a href="#display" title="Offices Display">Offices</a></li>
@@ -7,5 +7,4 @@
       <%= yield %>
     </div>
 <% end %>
-<% content_for :content do %><% end %>
-<%= render :file => 'layouts/application' %>
+<%= render :file => 'layouts/dashboard' %>

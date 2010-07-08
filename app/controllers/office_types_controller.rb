@@ -1,17 +1,21 @@
 class OfficeTypesController < ApplicationController
   before_filter :new_office_type_for_collection, :only => [:index, :create]
   before_filter :new_office_type_from_params, :only => [:index]
+  before_filter :support_xhr, :only => [:create]
 
   filter_resource_access
 
   layout Proc.new {|controller| controller.request.xhr? ? nil : 'application'}
 
+
   def index; end
+
+  def show; end
 
   def create
     if @office_type.save
       flash[:info] = success_msg
-      redirect_to office_types_url
+      redirect_to @office_type
     else
       flash[:error] = error_msg
       render :action => 'index', :status => :unprocessable_entity
