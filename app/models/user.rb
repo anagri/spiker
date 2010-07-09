@@ -26,6 +26,12 @@ class User < ActiveRecord::Base
     Notifier.deliver_password_reset_instructions(opts.merge(:email => email, :id => perishable_token))
   end
 
+  def self.add_additional_attribute_column
+    current_user = Authorization.current_user
+    yield
+    Session.create(current_user)
+  end
+
   protected
   def office_for_role
     errors.add(:office, :head_office_for_admin_role) if role && office && Role.admin_role?(role) && !office.root?

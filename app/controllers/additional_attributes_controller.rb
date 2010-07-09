@@ -5,7 +5,7 @@ class AdditionalAttributesController < ApplicationController
     @additional_attributes = AdditionalAttribute.all
   end
 
-  def show;
+  def show
   end
 
   def new;
@@ -29,5 +29,9 @@ class AdditionalAttributesController < ApplicationController
     else
     @additional_attribute = AdditionalAttribute.new(params[:additional_attribute])
     end
+  end
+
+  def load_additional_attribute
+    @additional_attribute = AdditionalAttribute.find(params[:id])
   end
 end

@@ -45,6 +45,10 @@ can be head|root for only one office that too is setup during migration
     }
   end
 
+  def self.add_additional_attribute_column
+    yield
+  end
+
   protected
   def office_type_validation
     parent = self.parent

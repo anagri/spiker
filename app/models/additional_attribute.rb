@@ -54,16 +54,18 @@ class AdditionalAttribute < ActiveRecord::Base
     name.demodulize.gsub(/Attribute/, '')
   end
 
-  def self.column_type
-    name.demodulize.gsub(/Attribute/, '').downcase
+  def display_name
+    self.class.display_name
+  end
+
+  def column_type
+    display_name.downcase
   end
 
   def self.valid_field_type?(field_type)
     field_types.map(&:name).include?(field_type)
   end
 
-  delegate :column_type, :to => self
-  delegate :display_name, :to => self
   delegate :resource_types, :to => self
 
   protected
@@ -77,12 +79,14 @@ class AdditionalAttribute < ActiveRecord::Base
 
   def create_additional_columns
 #      begin
-    connection.add_column(resource_type.tableize.to_sym,
-                          name,
-                          column_type,
-                          :length => length.to_i,
-                          :precision => precision.to_i)
-    resource_type.constantize.reset_column_information
+    resource_type.constantize.add_additional_attribute_column do
+      connection.add_column(resource_type.tableize.to_sym,
+                            name,
+                            column_type,
+                            :length => length.to_i,
+                            :precision => precision.to_i)
+      resource_type.constantize.reset_column_information
+    end
 #      rescue Exception => e
 #        pp e
 #      end

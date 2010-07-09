@@ -3,8 +3,10 @@ require File.dirname(__FILE__) + '/spec_helper'
 describe AdditionalAttributesController do
   describe 'authorization' do
     before(:each) do
+      StringAttribute.any_instance.stubs(:create_additional_columns)
       @resource_id = Factory.without_access_control_do_create(:string_attribute).id
       @create_params = {:additional_attribute => {:name => 'location', :type => 'StringAttribute', :resource_type => 'User', :length => '30'}}
+      Session.stubs(:create)
     end
 
     it_should_behave_like 'authenticated user staff viewed and admin managed controller'
