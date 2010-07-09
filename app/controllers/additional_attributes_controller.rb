@@ -14,10 +14,20 @@ class AdditionalAttributesController < ApplicationController
   def create
     if @additional_attribute.save
       flash[:info] = success_msg
-      redirect_to @additional_attribute
+      redirect_to :action => :show, :id => @additional_attribute.id
     else
       flash[:error] = error_msg
       render :action => 'new', :status => :unprocessable_entity
+    end
+  end
+
+  protected
+  def new_additional_attribute_from_params
+    if params[:additional_attribute] && AdditionalAttribute.valid_field_type?(params[:additional_attribute][:type])
+      field_class = params[:additional_attribute][:type].constantize
+      @additional_attribute = field_class.new(params[:additional_attribute])
+    else
+    @additional_attribute = AdditionalAttribute.new(params[:additional_attribute])
     end
   end
 end

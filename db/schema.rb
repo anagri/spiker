@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(:version => 20100628104740) do
   create_table "additional_attributes", :force => true do |t|
     t.string  "name",          :limit => 30, :null => false
     t.string  "resource_type",               :null => false
-    t.string  "field_type",                  :null => false
+    t.string  "type",                        :null => false
     t.integer "length"
     t.integer "precision"
   end

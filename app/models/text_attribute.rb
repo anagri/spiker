@@ -1,0 +1,2 @@
+class TextAttribute < AdditionalAttribute
+end

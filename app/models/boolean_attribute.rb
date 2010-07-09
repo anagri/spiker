@@ -1,0 +1,2 @@
+class BooleanAttribute < AdditionalAttribute
+end

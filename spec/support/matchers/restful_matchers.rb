@@ -88,6 +88,26 @@ MESSAGE
       BeRedirectTo.new(location)
     end
 
+    class BeUnprocessibleEntity
+      def matches?(target)
+        @response = target
+        return false if @response.code != '422'
+        true
+      end
+
+      def failure_message_for_should
+        "expected the response code to be '402 unprocessable entity' but was #{@response.code}"
+      end
+
+      def failure_message_for_should_not
+        "expected the response code not to be '402 unprocessable entity' but was #{@response.code}"
+      end
+    end
+
+    def be_unprocessible_entity
+      BeUnprocessibleEntity.new
+    end
+
     class HaveCreatedResource
       def initialize(options)
         @options = {:status => "201"}.merge(options)

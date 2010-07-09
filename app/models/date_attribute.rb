@@ -1,0 +1,2 @@
+class DateAttribute < AdditionalAttribute
+end

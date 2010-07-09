@@ -43,10 +43,12 @@ authorization do
   role :staff do
     includes :authenticated_user
     has_permission_on [:offices, :additional_attributes, :office_types, :client_types], :to => :view
+    has_permission_on AdditionalAttribute.field_types.collect {|attribute| attribute.name.pluralize.underscore.to_sym}, :to => :view
   end
 
   role :admin do
     includes :authenticated_user
     has_permission_on [:users, :additional_attributes, :offices, :office_types, :client_types], :to => :manage
+    has_permission_on AdditionalAttribute.field_types.collect {|attribute| attribute.name.pluralize.underscore.to_sym}, :to => :manage
   end
 end
