@@ -16,7 +16,7 @@
         <tr>
           <td><%= additional_attribute.name %></td>
           <td><%= additional_attribute.resource_type %></td>
-          <td><%= additional_attribute[:type] %></td>
+          <td><%= additional_attribute.display_name %></td>
           <td><%= additional_attribute.length %></td>
           <td><%= additional_attribute.precision %></td>
           <td><%= link_to t('view.additional_attributes.delete'), additional_attribute_path(additional_attribute, :method => :delete) %></td>
