@@ -1,3 +1,4 @@
+module Attributes
 class AdditionalAttribute < ActiveRecord::Base
   # authorization
   using_access_control
@@ -45,4 +46,5 @@ class AdditionalAttribute < ActiveRecord::Base
                           :length => length.to_i)
     resource_type.constantize.reset_column_information
   end
+end
 end
