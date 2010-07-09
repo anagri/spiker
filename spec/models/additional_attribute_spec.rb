@@ -36,14 +36,20 @@ describe AdditionalAttribute do
     end
   end
 
-  it 'should create column in the resource type' do
-    AdditionalAttribute.field_types.each do |field_type|
-      AdditionalAttribute.resource_types.each do |resource_type|
-        Authorization::Maintenance.without_access_control do
-          column_name = "#{resource_type}_#{field_type.display_name}".downcase
-          field_type.create!(:name => column_name, :resource_type => resource_type.name, :length => 30, :precision => 2)
-          column_information = resource_type.columns_hash[column_name]
-          column_information.should_not be_nil
+  describe 'autocreate columns' do
+    before(:each) do
+      activate_authlogic
+    end
+
+    it 'should create column when attribute is saved' do
+      AdditionalAttribute.field_types.each do |field_type|
+        AdditionalAttribute.resource_types.each do |resource_type|
+          Authorization::Maintenance.without_access_control do
+            column_name = "#{resource_type}_#{field_type.display_name}".downcase
+            field_type.create!(:name => column_name, :resource_type => resource_type.name, :length => 30, :precision => 2)
+            column_information = resource_type.columns_hash[column_name]
+            column_information.should_not be_nil
+          end
         end
       end
     end

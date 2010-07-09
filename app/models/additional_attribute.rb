@@ -79,13 +79,14 @@ class AdditionalAttribute < ActiveRecord::Base
 
   def create_additional_columns
 #      begin
-    resource_type.constantize.add_additional_attribute_column do
+    resource_class = resource_type.constantize
+    resource_class.add_additional_attribute_column do
       connection.add_column(resource_type.tableize.to_sym,
                             name,
                             column_type,
                             :length => length.to_i,
                             :precision => precision.to_i)
-      resource_type.constantize.reset_column_information
+      resource_class.reset_column_information
     end
 #      rescue Exception => e
 #        pp e

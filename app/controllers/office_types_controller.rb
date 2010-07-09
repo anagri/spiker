@@ -1,7 +1,6 @@
 class OfficeTypesController < ApplicationController
   before_filter :new_office_type_for_collection, :only => [:index, :create]
   before_filter :new_office_type_from_params, :only => [:index]
-  before_filter :support_xhr, :only => [:create]
 
   filter_resource_access
 

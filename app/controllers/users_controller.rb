@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_filter :support_xhr, :only => [:index, :new, :show, :create, :edit, :update]
   before_filter :load_user_for_edit_profile, :only => :edit_profile
   filter_resource_access
   restrict_attributes_update [:username, :email, :role, :office]

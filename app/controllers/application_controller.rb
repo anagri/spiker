@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   before_filter {|controller| Authorization.current_user = controller.current_user}
+  before_filter :support_xhr, :only => :create
 
   layout Proc.new {|controller| controller.request.xhr? ? nil : 'application'}
 
@@ -36,16 +37,6 @@ class ApplicationController < ActionController::Base
 
   def support_xhr
     @support_xhr = true
-  end
-
-  # render xhr request with partials
-  def render(options = nil, extra_options = {}, &block)
-    if instance_variable_defined?(:@support_xhr) && request.xhr?
-      (options || extra_options).merge!(:layout => false)
-      super(options || params[:action], extra_options, &block)
-    else
-      super
-    end
   end
 
   def redirect_to(options = {}, response_status = {})

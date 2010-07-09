@@ -1,5 +1,4 @@
 class OfficesController < ApplicationController
-  before_filter :support_xhr, :only => [:new, :index, :show, :create]
   filter_resource_access
 
   def index
