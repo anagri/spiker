@@ -1,13 +1,15 @@
 class DashboardController < ApplicationController
   filter_access_to :all
 
-  def index; end
+  def index;
+  end
 
   def offices
     @office = Office.new
     @parent_office = current_user.office
     @office_types = OfficeType.all
     @office_type = OfficeType.new
+    @additional_attributes = AdditionalAttribute.find(:all, :conditions => {:resource_type => Office.name})
     render :layout => 'offices_dashboard'
   end
 

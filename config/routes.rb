@@ -13,4 +13,5 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :users, :offices, :office_types, :client_types
   map.resources :additional_attributes, :only => [:index, :new, :create, :show]
+  map.connect 'offices/:id/attributes', :controller => :offices, :action => :attributes
 end

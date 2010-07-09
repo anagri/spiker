@@ -5,9 +5,6 @@ class OfficeTypesController < ApplicationController
 
   filter_resource_access
 
-  layout Proc.new {|controller| controller.request.xhr? ? nil : 'application'}
-
-
   def index; end
 
   def show; end

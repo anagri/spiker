@@ -17,7 +17,7 @@ class AdditionalAttributesController < ApplicationController
       redirect_to @additional_attribute
     else
       flash[:error] = error_msg
-      render :action => 'new'
+      render :action => 'new', :status => :unprocessable_entity
     end
   end
 end

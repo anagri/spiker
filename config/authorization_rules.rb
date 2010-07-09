@@ -37,6 +37,7 @@ authorization do
     has_permission_on :users, :to => [:edit_profile, :modify] do
       if_attribute :id => is {user.id}
     end
+    has_permission_on :offices, :to => :attributes
   end
 
   role :staff do

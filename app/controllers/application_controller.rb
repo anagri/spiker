@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
 
   before_filter {|controller| Authorization.current_user = controller.current_user}
 
+  layout Proc.new {|controller| controller.request.xhr? ? nil : 'application'}
+
   protected
 
   def permission_denied

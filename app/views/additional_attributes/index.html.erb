@@ -1,28 +1,30 @@
-<h3><%= t('view.additional_attributes.header') %></h3>
-<table>
-  <thead>
-  <tr>
-    <td><%= t('view.additional_attributes.name') %></td>
-    <td><%= t('view.additional_attributes.resource_type') %></td>
-    <td><%= t('view.additional_attributes.field_type') %></td>
-    <td><%= t('view.additional_attributes.length') %></td>
-    <td><%= t('view.additional_attributes.precision') %></td>
-    <td><%= t('view.additional_attributes.delete') %></td>
-  </tr>
-  </thead>
-  <tbody>
+<div class="container" main-content="additional_attribute_main_content">
+  <h3><%= t('view.additional_attributes.header') %></h3>
+  <table>
+    <thead>
+    <tr>
+      <td><%= t('view.additional_attributes.name') %></td>
+      <td><%= t('view.additional_attributes.resource_type') %></td>
+      <td><%= t('view.additional_attributes.field_type') %></td>
+      <td><%= t('view.additional_attributes.length') %></td>
+      <td><%= t('view.additional_attributes.precision') %></td>
+      <td><%= t('view.additional_attributes.delete') %></td>
+    </tr>
+    </thead>
+    <tbody>
     <% @additional_attributes.each do |additional_attribute| %>
-      <tr>
-        <td><%= additional_attribute.name %></td>
-        <td><%= additional_attribute.resource_type %></td>
-        <td><%= additional_attribute.field_type %></td>
-        <td><%= additional_attribute.length %></td>
-        <td><%= additional_attribute.precision %></td>
-        <td><%= link_to t('view.additional_attributes.delete'), additional_attribute_path(additional_attribute, :method => :delete) %></td>
-      </tr>
+        <tr>
+          <td><%= additional_attribute.name %></td>
+          <td><%= additional_attribute.resource_type %></td>
+          <td><%= additional_attribute.field_type %></td>
+          <td><%= additional_attribute.length %></td>
+          <td><%= additional_attribute.precision %></td>
+          <td><%= link_to t('view.additional_attributes.delete'), additional_attribute_path(additional_attribute, :method => :delete) %></td>
+        </tr>
     <% end %>
-  </tbody>
-</table>
-
-<br/>
-<%= link_to t('view.additional_attributes.new'), new_additional_attribute_path %>
+    </tbody>
+  </table>
+  <div id="additional_attribute_main_content"></div>
+  <br/>
+  <%= link_to t('view.additional_attributes.new'), new_additional_attribute_path %>
+</div>
