@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:info] = success_msg
       respond_to do |format|
-        format.html { redirect_to user_path(@user) }
+        format.html { redirect_to @user }
         format.xml { head :created, :location => user_path(@user) }
       end
     else
@@ -35,11 +35,10 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(params[:user])
-      Session.create(@user)
+      Session.create(current_user)
       flash[:info] = success_msg
       redirect_to @user
     else
-      pp @user.errors.full_messages
       flash[:error] = error_msg
       render :action => 'new', :status => :unprocessable_entity
     end

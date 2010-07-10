@@ -1,5 +1,5 @@
-<div class="container" main-content="office_type_main_content">
-  <div id="office_type_main_content">
+<div class="container" main-content="office_type_main_content" side-content="office_type_side_content">
+  <div class="office_type_main_content">
     <h3><%= t('view.office_types.header') %></h3>
     <h4><%= t('view.office_types.name') %></h4>
     <ul>
@@ -7,7 +7,6 @@
           <li><%= office_type.name %></li>
       <% end %>
     </ul>
-    <hr/>
     <%= t('view.office_types.new') %>
     <% form_for @office_type do |f| %>
         <%= f.error_messages %>

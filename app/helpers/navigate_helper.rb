@@ -4,7 +4,7 @@ module NavigateHelper
             [t('view.dashboard.tab'), dashboard_path],
             [t('view.offices.tab'), url_for(:controller => 'dashboard', :action => 'offices')],
             [t('view.clients.tab'), dashboard_path],
-            [t('view.users.tab'), users_path],
+            [t('view.users.tab'), url_for(:controller => 'dashboard', :action => 'users')],
             [t('view.products.tab'), dashboard_path],
             [t('view.reports.tab'), dashboard_path],
             [t('view.accounts.tab'), dashboard_path],

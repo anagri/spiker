@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   before_filter {|controller| Authorization.current_user = controller.current_user}
-  before_filter :support_xhr, :only => :create
+  before_filter :support_xhr, :only => [:create, :update]
 
   layout Proc.new {|controller| controller.request.xhr? ? nil : 'application'}
 

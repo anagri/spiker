@@ -8,6 +8,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.filter 'locale'
   map.resources :password_resets, :only => [:new, :create, :edit, :update]
+
   map.connect 'dashboard/:action', :controller => 'dashboard'
   map.dashboard '/dashboard', :controller => 'dashboard', :action => :index
 

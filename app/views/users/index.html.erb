@@ -1,5 +1,5 @@
-<div class="container">
-  <div class="side_content" rel="user_content">
+<div class="container 2_col_panel" side-content="user_side_content" main-content="user_main_content">
+  <div class="treeview side_content user_side_content">
     <div><%= t('view.users.username') %> (<%= t('view.users.email') %>)</div>
     <ul>
     <% @users.each do |user| %>
@@ -7,8 +7,7 @@
     <% end %>
     </ul>
   </div>
-  <div id="user_content" class="main_content">
-  </div>
+  <div class="user_main_content main_content"></div>
   <div style="clear:left;"></div>
-  <%= link_to t('view.users.new'), new_user_path %>
+  <div class="user_side_content"><%= link_to t('view.users.new'), new_user_path %></div>
 </div>

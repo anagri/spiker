@@ -5,12 +5,17 @@ class DashboardController < ApplicationController
   end
 
   def offices
-    @office = Office.new
     @parent_office = current_user.office
     @office_types = OfficeType.all
     @office_type = OfficeType.new
     @additional_attributes = AdditionalAttribute.find(:all, :conditions => {:resource_type => Office.name})
     render :layout => 'offices_dashboard'
+  end
+
+  def users
+    @users = User.all
+    @additional_attributes = AdditionalAttribute.find(:all, :conditions => {:resource_type => User.name})
+    render :layout => 'users_dashboard'
   end
 
   def navigate

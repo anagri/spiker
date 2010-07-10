@@ -22,17 +22,14 @@ $.extend({
     },
 
     ajaxyClick: function($body) {
-        var $self = $body;
-        if ($self == null) $self = this;
         return function(event) {
             event.preventDefault();
-            $.ajaxyLoad($self, this.href);
+            $.ajaxyLoad($body, this.href);
         }
     },
 
     ajaxyLoad: function($body, href) {
         var $self = $body;
-        if ($self == null) $self = this;
         $.get(href, {}, function(response) {
             $self.html(response);
             $self.css('backgroundColor', 'yellow');
@@ -41,42 +38,42 @@ $.extend({
         });
     },
 
-    ajaxifyPanel: function($container_panel) {
-        var $main_panel = $('#' + $container_panel.attr('main-content'));
-        $container_panel.find('a').bind('click', $.ajaxyClick($main_panel));
-
-        $container_panel.find('form').ajaxForm({
+    ajaxifyPanel: function($main_panel, $form_success_action) {
+        $main_panel.find('a').unbind('click.tabsShow').bind('click.tabsShow', $.ajaxyClick($main_panel));
+        $main_panel.find('form').ajaxForm({
             target: $main_panel,
             error: function(xhr) {
                 $main_panel.html(xhr.responseText);
                 $main_panel.trigger('content-ready');
             },
-            success: function(responseText, statusText, xhr) {
-                var new_resource_path = xhr.getResponseHeader("Location").replace(/https?:\/\/.*?\//, '/');
-                location.href = location.pathname + '?selected=' + new_resource_path + '#' + $container_panel.parent().attr('id');
-            }
+            success: $form_success_action
         });
-    },
-
-    contentReady: function() {
-        return function(event) {
-            $.ajaxifyPanel($(this));
-        }
     },
 
     tabsShow: function() {
         return function(event, ui) {
             var $panel = $(ui.panel);
+            var $selected_tab = ui.index;
             var $container_panel = $panel.find('div.container');
-            $.ajaxifyPanel($container_panel);
+            var $main_panel = $('.' + $container_panel.attr('main-content'));
+            var $side_panel = $('.' + $container_panel.attr('side-content'));
+
+            $side_panel.find('a').unbind('click.tabsShow').bind('click.tabsShow', $.ajaxyClick($main_panel));
+            var $form_success_action = $.formSuccessAction($selected_tab);
+
+            $main_panel.unbind('content-ready.tabsShow').bind('content-ready.tabsShow', function(event) {
+                $.ajaxifyPanel($(this), $form_success_action);
+            });
+
+            $.ajaxifyPanel($main_panel, $form_success_action);
         }
     },
 
-    any: function(iterable, predicate) {
-        var result = false;
-        iterable.each(function(index, element){
-            if(!result) result = predicate(element)
-        });
+    formSuccessAction: function(selected_tab) {
+        return function(responseText, statusText, xhr) {
+            var new_resource_path = xhr.getResponseHeader("Location").replace(/https?:\/\/.*?\//, '/');
+            location.href = location.pathname + '?selected=' + new_resource_path + '&tab=' + selected_tab;
+        }
     }
 });
 
@@ -87,7 +84,10 @@ $(function() {
     // treeify
     $('div.treeview ul').treeview();
     // tabify
-    $('.tabs').tabs({show: $.tabsShow()}).find('div.container').bind('content-ready', $.contentReady());
+    $('.tabs').tabs({
+        show: $.tabsShow(),
+        selected: $.urlParam('tab')
+    });
 });
 
 /*
@@ -113,16 +113,15 @@ $(function() {
     var $container_panels = $('.2_col_panel');
     $container_panels.each(function(index, element) {
         var $container_panel = $(element);
-        var $side_panel = $('#' + $container_panel.attr('side-content'));
-        var $main_panel = $('#' + $container_panel.attr('main-content'));
-        var handle_click = $.ajaxyClick($main_panel);
+        var $side_panel = $('.' + $container_panel.attr('side-content'));
+        var $main_panel = $('.' + $container_panel.attr('main-content'));
 
         var $result = $side_panel.find('a').first();
-
+        console.log($.urlParam('selected'))
         if ($.urlParam('selected') != undefined) {
             var selected = $.urlParam('selected');
-            var $required_elem = $side_panel.find("a[href$='"+selected+"']");
-            if($required_elem.size() != 0)
+            var $required_elem = $side_panel.find("a[href$='" + selected + "']");
+            if ($required_elem.size() != 0)
                 $result = $required_elem;
         }
         $.ajaxyLoad($main_panel, $result.attr('href'));

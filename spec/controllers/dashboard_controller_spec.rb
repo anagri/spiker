@@ -9,6 +9,7 @@ describe DashboardController do
     describe 'for user' do
       before(:each) do
         @user = staff
+        User.stubs(:find).with(:all)
         @allowed_actions = all_actions(controller)
         @navigate_params = {:navigate => {:to => offices_path}}
         @navigate_expectation = be_redirect_to(offices_url)
