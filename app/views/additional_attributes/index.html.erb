@@ -1,5 +1,5 @@
 <div class="container" main-content="additional_attribute_main_content" side-content="additional_attribute_side_content">
-  <div class="additional_attribute_side_content">
+  <div class="">
     <h3><%= t('view.additional_attributes.header') %></h3>
     <table>
       <thead>
@@ -26,7 +26,8 @@
       </tbody>
     </table>
   </div>
-  <div class="additional_attribute_main_content"></div>
+  <div class="additional_attribute_main_content">
+    <%= render :file => 'additional_attributes/new' %>
+  </div>
   <br/>
-  <div class="additional_attribute_side_content"><%= link_to t('view.additional_attributes.new'), new_additional_attribute_path %></div>
 </div>

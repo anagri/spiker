@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
   filter_access_to :all
-  before_filter :convert_params_to_hash
+  before_filter :convert_params_to_hash, :only => [:offices, :users]
 
   def index;
   end
@@ -9,12 +9,14 @@ class DashboardController < ApplicationController
     @parent_office = current_user.office
     @office_types = OfficeType.all
     @office_type = OfficeType.new
+    @additional_attribute = AdditionalAttribute.new
     @additional_attributes = AdditionalAttribute.find(:all, :conditions => {:resource_type => Office.name})
     render :layout => 'offices_dashboard'
   end
 
   def users
     @users = User.all
+    @additional_attribute = AdditionalAttribute.new
     @additional_attributes = AdditionalAttribute.find(:all, :conditions => {:resource_type => User.name})
     render :layout => 'users_dashboard'
   end

@@ -1,6 +1,10 @@
 ;
 (function($) {
     $.extend({
+        debug: function(msg) {
+            if (typeof(console) != "undefined") console.log(msg);
+        },
+
         urlParams: function(options) {
             var vars = [], hash;
             var url = typeof options != "undefined" && options.url ? options.url : window.location.href;
@@ -30,20 +34,28 @@
         tabsShow: function() {
             return function(event, ui) {
                 var $panel = $(ui.panel);
-                var $selected_tab_index = ui.index;
+                var selected_tab_index = ui.index;
                 var $container_panel = $panel.container();
                 var $main_panel = $container_panel.mainContent();
                 var $side_panel = $container_panel.sideContent();
 
                 $side_panel.histrifyLinks($main_panel);
 
+                // first assign the current tab in hash if not present
+                if($.bbq.getState('tab') == undefined) {
+                    $.bbq.pushState({tab: selected_tab_index}, 2);
+                }
+
                 // look out for hashchange events
                 $(window).safeBind('hashchange', function(e) {
-                    var $link = $side_panel.find("a[href$='" + $.bbq.getState('selected') + "']");
-                    $link.trigger('change');
+                    var selected = $.bbq.getState('selected');
+                    if (selected != undefined) {
+                        var $link = $side_panel.find("a[href$='" + selected + "']");
+                        $link.trigger('change');
+                    }
                 });
 
-                var $form_success_action = $.formSuccessAction($selected_tab_index);
+                var $form_success_action = $.formSuccessAction(selected_tab_index);
                 $main_panel.safeBind('content-ready', function(event) {
                     $(this).ajaxifyPanel($form_success_action);
                 });

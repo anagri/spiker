@@ -1,5 +1,6 @@
 class AdditionalAttributesController < ApplicationController
   filter_resource_access
+  before_filter :new_additional_attribute_from_params, :only => :index
 
   def index
     @additional_attributes = AdditionalAttribute.all
@@ -27,7 +28,7 @@ class AdditionalAttributesController < ApplicationController
       field_class = params[:additional_attribute][:type].constantize
       @additional_attribute = field_class.new(params[:additional_attribute])
     else
-    @additional_attribute = AdditionalAttribute.new(params[:additional_attribute])
+      @additional_attribute = AdditionalAttribute.new(params[:additional_attribute])
     end
   end
 
