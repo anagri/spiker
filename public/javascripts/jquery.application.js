@@ -147,7 +147,7 @@
                     if ($required_elem.size() != 0)
                         $result = $required_elem;
                 }
-                $main_panel.ajaxyLoad($result.attr('href'));
+                $result.triggerHandler('click');
             });
         }
     });
