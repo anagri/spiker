@@ -21,6 +21,7 @@ Screw.Unit(function() {
 
         it("should parse the url params", function() {
             expect($.urlParams({url: "http://test.com/?arg1=1&arg2=2"})).to(equal, ['arg1', 'arg2']);
+            expect($.urlParams({url: "http://localhost:3000/dashboard/offices#selected=/offices/2"})).to(equal, []);
         });
 
         it("should return the url param value", function() {

@@ -4,6 +4,9 @@
         urlParams: function(options) {
             var vars = [], hash;
             var url = typeof options != "undefined" && options.url ? options.url : window.location.href;
+
+            if (url.indexOf('?') == -1) return vars;
+
             var hashes = url.slice(url.indexOf('?') + 1).replace(/#.*$/gi, '').split('&');
             for (var i = 0; i < hashes.length; i++) {
                 hash = hashes[i].split('=');
@@ -31,14 +34,31 @@
                 var $container_panel = $panel.container();
                 var $main_panel = $container_panel.mainContent();
                 var $side_panel = $container_panel.sideContent();
-                $side_panel.ajaxifyLinks($main_panel);
-                var $form_success_action = $.formSuccessAction($selected_tab_index);
 
+                $side_panel.histrifyLinks($main_panel);
+
+                // look out for hashchange events
+                $(window).safeBind('hashchange', function(e) {
+                    var $link = $side_panel.find("a[href$='" + $.bbq.getState('selected') + "']");
+                    $link.trigger('change');
+                });
+
+                var $form_success_action = $.formSuccessAction($selected_tab_index);
                 $main_panel.safeBind('content-ready', function(event) {
                     $(this).ajaxifyPanel($form_success_action);
                 });
 
                 $main_panel.ajaxifyPanel($form_success_action);
+
+                // trigger the selected
+                var $result = $side_panel.find('a').first();
+                if ($.bbq.getState('selected') != undefined) {
+                    var selected = $.bbq.getState('selected');
+                    var $required_elem = $side_panel.find("a[href$='" + selected + "']");
+                    if ($required_elem.size() != 0)
+                        $result = $required_elem;
+                }
+                $result.triggerHandler('click');
             }
         },
 
@@ -52,6 +72,21 @@
 
 
     $.fn.extend({
+        histrifyLinks: function($out_panel) {
+            return this.each(function() {
+                $(this).find('a').each(function() {
+                    var $self = $(this);
+                    $self.safeBind('click', function(event) {
+                        event.preventDefault();
+                        var force_trigger = $.bbq.getState('selected') == $self.attr('pathname');
+                        $.bbq.pushState({selected: $self.attr('pathname')}, 0);
+                        if (force_trigger) $self.triggerHandler('change');
+                    });
+                    $self.safeBind('change', $out_panel.ajaxyClick());
+                });
+            });
+        },
+
         ajaxifyLinks: function($out_panel) {
             return this.each(function() {
                 $(this).find('a').safeBind('click', $out_panel.ajaxyClick());
@@ -132,23 +167,6 @@
 
         mainContent: function() {
             return this.find('.' + this.attr('main-content'));
-        },
-
-        prepare2PanelLayout: function() {
-            return this.each(function(index, element) {
-                var $container_panel = $(element);
-                var $side_panel = $container_panel.sideContent();
-                var $main_panel = $container_panel.mainContent();
-
-                var $result = $side_panel.find('a').first();
-                if ($.urlParam('selected') != undefined) {
-                    var selected = $.urlParam('selected');
-                    var $required_elem = $side_panel.find("a[href$='" + selected + "']");
-                    if ($required_elem.size() != 0)
-                        $result = $required_elem;
-                }
-                $result.triggerHandler('click');
-            });
         }
     });
 })(jQuery);

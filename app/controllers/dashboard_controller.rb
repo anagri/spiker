@@ -1,5 +1,6 @@
 class DashboardController < ApplicationController
   filter_access_to :all
+  before_filter :convert_params_to_hash
 
   def index;
   end
@@ -26,5 +27,12 @@ class DashboardController < ApplicationController
   def permission_denied
     flash[:error] = 'You cannot access dashboard page without logging in'
     redirect_to root_url
+  end
+
+  def convert_params_to_hash
+    if request.method == :get
+      url_params = params.reject { |key, value| key == 'controller' || key == 'action' }
+      redirect_to url_for(:action => params[:action]) << "#" << url_params.map { |k, v| "#{k}=#{v}" }.join('&') unless url_params.blank?
+    end
   end
 end

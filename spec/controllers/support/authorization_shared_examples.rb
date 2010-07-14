@@ -1,6 +1,6 @@
 module AuthorizedSharedSpecUtils
   def do_request(user, action)
-    get_html_with user, action.to_sym, (instance_variable_get(:"@#{action}_params") || {:id => @resource_id})
+    post_html_with user, action.to_sym, (instance_variable_get(:"@#{action}_params") || {:id => @resource_id})
   end
 end
 

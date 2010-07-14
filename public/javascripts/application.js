@@ -12,14 +12,13 @@ $(function() {
     $('.submit_on_change').submitOnChange();
     // auto hide flash messages
     $('.flash_info, .flash_error').collapse();
-    // treeify
-    $('div.treeview ul').treeview();
     // tabify
     $('.tabs').tabs({
         show: $.tabsShow(),
-        selected: $.urlParam('tab')
+        selected: $.selectedTab()
     });
-    $('.2_col_panel').prepare2PanelLayout();
+    // treeify
+    $('div.treeview ul').treeview();
 });
 
 
