@@ -1,9 +1,10 @@
 ;
 (function($) {
     $.extend({
-        urlParams: function() {
+        urlParams: function(options) {
             var vars = [], hash;
-            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).replace(/#.*$/gi, '').split('&');
+            var url = typeof options != "undefined" && options.url ? options.url : window.location.href;
+            var hashes = url.slice(url.indexOf('?') + 1).replace(/#.*$/gi, '').split('&');
             for (var i = 0; i < hashes.length; i++) {
                 hash = hashes[i].split('=');
                 vars.push(hash[0]);
@@ -12,20 +13,26 @@
             return vars;
         },
 
-        urlParam: function(name) {
-            return $.urlParams()[name];
+        urlParam: function(name, options) {
+            return $.urlParams(options)[name];
+        },
+
+        selectedTab: function(options) {
+            if ($.bbq.getState('tab')) {
+                return $.bbq.getState('tab');
+            }
+            return $.urlParam('tab', options);
         },
 
         tabsShow: function() {
             return function(event, ui) {
                 var $panel = $(ui.panel);
-                var $selected_tab = ui.index;
+                var $selected_tab_index = ui.index;
                 var $container_panel = $panel.container();
                 var $main_panel = $container_panel.mainContent();
                 var $side_panel = $container_panel.sideContent();
-
                 $side_panel.ajaxifyLinks($main_panel);
-                var $form_success_action = $.formSuccessAction($selected_tab);
+                var $form_success_action = $.formSuccessAction($selected_tab_index);
 
                 $main_panel.safeBind('content-ready', function(event) {
                     $(this).ajaxifyPanel($form_success_action);
@@ -35,10 +42,10 @@
             }
         },
 
-        formSuccessAction: function(selected_tab) {
+        formSuccessAction: function(selected_tab_index) {
             return function(responseText, statusText, xhr) {
                 var new_resource_path = xhr.getResponseHeader("Location").replace(/https?:\/\/.*?\//, '/');
-                location.href = location.pathname + '?selected=' + new_resource_path + '&tab=' + selected_tab;
+                location.href = location.pathname + '?selected=' + new_resource_path + '&tab=' + selected_tab_index;
             }
         }
     });
