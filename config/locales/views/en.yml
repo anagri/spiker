@@ -85,3 +85,5 @@ en:
   layout:
     logout: 'Logout'
     login: 'Login'
+    edit_profile: 'Edit Profile'
+    reset_password: 'Reset Password'
