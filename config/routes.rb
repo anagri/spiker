@@ -15,4 +15,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users, :offices, :office_types, :client_types
   map.resources :additional_attributes, :only => [:index, :new, :create, :show]
   map.connect 'offices/:id/attributes', :controller => :offices, :action => :attributes
+
+  # temporary paths
+  map.clients '/clients', :controller => :dashboard
+  map.products '/products', :controller => :dashboard
+  map.reports '/reports', :controller => :dashboard
+  map.accounts '/accounts', :controller => :dashboard
+  map.system '/system', :controller => :dashboard
 end
