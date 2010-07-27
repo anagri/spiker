@@ -1,0 +1,18 @@
+<%= doctype %>
+<%= html %>
+<head>
+  <title><%= t('application.app_name') %></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <%= stylesheet_link_tag 'web_app_theme', 'web_app_theme_override', 'themes/bec/style', 'form',:cache => true %>
+</head>
+<body>
+<%= yield :base_content %>
+<div id="footer">
+  <div class="block">
+    <p>Copyright &copy; <%= Time.now.year %> <%= t('application.app_name') %></p>
+  </div>
+</div>
+<%= javascript_include_tag 'jquery-1.4.2', 'js/jquery-ui-1.8.2.custom.min', 'js/jquery.treeview', 'js/jquery.form', 'js/jquery.ba-bbq', :cache => :jquery %>
+<%= javascript_include_tag 'jquery.application', 'application' %>
+</body>
+<%= end_html %>
