@@ -14,7 +14,7 @@ class ClientTypesController < ApplicationController
       flash[:msg] = success_msg
       redirect_to @client_type
     else
-      flash[:error] = error_msg
+      flash_error_msg
       render :action => 'new', :status => :unprocessable_entity
     end
   end

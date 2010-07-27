@@ -27,8 +27,16 @@ class ApplicationController < ActionController::Base
     "#{params[:controller]}.#{params[:action]}.#{key}"
   end
 
+  def flash_error_msg
+    flash.now[:error] = error_msg
+  end
+
   def error_msg
     msg_key('error')
+  end
+
+  def flash_success_msg
+    flash[:info] = success_msg
   end
 
   def success_msg

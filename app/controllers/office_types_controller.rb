@@ -10,10 +10,10 @@ class OfficeTypesController < ApplicationController
 
   def create
     if @office_type.save
-      flash[:info] = success_msg
+      flash_success_msg
       redirect_to @office_type
     else
-      flash[:error] = error_msg
+      flash_error_msg
       render :action => 'index', :status => :unprocessable_entity
     end
   end

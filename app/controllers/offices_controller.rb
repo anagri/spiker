@@ -14,10 +14,10 @@ class OfficesController < ApplicationController
   def create
     @parent_office = current_user.office
     if @office.save
-      flash[:info] = success_msg
+      flash_success_msg
       redirect_to @office
     else
-      flash[:error] = error_msg
+      flash_error_msg
       render :action => 'new', :status => :unprocessable_entity
     end
   end
