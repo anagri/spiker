@@ -182,7 +182,7 @@ form li div label, form li span label {
     display: block;
     font-size: 85%;
     line-height: 160%;
-    margin: 0;
+    margin: 0 0 0 10px;
     padding-top: 3px;
 }
 
@@ -784,4 +784,8 @@ form li.paging-context {
     padding: 5px 1% 10px;
     position: static;
     width: auto !important;
+}
+
+form li div input, form li span input {
+    margin: 0 0 0 10px;
 }

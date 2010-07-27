@@ -1,12 +1,27 @@
-<% form_for @session, :url => {:controller => 'sessions', :action => 'create'} do |f| %>
-    <%= f.error_messages %>
-    <p>
-      <%= f.label :username %><br/>
-      <%= f.text_field :username, :class=>'focus' %>
-    </p>
-    <p>
-      <%= f.label :password %><br/>
-      <%= f.password_field :password %>
-    </p>
-    <p><%= f.submit "Submit", :name => "submit" %></p>
-<% end %>
+<div class="block" id="block-login">
+  <h2><%= t('layout.login') %></h2>
+
+  <div class="content login">
+    <% form_for @session, :url => {:controller => 'sessions', :action => 'create'}, :html => {:class => 'form login'} do |f| %>
+        <ul>
+          <% unless f.error_messages.blank? %>
+              <li id="errorLi">
+                <h4>There is a problem with your submission</h4>
+
+                <p id="errorMsg">Errors have been <strong>highlighted</strong> below</p>
+              </li>
+          <% end %>
+          <%= input_text(f, :username, :required => true, :focus => true) %>
+          <%= password_text(f, :password, :required => true) %>
+          <li class="group navform wat-cf">
+            <div class="right">
+              <%= f.button 'Login' %>
+              <%= link_to 'Cancel', root_path, :class => 'cancel button' %>
+            </div>
+          </li>
+        </ul>
+    <% end %>
+  </div>
+</div>
+
+

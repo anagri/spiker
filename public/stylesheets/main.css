@@ -32,3 +32,19 @@
 .fixed_container {
     height: 10px;
 }
+
+.required {
+    background-image:url("images/required.gif");
+    background-repeat:no-repeat;
+}
+
+#footer {
+    text-align:center;
+}
+
+a.cancel {
+    padding-left: 25px !important;
+    background-image: url("../images/web-app-theme/cross.png");
+    background-position: 10% 50%;
+    background-repeat: no-repeat;
+}

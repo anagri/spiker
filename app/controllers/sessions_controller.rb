@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   before_filter :new_session_from_params, :only => :new
   before_filter :load_session, :only => :destroy
   filter_resource_access
+  layout 'full_page'
 
   def new
     @session = Session.new

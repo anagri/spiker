@@ -1,4 +1,4 @@
-<% content_for :content do %>
+<% content_for :application_content do %>
     <span>
         <% form_tag({:controller => :dashboard, :action => :navigate}, {:method => :get}) do %>
             <%= select :navigate, :to, navigate_html_options, {:selected => '/'+params[:controller].decontrolled + '/' + params[:action]},

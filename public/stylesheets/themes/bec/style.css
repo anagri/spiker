@@ -159,7 +159,7 @@ input.checkbox {
 
 #main-navigation ul li a:link, #main-navigation ul li a:visited, #main-navigation ul li a:hover, #main-navigation ul li a:active,
 .secondary-navigation ul li a:link, .secondary-navigation ul li a:visited, .secondary-navigation ul li a:hover, .secondary-navigation ul li a:active,
-#user-navigation ul li a:link, #user-navigation ul li a:visited, #user-navigation ul li a:hover, #user-navigation ul li a:active {
+#user-navigation ul li, #user-navigation ul li a:link, #user-navigation ul li a:visited, #user-navigation ul li a:hover, #user-navigation ul li a:active {
     text-decoration: none;
     color: #FFF;
 }
@@ -279,7 +279,7 @@ input.checkbox {
     margin: 8px;
 }
 
-.flash .error {
+.flash .error, div.error {
     border: 1px solid #fbb;
     background-color: #fdd;
 }
@@ -318,4 +318,27 @@ ul.list li .left {
 #box .block h2 {
     background: #006666;
     color: #FFF;
+}
+
+#errorMsgLbl {
+    color: #DF0000 !important;
+    font-size: 125%;
+    margin: 0 0 5px;
+    padding: 0;
+}
+
+#errorMsg {
+    color: #000000 !important;
+    font-size: 100%;
+    margin: 0 0 2px;
+}
+
+#errorMsg strong {
+    -moz-border-radius-bottomleft: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-topright: 10px;
+    background-color: #FFDFDF !important;
+    color: red !important;
+    padding: 2px 8px;
 }

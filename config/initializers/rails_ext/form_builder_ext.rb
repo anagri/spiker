@@ -15,5 +15,12 @@ module ActionView::Helpers
     def have_errors?(field_name)
       !error_message_on(:base).blank? || !error_message_on(field_name).blank?
     end
+
+    def label_with_required(method, text = nil, options = {})
+      required = options.delete(:required) ? "<span class=\"req\">*</span>".html_safe : ''
+      label_without_required(method, text, options) << required
+    end
+
+    alias_method_chain :label, :required
   end
 end
