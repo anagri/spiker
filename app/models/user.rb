@@ -32,6 +32,12 @@ class User < ActiveRecord::Base
     Session.create(current_user)
   end
 
+  # used by password reset controller to call validation explicitly
+  def validate_password_for_reset?
+    errors.add(:password, :blank) unless password.present?
+    password.present?
+  end
+
   protected
   def office_for_role
     errors.add(:office, :head_office_for_admin_role) if role && office && Role.admin_role?(role) && !office.root?

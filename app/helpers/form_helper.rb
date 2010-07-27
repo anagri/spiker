@@ -7,17 +7,20 @@ module FormHelper
     record.new_record? ? t("view.#{record.class.name.tableize}.create", :default => :'view.common.create') : t("view.#{record.class.name.tableize}.update", :default => :'view.common.update')
   end
 
-  def input_text(form_builder, field, options)
+  def input_text(form_builder, field, options = {})
     text_tag_output(form_builder, field, :text_field, options)
   end
 
-  def password_text(form_builder, field, options)
+  def password_text(form_builder, field, options = {})
     text_tag_output(form_builder, field, :password_field, options)
   end
 
   private
   def text_tag_output(form_builder, field, method, options)
-    text_field_options = {:class => "desc #{options.delete(:focus) ? 'focus' : ''}"}
+    text_field_options = {:class => 'desc'}
+    text_field_options.merge!(:class => "#{text_field_options[:class]} focus") if options.delete(:focus)
+    text_field_options.merge!(:readonly => true) if options.delete(:readonly)
+
     label_options = {:class => 'desc'}
     label_options.merge!(:required => true) if options.delete(:required)
 

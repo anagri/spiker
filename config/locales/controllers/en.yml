@@ -30,6 +30,7 @@ en:
       error:      'The password reset link is invalid, please start the password reset process again'
       unauthorized: 'You cannot access this page as logged in'
     update:
+      success:    'The password has been updated, use your updated password to login'
       error:      'The password reset link is invalid, please start the password reset process again'
       unauthorized: 'You cannot access this page as logged in'
   offices:

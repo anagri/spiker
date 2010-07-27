@@ -78,7 +78,7 @@ describe SessionsController do
 
       def do_successful_create(http_method, status)
         session = do_create_with_guest(http_method, true)
-        flash[:info].should == 'sessions.create.success'
+        flash_notice_msg.should == 'sessions.create.success'
         response.should have_created_resource(:resource => session, :location => full_url(root_path), :status => status)
       end
     end
@@ -93,9 +93,9 @@ describe SessionsController do
 
       def do_unsuccessful_create(http_method)
         do_create_with_guest(http_method, false)
-        response.should be_success
+        response.should be_unprocessible_entity
         response.should render_template('new')
-        flash[:error].should == 'sessions.create.error'
+        flash_error_msg.should == 'sessions.create.error'
       end
     end
 
@@ -144,7 +144,7 @@ describe SessionsController do
         controller.expects(:reset_session)
         login(staff, {:destroy => true})
         send(http_method, :destroy)
-        flash[:info].should == 'sessions.destroy.success'
+        flash_notice_msg.should == 'sessions.destroy.success'
         response.should be_redirect_to(full_url(root_path))
       end
     end

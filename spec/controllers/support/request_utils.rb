@@ -64,3 +64,12 @@ end
 def none_actions
   Set[]
 end
+
+def flash_error_msg
+  response.flash.now[:error]
+end
+
+def flash_notice_msg
+  flash[:notice]
+end
+

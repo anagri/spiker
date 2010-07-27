@@ -1,20 +1,20 @@
-<% form_for @user do |f| %>
-    <%= f.error_messages %>
-    <%= f.hidden_field :perishable_token %>
-    <p>
-      Username : <br/>
-      <%= @user.username %>
-    </p>
-<!--
-FIXME make common partial
--->
-    <p>
-      <%= f.label :password %><br/>
-      <%= f.password_field :password %>
-    </p>
-    <p>
-      <%= f.label :password_confirmation %><br/>
-      <%= f.password_field :password_confirmation %>
-    </p>
-    <p><%= f.submit "Submit" %></p>
-<% end %>
+<div class="block" id="block-login">
+  <h2><%= t('layout.reset_password') %></h2>
+
+  <div class="content login">
+    <% form_for @user, :url => password_reset_path(params[:id]), :class => 'form login' do |f| %>
+        <ul>
+          <%= f.base_error %>
+          <%= input_text(f, :username, :readonly => true) %>
+          <%= password_text(f, :password, :required => true, :focus => true) %>
+          <%= password_text(f, :password_confirmation, :required => true) %>
+          <li class="group navform wat-cf">
+            <div class="right">
+              <%= f.button 'Submit' %>
+              <%= link_to 'Cancel', root_path, :class => 'cancel button' %>
+            </div>
+          </li>
+        </ul>
+    <% end %>
+  </div>
+</div>

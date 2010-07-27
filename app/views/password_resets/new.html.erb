@@ -1,5 +1,20 @@
-<%= t('.header') %><br/>
-<% form_tag '/password_resets' do %>
-    <%= text_field_tag 'email' %>
-    <%= submit_tag t('.submit') %>
-<% end %>
+<div class="block" id="block-login">
+  <h2><%= t('layout.reset_password') %></h2>
+
+  <div class="content login">
+    <% form_for @password_reset, :class => 'form login' do |f| %>
+        <ul>
+          <%= f.base_error %>
+          <%= input_text(f, :email, :required => true, :focus => true) %>
+          <li class="group navform wat-cf">
+            <div class="right">
+              <%= f.button 'Send Email' %>
+              <%= link_to 'Cancel', root_path, :class => 'cancel button' %>
+            </div>
+          </li>
+        </ul>
+    <% end %>
+  </div>
+</div>
+
+

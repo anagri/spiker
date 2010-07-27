@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
       end
     else
       flash_error_msg
-      render :action => 'new'
+      render :action => 'new', :status => :unprocessable_entity
     end
   end
 

@@ -1,19 +1,19 @@
 class PasswordResetsController < ApplicationController
-  filter_access_to :all
-  before_filter :load_password_reset, :only => [:edit, :update]
-  before_filter :new_password_reset_from_params, :only => [:create]
+  filter_resource_access
+
+  layout 'full_page'
 
   def new
   end
 
   def create
-    if @user
+    if @password_reset.valid?
       # OPTIMIZE send out emails in parallel
-      @user.without_access_control_do_deliver_password_reset_instructions!(:host => request.host, :port => request.port)
-      flash[:info] = success_msg
+      @password_reset.user.without_access_control_do_deliver_password_reset_instructions!(:host => request.host, :port => request.port)
+      flash_success_msg
       redirect_to root_url
     else
-      flash[:error] = error_msg
+      flash_error_msg
       render :action => 'new'
     end
   end
@@ -21,8 +21,8 @@ class PasswordResetsController < ApplicationController
   def update
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
-    if @user.without_access_control_do_save
-      flash[:info] = success_msg
+    if @user.validate_password_for_reset? && @user.without_access_control_do_save
+      flash_success_msg
       redirect_to root_url
     else
       render :action => 'edit'
@@ -32,15 +32,16 @@ class PasswordResetsController < ApplicationController
   def edit
   end
 
-  private
+  protected
   def new_password_reset_from_params
-    @user = User.find_by_email(params[:email])
+    @password_reset = PasswordReset.new(params[:password_reset])
   end
 
   def load_password_reset
+    @password_reset = PasswordReset.new # for declarative authorization so that does not load from database
     @user = User.without_access_control_do_find_using_perishable_token(params[:id])
     unless @user
-      flash[:error] = error_msg
+      flash_error_msg(true)
       redirect_to root_url
     end
   end

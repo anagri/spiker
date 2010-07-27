@@ -4,7 +4,7 @@ module ActionView::Helpers
       options = {:type => 'submit',
                  :class => 'button'}.merge(options)
       %Q{<button class="#{options[:class]}" type="#{options[:type]}">
-      <img src="images/web-app-theme/key.png" alt="#{value}">#{value}</img>
+      <img src="/images/web-app-theme/key.png" alt="#{value}">#{value}</img>
     </button>}
     end
 
@@ -17,7 +17,14 @@ module ActionView::Helpers
     end
 
     def base_error
-      have_errors?(:base) ? %Q{<li class="error">#{error_message_on(:base, :css_class=>'field_error')}</li>} : ''
+      output = ''
+      unless error_messages.blank?
+        output << %Q{<li id="errorLi">
+            <h4>There is a problem with your submission</h4>
+            <p id="errorMsg">Errors have been <strong>highlighted</strong> below</p>
+          </li>}
+      end
+      output << (have_errors?(:base) ? %Q{<li class="error">#{error_message_on(:base, :css_class=>'field_error')}</li>} : '')
     end
 
     def label_with_required(method, text = nil, options = {})
