@@ -7,10 +7,10 @@
           <% unless f.error_messages.blank? %>
               <li id="errorLi">
                 <h4>There is a problem with your submission</h4>
-
                 <p id="errorMsg">Errors have been <strong>highlighted</strong> below</p>
               </li>
           <% end %>
+          <%= f.base_error %>
           <%= input_text(f, :username, :required => true, :focus => true) %>
           <%= password_text(f, :password, :required => true) %>
           <li class="group navform wat-cf">

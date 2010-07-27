@@ -1093,7 +1093,7 @@ form li.error label.desc {
     color: #DF0000 !important;
 }
 
-form p.error {
+form p.error, form div.field_error {
     display: none;
     margin: 0 !important;
     padding: 7px 0 0 0 !important;
@@ -1104,11 +1104,11 @@ form p.error {
     clear: both;
 }
 
-form li.error p.error {
+form li.error p.error, form li.error div.field_error {
     display: block;
 }
 
-form li.complex p.error {
+form li.complex p.error, form li.complex div.field_error {
     padding: 0 0 9px 0 !important;
 }
 
